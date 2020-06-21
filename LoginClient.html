@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cliente ERM</title>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <!-- custom css-->
+    <link rel="stylesheet" href="ClienteLogin.css">
+</head>
+
+<body>
+    <link rel="shortcut icon" type="image/x-icon" href="img/ERM.png">
+
+    <div class="login-box">
+
+        <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+        <h1 class="title">Inicia Sesion </h1>
+        <form>
+            <!-- USERNAME INPUT -->
+            <label for="username">Usuario</label>
+            <input class="input" type="text" placeholder="Enter Username" id="username">
+            <!-- PASSWORD INPUT -->
+            <label for="password">Contraseña</label>
+            <input class="input" type="password" placeholder="Enter Password" id="password">
+            <input type="submit" onclick=' return enviarDatos()' value="Inicia Sesion">
+            <a href="#">Olvidaste tu contraseña?</a><br>
+        </form>
+    </div>
+
+    <div class="footer">
+        <small>Copyright &copy; ERM COACH 2020- Todos los derechos reservados</small>
+    </div>
+</body>
+
+</html>

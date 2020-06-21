@@ -1,0 +1,326 @@
+body {
+    background-color: rgba(0, 0, 0, 0.801);
+    margin: 0;
+    padding: 0;
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: 'Architects Daughter', cursive;
+    height: 100vh;
+}
+
+.contenedor {
+    width: 300px;
+    background-color: rgba(75, 72, 72, 0.747);
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 12px;
+    -moz-border-radius: 12px;
+    transform: translate(139%, -36%);
+}
+
+.contenedor label {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    display: block;
+}
+
+.caja-chat {
+    width: 90%;
+    height: 400px;
+}
+
+.Logo {
+    width: 200px;
+    height: 200;
+    padding: 20px;
+    left: 20%;
+}
+
+.home {
+    margin: 0 auto;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0!important;
+    background: #5c6664;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 1em;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    width: 18em;
+    height: 3em;
+    line-height: 3;
+    background: #4a7575;
+    overflow: hidden;
+    border-radius: .25em;
+    transform: translate(10%, -15%);
+}
+
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0 1em;
+    background: #be6909;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+
+.select:hover::after {
+    color: #23b499;
+}
+
+.datos-chat {
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid silver;
+}
+
+input[type='text'] {
+    width: 100%;
+    height: 40px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+input[type="submit"] {
+    width: 15px;
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #da7d12;
+    color: #000000;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    cursor: pointer;
+    background: #000000;
+    color: #da7d12;
+}
+
+.textarea {
+    width: 100%;
+    height: 5%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-bottom: 3px;
+}
+
+.contenedor input {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.contenedor label {
+    margin: 0;
+    padding: -15px;
+    font-weight: bold;
+    display: block;
+    font-size: 15px;
+}
+
+.contenedor input[type="text"] {
+    border-bottom: 1px solid hsl(29, 76%, 49%);
+    outline: none;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+}
+
+.footer {
+    background-color: rgba(255, 1, 1, 0);
+    width: 100%;
+    height: 20px;
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+    color: rgb(255, 248, 248);
+}
+
+.Info {
+    width: 22%;
+    height: 58%;
+    background-color: rgba(75, 72, 72, 0.747);
+    color: #fff;
+    top: 57%;
+    left: 42%;
+    position: absolute;
+    transform: translate(-182%, -30%);
+    box-sizing: border-box;
+    padding: 10px 10px;
+    border-radius: 12px;
+}
+
+.Info2 {
+    width: 100%;
+    height: 100%;
+    background-color: chocolate;
+    padding: 0px 0;
+    border-radius: 12px;
+}
+
+.Info input[type="submit"] {
+    border: none;
+    outline: none;
+    width: 74px;
+    height: 40px;
+    background: #da7d12;
+    color: #000000;
+    font-size: 15px;
+    border-radius: 20px;
+    padding: 0px 8px;
+    margin: 2%;
+}
+
+.Info input[type="submit"]:hover {
+    cursor: pointer;
+    background: #000000;
+    color: #da7d12;
+}
+
+.Menu {
+    width: 45%;
+    height: 90%;
+    background-color: rgba(75, 72, 72, 0.747);
+    color: #fff;
+    top: 32%;
+    left: 42%;
+    position: absolute;
+    transform: translate(-35%, -30%);
+    box-sizing: border-box;
+    padding: 0px 10px;
+    border-radius: 12px;
+}
+
+.Nutricional {
+    width: 45%;
+    height: 30%;
+    background-color: #da7d12;
+    color: #fff;
+    top: 2%;
+    left: 53%;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 90px 30px;
+    border-radius: 12px;
+}
+
+.Entrenamiento {
+    width: 45%;
+    height: 30%;
+    background-color: #da7d12;
+    color: #fff;
+    top: 35%;
+    left: 53%;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 90px 30px;
+    border-radius: 12px;
+}
+
+.Antropometrica {
+    width: 45%;
+    height: 30%;
+    background-color: #c27114da;
+    color: #fff;
+    top: 68%;
+    left: 53%;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 90px 30px;
+    border-radius: 12px;
+}
+
+.InfoUsuario {
+    width: 50%;
+    height: 96%;
+    background-color: #e78311;
+    color: #fff;
+    top: 2%;
+    left: 1%;
+    position: absolute;
+    box-sizing: border-box;
+    padding: 90px 30px;
+    border-radius: 12px;
+}
+
+.Nutricional input[type="submit"] {
+    border: none;
+    outline: none;
+    width: 150px;
+    height: 40px;
+    background: #3d3a3abe;
+    color: #000000;
+    font-size: 15px;
+    border-radius: 20px;
+    padding: 0px 8px;
+    margin: 15%;
+}
+
+.Nutricional input[type="submit"]:hover {
+    cursor: pointer;
+    background: #000000;
+    color: #da7d12;
+}
+
+.Entrenamiento input[type="submit"] {
+    border: none;
+    outline: none;
+    width: 150px;
+    height: 40px;
+    background: #3d3a3abe;
+    color: #000000;
+    font-size: 15px;
+    border-radius: 20px;
+    padding: 0px 8px;
+    margin: 15%;
+}
+
+.Entrenamiento input[type="submit"]:hover {
+    cursor: pointer;
+    background: #000000;
+    color: #da7d12;
+}
+
+.Antropometrica input[type="submit"] {
+    border: none;
+    outline: none;
+    width: 150px;
+    height: 40px;
+    background: #3d3a3abe;
+    color: #000000;
+    font-size: 15px;
+    border-radius: 20px;
+    padding: 0px 8px;
+    margin: 15%;
+}
+
+.Antropometrica input[type="submit"]:hover {
+    cursor: pointer;
+    background: #000000;
+    color: #da7d12;
+}
