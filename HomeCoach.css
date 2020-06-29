@@ -183,7 +183,16 @@ input[type="submit"]:hover {
     border-radius: 12px;
 }
 
-.Info input[type="submit"] {
+.ImagePrevia {
+    width: 140px;
+    height: 150px;
+    top: 5%;
+    background-color: rgb(112, 95, 83);
+    border-radius: 12px;
+    transform: translate(50%, 5%);
+}
+
+.Info2 input[type="submit"] {
     border: none;
     outline: none;
     width: 74px;
@@ -194,12 +203,34 @@ input[type="submit"]:hover {
     border-radius: 20px;
     padding: 0px 8px;
     margin: 2%;
+    justify-content: center;
 }
 
 .Info input[type="submit"]:hover {
     cursor: pointer;
     background: #000000;
     color: #da7d12;
+}
+
+.Info2 input[type="file"] {
+    display: none;
+}
+
+.Info2 label {
+    color: white;
+    height: 20px;
+    width: 140px;
+    background-color: rgba(0, 0, 0, 0.226);
+    position: absolute;
+    top: 170px;
+    bottom: 0;
+    left: 26%;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 20px;
 }
 
 .Menu {

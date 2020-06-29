@@ -8,8 +8,8 @@ body {
     height: 100vh;
 }
 
-.title {
-    font-size: 50px;
+.titlea {
+    font-size: 70px;
     text-align: center;
     color: rgb(218, 119, 5);
 }
@@ -28,29 +28,30 @@ body {
 /* #region */
 
 .login-box2 {
-    width: 290px;
-    height: 470px;
-    background: rgba(0, 0, 0, 0);
+    width: 340px;
+    height: 560px;
+    background: rgba(248, 3, 3, 0);
     color: #fff;
-    top: 50%;
-    left: 45%;
+    top: 55%;
+    left: 42%;
     position: absolute;
     transform: translate(-10%, -50%);
     box-sizing: border-box;
-    padding: 20px 30px;
+    padding: 20px 20px;
 }
 
 .login-box3 {
-    width: 290px;
-    height: 470px;
-    background: rgba(219, 7, 7, 0);
+    width: 420px;
+    height: 600px;
+    background: rgba(106, 7, 219, 0);
     color: #fff;
-    top: 60%;
-    left: 110%;
+    top: 45%;
+    left: 95%;
     position: absolute;
-    transform: translate(-10%, -50%);
+    transform: translate(5%, -50%);
     box-sizing: border-box;
-    padding: 20px 30px;
+    padding: 0px 80px;
+    font-size: 15px;
 }
 
 .login-box2 .avatar {
@@ -58,9 +59,9 @@ body {
     height: 160px;
     border-radius: 100%;
     position: absolute;
-    top: -70px;
+    top: -80px;
     left: calc(50% - 30%);
-    /* sombreado*/
+    font-size: 15px;
 }
 
 .login-box2 h1 {

@@ -18,7 +18,7 @@
 
         <img src="img/ERM.png" class="avatar" alt="Avatar Image">
         <h1 class="title">Inicia Sesion </h1>
-        <form>
+        <form action="registrar.php" method="POST">
             <!-- USERNAME INPUT -->
             <label for="username">Usuario</label>
             <input class="input" type="text" placeholder="Enter Username" id="username">
@@ -34,31 +34,34 @@
             <div class="login-box4" id="ocultar">
 
                 <h1 class="title">Registrate</h1>
-                <form>
-                    <!-- Nombre-->
-                    <label for="name">Nombre</label>
-                    <input type="text" placeholder="Enter Nombre" onkeypress="return sololetras(event)">
-                    <!--Apellidos  -->
-                    <label for="apellidos">Apellidos</label>
-                    <input type="text" placeholder="Enter Apellidos" onkeypress="return sololetras(event)">
-                    <label for="Gender">Genero</label>
-                    <label for="Men">Hombre</label>
-                    <input type="radio" name="sexo" id="Hombre">
-                    <label for="Women">Mujer</label>
-                    <input type="radio" name="sexo" id="Mujer">
-                    <!--Numero de Telefono  -->
-                    <label for="Phone number">Numero de Telefono</label>
-                    <input type="text" placeholder="Enter Numero" onkeypress="return solonumeros(event)">
-                    <!-- USERNAME INPUT -->
-                    <label for="username">Usuario</label>
-                    <input type="text" placeholder="Enter Usuario">
-                    <!-- PASSWORD INPUT -->
-                    <label for="password">Contraseña</label>
-                    <input type="password" placeholder="Enter Contraseña">
-                    <input type="submit" value="Registrate">
 
-                </form>
 
+                <form action="registrar.php" method="POST">
+                <!-- Nombre-->
+                <label for="name">Nombre</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Enter Nombre"
+                    onkeypress="return sololetras(event)">
+                <!--Apellidos  -->
+                <label for="apellido">Apellidos</label>
+                <input type="text" id="apellidos" name="apellidos" placeholder="Enter Apellidos"
+                    onkeypress="return sololetras(event)">
+
+                <!--Numero de Telefono  -->
+                <label for="Phone number">Numero de Telefono</label>
+                <input type="text" id="telefono" name="telefono" placeholder="Enter Numero"
+                    onkeypress="return solonumeros(event)">
+                <!-- USERNAME INPUT -->
+                <label for="username">Usuario</label>
+                <input type="text" id="usuario" name="usuario" placeholder="Enter Usuario">
+                <!-- PASSWORD INPUT -->
+                <label for="password">Contraseña</label>
+                <input type="password" id="contraseña" name="contraseña" placeholder="Enter Contraseña">
+
+                <label for="email">correo</label>
+                <input type="text" id="correo" name="correo" placeholder="Enter correo">
+                <input type="submit" value="Registrar" name="registrar">
+
+        </form>
             </div>
         </form>
 
