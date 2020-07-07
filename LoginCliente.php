@@ -9,10 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <!-- custom css-->
     <link rel="stylesheet" href="Login.css">
-   <!-- 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
-        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-        -->
+    
 </head>
 
 <body>
@@ -32,9 +29,7 @@
             <input type="submit" onclick=' return enviarDatos()' value="Inicia Sesion">
             <a href="#">Olvidaste tu contraseña?</a><br>
              
-            <a href="SignCoach.php" onclick="ocultar()">No tienes un Cuenta? </a>
-            
-            <!-- apartado del sign up-->
+            <a href="SignClient.php" onclick="ocultar()">No tienes un Cuenta? </a>
 
         </form>
 

@@ -45,7 +45,7 @@ body {
     height: 600px;
     background: rgba(106, 7, 219, 0);
     color: #fff;
-    top: 45%;
+    top: 50%;
     left: 95%;
     position: absolute;
     transform: translate(5%, -50%);
@@ -119,4 +119,56 @@ body {
 
 .login-box2 a:hover {
     color: #fff;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0!important;
+    background: #5c6664;
+    background-image: none;
+    flex: 1;
+    padding: 0 .5em;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 1em;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+.select {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 2em;
+    line-height: 3;
+    background: #4a7575;
+    overflow: hidden;
+    border-radius: .25em;
+    transform: translate(0%, -15%);
+    font-size: 20px;
+    color: black;
+}
+
+.select::after {
+    content: '\25BC';
+    position: absolute;
+    top: -4px;
+    right: 0;
+    padding: 0 5%;
+    background: #be6909;
+    cursor: pointer;
+    pointer-events: none;
+    transition: .25s all ease;
+}
+
+.select:hover::after {
+    color: #23b499;
 }

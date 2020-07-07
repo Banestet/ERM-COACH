@@ -22,7 +22,7 @@
         <img src="img/ERM.png" class="avatar" alt="Avatar Image">
         <h1>Client data</h1>
 
-        <form action="registrar.php" method="POST">
+        <form action="registrarUsuarios.php" method="POST">
             <!-- Nombre-->
             <label for="Names">Nombres</label>
             <input type="text" name="nombre" placeholder="Enter Nombre" onkeypress="return sololetras(event)">
@@ -33,18 +33,21 @@
             <label for="Birthday">Fecha de Nacimiento</label>
             <input type="date" name="fecha">
             <!--Genero -->
-            <label for="Gender">Genero</label>
-            <label for="Men">Hombre</label>
-            <input type="radio" name="sexo" id="Hombre">
-            <label for="Women">Mujer</label>
-            <input type="radio" name="sexo" id="Mujer">
+            <div class="select">
+                <select name="genero" id="genero">
+                    <option selected disabled>Genero</option>
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                </select>
+            </div>
             <!--Numero de Telefono  -->
             <label for="Phone number">Numero de Telefono</label>
             <input type="text" name="telefono" placeholder="Enter Numero" onkeypress="return solonumeros(event)">
+            <!--Lugar de residencia  -->
+            <label for="Place of residence">Lugar de Residencia</label>
+            <input type="text" name="residencia" placeholder="Enter Lugar Residencia"
+                onkeypress="return sololetras(event)">
             <div class="login-box3">
-                <!--Lugar de residencia  -->
-                <label for="Place of residence">Lugar de Residencia</label>
-                <input type="text" name="residencia" placeholder="Enter Lugar Residencia" onkeypress="return sololetras(event)">
                 <!-- USERNAME INPUT -->
                 <label for="username">Usuario</label>
                 <input type="text" id="usuario" name="usuario" placeholder="Enter Usuario">
@@ -59,9 +62,9 @@
                 <input type="text" name="peso" placeholder="Enter Peso" onkeypress="return solonumeros(event)">
                 <label for="Altura">Altura(Cm)</label>
                 <input type="text" name="altura" placeholder="Enter Altura" onkeypress="return solonumeros(event)">
-               
 
-                <input type="submit" value="Registrar" name="registrar">
+
+                <input type="submit" value="Registrar" name="registrarUsuarios">
             </div>
 
 

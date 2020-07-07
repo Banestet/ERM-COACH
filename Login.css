@@ -33,7 +33,7 @@ body {
     background: rgba(0, 0, 0, 0);
     color: #fff;
     top: 55%;
-    left: 42%;
+    left: 55%;
     position: absolute;
     transform: translate(-10%, -50%);
     box-sizing: border-box;
@@ -46,7 +46,7 @@ body {
     background: rgba(0, 0, 0, 0);
     color: #fff;
     top: 15%;
-    left: 108%;
+    left: 50%;
     position: absolute;
     transform: translate(-10%, -50%);
     box-sizing: border-box;
@@ -60,6 +60,16 @@ body {
     position: absolute;
     top: -70px;
     left: calc(50% - 30%);
+    /* sombreado*/
+}
+
+.avatar {
+    width: 250px;
+    height: 200px;
+    border-radius: 100%;
+    position: absolute;
+    top: 25%;
+    left: calc(90% - 50%);
     /* sombreado*/
 }
 
