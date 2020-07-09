@@ -9,13 +9,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <!-- custom css-->
     <link rel="stylesheet" href="Login.css">
-    
+
 </head>
 
 <body>
     <link rel="shortcut icon" type="image/x-icon" href="img/ERM.png">
 
-    <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+    <a href="./index.php">
+        <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+    </a>
     <div class="login-box">
 
 

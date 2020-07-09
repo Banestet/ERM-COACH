@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <!-- custom css-->
     <link rel="stylesheet" href="Login.css">
-   <!-- 
+    <!-- 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         -->
@@ -20,7 +20,9 @@
 
     <div class="login-box">
 
-        <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+        <a href="./index.php">
+            <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+        </a>
         <h1 class="title">Inicia Sesion </h1>
         <form action="Validad.php" method="POST">
             <!-- USERNAME INPUT -->
@@ -31,9 +33,9 @@
             <input class="input" type="password" name="contraseña" placeholder="Enter Password" id="contraseña">
             <input type="submit" onclick=' return enviarDatos()' value="Inicia Sesion">
             <a href="#">Olvidaste tu contraseña?</a><br>
-             
+
             <a href="SignCoach.php" onclick="ocultar()">No tienes un Cuenta? </a>
-            
+
             <!-- apartado del sign up-->
 
         </form>

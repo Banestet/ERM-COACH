@@ -11,6 +11,7 @@ $correo = $_POST["correo"];
 
 $req = (strlen($nombre)*strlen($apellidos)*strlen($telefono)*strlen($usuario)*strlen($contraseña)*strlen($correo)) or die("No se han llenado todos los campos");
 
+
 //consulta para insertar los datos en la tabla coach
 $insertar = "INSERT INTO coach(nombre,apellidos,telefono,usuario,contraseña,correo) VALUES ('$nombre','$apellidos','$telefono','$usuario','$contraseña','$correo')";
 
@@ -21,12 +22,12 @@ $resultado = mysqli_query ($conexion, $insertar);//para entrenadores
 if (!$resultado) {
     echo "<script>
                 alert('Usuario NO Registrado ERROR');
-                window.location= 'LoginCoach'
+                window.location= 'SignCoach.php'
     </script>";
 }else{
     echo "<script>
                 alert('Usuario Registrado Exitosamente');
-                window.location= 'HomeCoach.php'
+                window.location= 'LoginCoach.php'
     </script>";
 }
 

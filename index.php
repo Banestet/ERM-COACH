@@ -10,6 +10,7 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Galada&display=swap" rel="stylesheet">
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
@@ -57,7 +58,7 @@
                     <div class="hero-text">
                         <span style="color: white;">lleva tus entrenamientos al maximo</span>
                         <h1 class="titulo" style="color: white;">ERM<strong style="color: rgb(192, 108, 30);">COACH</strong> </h1>
-                        <p style="color: gray;" >Los que piensan que no tienen tiempo para hacer ejercicio, tarde o temprano encontrarán tiempo para estar enfermos.</p>
+                        <p class="motivacion"  >Los que piensan que no tienen tiempo para hacer ejercicio, tarde o temprano encontrarán tiempo para estar enfermos.</p>
                     </div>
                 </div>
             </div>

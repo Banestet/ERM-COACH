@@ -248,6 +248,7 @@ input[type="submit"]:hover {
 }
 
 .Nutricional {
+    background: url(/img/nutricion.jpg)no-repeat center top;
     width: 45%;
     height: 30%;
     background-color: #da7d12;

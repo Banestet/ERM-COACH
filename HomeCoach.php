@@ -99,30 +99,7 @@ include 'conectar.php';
 
         <div class="Info">
             <div class="Info2">
-                <input type="file" id="file" accept="image/">
-                <label for="file"><span class="material-icons">
-                        add_photo_alternate
-                    </span>
-                    Añadir Foto</label>
-
-                <div class="ImagePrevia">
-
-                </div>
-                <script type="text/javascript">
-                (function()) {
-                    function filepreview(input) {
-                        if (input.files && input.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function(e) {
-                                $('#ImagePrevia').html("<img src'" + e.target.result + "' />");
-                            }
-                            redaer, readAsDataURL(input.files[0]);
-
-                        }
-                    }
-                }
-                $()
-                </script>
+                
                 <input class="btn" type="submit" value="Agregar">
                 <input class="btn" type="submit" value="Eliminar">
                 <input class="btn" type="submit" value="Actualizar">
@@ -135,9 +112,10 @@ include 'conectar.php';
 
             <div class="Nutricional">
                 <input type="submit" name="Nutricional" value="Nutricional">
+
             </div>
             <div class="Entrenamiento">
-                <input type="submit" name="Entrenamiento" value="Entrenamiento">
+                <input type="submit" name="Entrenamiento" value="Entrenamiento" href="Nutricion.php">
             </div>
             <div class="Antropometrica">
                 <input type="submit" name="Antropometricas" value="Antropometricas">

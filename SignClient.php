@@ -19,7 +19,9 @@
 
     <div class="login-box2">
 
-        <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+        <a href="./index.php">
+            <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+        </a>
         <h1>Client data</h1>
 
         <form action="registrarUsuarios.php" method="POST">

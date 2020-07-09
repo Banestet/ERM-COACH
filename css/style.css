@@ -85,6 +85,12 @@ h1 {
     font-size: 250px;
 }
 
+.motivacion {
+    font-family: 'Galada', cursive;
+    font-size: 20px;
+    color: white;
+}
+
 h2 {
     font-size: 36px;
 }
