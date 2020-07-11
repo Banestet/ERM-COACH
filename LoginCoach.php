@@ -1,3 +1,63 @@
+<?php 
+	
+session_start();
+if(!empty($_SESSION['active'])){
+	header('location: Home.php');
+}else{
+
+	if(!empty($_POST))
+	{
+		if(empty($_POST['usuario']) || empty($_POST['contrasena']))
+		{
+			echo "<script>
+                    alert('Usuario o Clave incorrecta');
+                    window.location= 'LoginCoach.php'
+                </script>";
+		}else{
+
+			include "conectar.php";
+
+			$usuario = mysqli_real_escape_string($conexion,$_POST['usuario']);
+			$contrasena = md5(mysqli_real_escape_string($conexion,$_POST['contrasena']));
+
+			$query = mysqli_query($conexion,"SELECT * FROM coach WHERE usuario= '$usuario'");
+            mysqli_close($conexion);
+        
+            $result = mysqli_num_rows($query);
+            print_r($result);
+
+
+			if($result > 0){
+				$data = mysqli_fetch_array($query);
+				$_SESSION['active'] = true;
+				$_SESSION['nombre'] = $data['nombre'];
+				$_SESSION['correo']  = $data['correo'];
+				$_SESSION['usuario']   = $data['usuario'];
+				//$_SESSION['rol']    = $data['rol'];
+
+				echo "<script>
+                    alert('Inicio de session correctamente');
+                    window.location= 'Home.php'
+                </script>";
+			}else{
+				
+                session_destroy();
+                echo "<script>
+                    alert('Inicio de session Fallido');
+                    alert = ('El usuario o la clave son incorrectos');
+                     window.location= 'LoginCoach.php'
+                </script>";
+			}
+
+
+		}
+
+	}
+}
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,13 +84,13 @@
             <img src="img/ERM.png" class="avatar" alt="Avatar Image">
         </a>
         <h1 class="title">Inicia Sesion </h1>
-        <form action="Validad.php" method="POST">
+        <form action="" method="POST">
             <!-- USERNAME INPUT -->
             <label for="username">Usuario</label>
             <input class="input" type="text" name="usuario" placeholder="Enter Username" id="usuario">
             <!-- PASSWORD INPUT -->
             <label for="password">Contraseña</label>
-            <input class="input" type="password" name="contraseña" placeholder="Enter Password" id="contraseña">
+            <input class="input" type="password" name="contrasena" placeholder="Enter Password" id="contrasena">
             <input type="submit" onclick=' return enviarDatos()' value="Inicia Sesion">
             <a href="#">Olvidaste tu contraseña?</a><br>
 

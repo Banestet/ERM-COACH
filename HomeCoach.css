@@ -262,6 +262,7 @@ input[type="submit"]:hover {
 }
 
 .Entrenamiento {
+    background: url(/img/Entrenamiento.jpg)no-repeat center;
     width: 45%;
     height: 30%;
     background-color: #da7d12;
@@ -275,6 +276,7 @@ input[type="submit"]:hover {
 }
 
 .Antropometrica {
+    background: url(/img/Medidas.jpg)no-repeat center;
     width: 45%;
     height: 30%;
     background-color: #c27114da;
@@ -305,7 +307,7 @@ input[type="submit"]:hover {
     outline: none;
     width: 150px;
     height: 40px;
-    background: #3d3a3abe;
+    background: #bbb9b9cc;
     color: #000000;
     font-size: 15px;
     border-radius: 20px;
@@ -324,7 +326,7 @@ input[type="submit"]:hover {
     outline: none;
     width: 150px;
     height: 40px;
-    background: #3d3a3abe;
+    background: #bbb9b9cc;
     color: #000000;
     font-size: 15px;
     border-radius: 20px;
@@ -343,7 +345,7 @@ input[type="submit"]:hover {
     outline: none;
     width: 150px;
     height: 40px;
-    background: #3d3a3abe;
+    background: #bbb9b9cc;
     color: #000000;
     font-size: 15px;
     border-radius: 20px;

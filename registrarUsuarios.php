@@ -1,12 +1,12 @@
 <?php
 include 'conectar.php';
-
+session_start();
 //recibir los datos y almacenarlos en variables del sing coach
 $nombre = $_POST["nombre"];
 $apellidos = $_POST["apellidos"];
 $telefono = $_POST["telefono"];
 $usuario = $_POST["usuario"];
-$contraseña = $_POST["contraseña"];
+$contraseña = sha1($_POST["contraseña"]);
 $correo = $_POST["correo"];
 $fecha = $_POST["fecha"];
 $residencia = $_POST["residencia"];

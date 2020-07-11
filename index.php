@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ERM COACH</title>
-
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap" rel="stylesheet">
@@ -15,17 +14,13 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-
-
 </head>
-
 <body>
 <link rel="shortcut icon" type="image/x-icon" href="img/ERM.png">
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
     </div>
-
     <!-- Header Section Begin -->
     <header class="header-section">
         <div class="container">
@@ -49,7 +44,6 @@
         </div>
     </header>
     <!-- Header End -->
-
     <!-- Hero Section Begin -->
     <section class="hero-section set-bg" data-setbg="img/banner.png">
         <div class="container">
@@ -65,7 +59,6 @@
         </div>
     </section>
     <!-- Hero Section End -->
-
     <!-- About Section Begin -->
     <section id="nosotros" class="about-section spad">
         <div class="container">
@@ -73,7 +66,6 @@
                 <div class="col-lg-6">
                     <div class="about-pic">
                         <img src="img/about-pic.jpg" alt="">
-
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -98,7 +90,6 @@
         </div>
     </section>
     <!-- About Section End -->
-
     <!-- Services Section Begin -->
     <section class="services-section">
         <div class="container-fluid">
@@ -145,7 +136,6 @@
         </div>
     </section>
     <!-- Services Section End -->
-
     <!-- Classes Section Begin -->
     <section id="servicios" class="classes-section spad">
         <div class="container">
@@ -217,11 +207,6 @@
         </div>
     </section>
     <!-- Classes Section End -->
-
-
-
-
-
     <!-- Footer Banner Section Begin -->
     <section id="login" class="footer-banner">
         <div class="container-fluid">
@@ -248,7 +233,6 @@
         </div>
     </section>
     <!-- Footer Banner Section End -->
-
     <!-- Footer Section Begin -->
     <footer class="footer-section">
         <div class="container">
@@ -282,7 +266,6 @@
                     <button type="submit"><i class="fa fa-send"></i></button>
                 </form>
             </div>
-
         </div>
     </footer>
     <!-- Footer Section End -->
@@ -298,5 +281,4 @@
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
 </body>
-
 </html>

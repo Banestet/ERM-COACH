@@ -1,19 +1,21 @@
 <?php
 include 'conectar.php';
 
+
+
 //recibir los datos y almacenarlos en variables del sing coach
 $nombre = $_POST["nombre"];
 $apellidos = $_POST["apellidos"];
 $telefono = $_POST["telefono"];
 $usuario = $_POST["usuario"];
-$contraseña = $_POST["contraseña"];
+$contrasena = sha1($_POST["contrasena"]);
 $correo = $_POST["correo"];
 
-$req = (strlen($nombre)*strlen($apellidos)*strlen($telefono)*strlen($usuario)*strlen($contraseña)*strlen($correo)) or die("No se han llenado todos los campos");
+$req = (strlen($nombre)*strlen($apellidos)*strlen($telefono)*strlen($usuario)*strlen($contrasena)*strlen($correo)) or die("No se han llenado todos los campos");
 
 
 //consulta para insertar los datos en la tabla coach
-$insertar = "INSERT INTO coach(nombre,apellidos,telefono,usuario,contraseña,correo) VALUES ('$nombre','$apellidos','$telefono','$usuario','$contraseña','$correo')";
+$insertar = "INSERT INTO coach(nombre,apellidos,telefono,usuario,contrasena,correo) VALUES ('$nombre','$apellidos','$telefono','$usuario','$contrasena','$correo')";
 
 //ejecutar consulta
 $resultado = mysqli_query ($conexion, $insertar);//para entrenadores
