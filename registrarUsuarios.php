@@ -2,17 +2,17 @@
 include 'conectar.php';
 session_start();
 //recibir los datos y almacenarlos en variables del sing coach
-$nombre = $_POST["nombre"];
-$apellidos = $_POST["apellidos"];
-$telefono = $_POST["telefono"];
-$usuario = $_POST["usuario"];
-$contraseña = sha1($_POST["contraseña"]);
-$correo = $_POST["correo"];
-$fecha = $_POST["fecha"];
-$residencia = $_POST["residencia"];
-$peso= $_POST["peso"];
-$altura = $_POST["altura"];
-$genero = $_POST["genero"];
+$nombreU = $_POST["nombreU"];
+$apellidosU = $_POST["apellidosU"];
+$telefonoU = $_POST["telefonoU"];
+$usuarioU = $_POST["usuarioU"];
+$contraseñaU = sha1($_POST["contraseñaU"]);
+$correoU = $_POST["correoU"];
+$fechaU = $_POST["fechaU"];
+$residenciaU = $_POST["residenciaU"];
+$pesoU= $_POST["pesoU"];
+$alturaU = $_POST["alturaU"];
+$generoU = $_POST["generoU"];
 
 /*
 $req = (strlen($nombre)*strlen($apellidos)*strlen($telefono)*strlen($usuario)*strlen($contraseña)*strlen($correo)) or die("No se han llenado todos los campos");
@@ -20,7 +20,7 @@ $req = (strlen($nombre)*strlen($apellidos)*strlen($telefono)*strlen($usuario)*st
 
 //consulta para insertar los datos en la tabla coach
 
-$insertar = "INSERT INTO usuarios(nombre,apellidos,fecha,telefono,residencia,usuario,contraseña,correo,peso,altura) VALUES ('$nombre','$apellidos','$fecha','$telefono','$residencia','$usuario','$contraseña','$correo','$peso','$altura')";
+$insertar = "INSERT INTO usuarios(nombreU,apellidosU,fechaU,telefonoU,residenciaU,usuarioU,contraseñaU,correoU,pesoU,alturaU) VALUES ('$nombreU','$apellidosU','$fechaU','$telefonoU','$residenciaU','$usuarioU','$contraseñaU','$correoU','$pesoU','$alturaU')";
 
 
 
@@ -31,12 +31,12 @@ $resultado = mysqli_query ($conexion, $insertar);//para entrenadores
 if (!$resultado) {
     echo "<script>
                 alert('Usuario NO Registrado ERROR');
-                window.location= 'LoginCoach.php'
+                window.location= 'SignClient.php'
     </script>";
 }else{
     echo "<script>
                 alert('Usuario Registrado Exitosamente');
-                window.location= 'HomeCoach.php'
+                window.location= 'LoginCliente.php'
     </script>";
 }
 

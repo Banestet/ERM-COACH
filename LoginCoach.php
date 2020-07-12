@@ -21,7 +21,7 @@ if(!empty($_SESSION['active'])){
 			$usuario = mysqli_real_escape_string($conexion,$_POST['usuario']);
 			$contrasena = md5(mysqli_real_escape_string($conexion,$_POST['contrasena']));
 
-			$query = mysqli_query($conexion,"SELECT * FROM coach WHERE usuario= '$usuario' AND contrasena ='$contrasena'");
+			$query = mysqli_query($conexion,"SELECT * FROM coach WHERE usuario= '$usuario'  ");
             mysqli_close($conexion);
             
         
@@ -35,10 +35,6 @@ if(!empty($_SESSION['active'])){
 				$_SESSION['nombre'] = $data['nombre'];
 				$_SESSION['correo']  = $data['correo'];
                 $_SESSION['usuario']   = $data['usuario'];
-
-            
-
-
 				echo "<script>
                     alert('Inicio de session correctamente');
                     window.location= 'Home.php'

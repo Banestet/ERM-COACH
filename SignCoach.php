@@ -46,7 +46,7 @@
                 <input type="text" id="usuario" name="usuario" placeholder="Enter Usuario">
                 <!-- PASSWORD INPUT -->
                 <label for="password">Contraseña</label>
-                <input type="password" id="contraseña" name="contraseña" placeholder="Enter Contraseña">
+                <input type="password" id="contrasena" name="contrasena" placeholder="Enter Contraseña">
 
                 <label for="email">correo</label>
                 <input type="text" id="correo" name="correo" placeholder="Enter correo">

@@ -9,7 +9,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Home Entrenador</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
@@ -33,6 +33,7 @@ session_start();
             <div class="infoUsuario">
                 <h1 > <strong > Bienvenido:</strong>  <?php echo $_SESSION['usuario'] ?> </h1>
                 <h1><?php echo $_SESSION['correo'] ?></h1>
+                    <img class="avatarUsuario" src="/img/entrenador.jpg" alt="">
             </div>
             <div class="logo">
                 <a href="Home.php">

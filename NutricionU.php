@@ -7,7 +7,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrenamiento</title>
+    <title>Nutricion Cliente</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
@@ -28,12 +28,13 @@ session_start();
     <header class="header-section">
         <div class="container">
             <div class="infoUsuario">
-                <h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuario'] ?> </h1>
-                <h1><?php echo $_SESSION['correo'] ?></h1>
+                <h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuarioU'] ?> </h1>
+                <h1><?php echo $_SESSION['correoU'] ?></h1>
                 <img class="avatarUsuario" src="/img/entrenador.jpg" alt="">
+
             </div>
             <div class="logo">
-                <a href="Home.php">
+                <a href="HomeU.php">
                     <img src="img/ERM.png" class="avatar" alt="Avatar Image">
                 </a>
                 <hr>
@@ -41,10 +42,10 @@ session_start();
             <div class="nav-menu">
                 <nav class="mainmenu mobile-menu">
                     <ul>
-                        <li class="active"><a href="Home.php">Inicio</a></li>
-                        <li><a href="Nutricion.php">Nutricion</a></li>
-                        <li><a href="Workout.php">Entrenamineto</a></li>
-                        <li><a href="Antropometricas.php">Medidas Antropometricas</a></li>
+                        <li class="active"><a href="HomeU.php">Inicio</a></li>
+                        <li><a href="NutricionU.php">Nutricion</a></li>
+                        <li><a href="WorkoutU.php">Entrenamineto</a></li>
+                        <li><a href="AntropometricasU.php">Medidas Antropometricas</a></li>
                     </ul>
                 </nav>
                 <a href="salir.php" class="primary-btn signup-btn">Salir</a>
@@ -54,7 +55,7 @@ session_start();
     <!-- Header End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero-section set-bg" data-setbg="img/Workout.jpg">
+    <section class="hero-section set-bg" data-setbg="img/NutricionFondo2.jpg">
         <div class="container">
             <div class="row">
 

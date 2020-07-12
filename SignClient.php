@@ -27,43 +27,43 @@
         <form action="registrarUsuarios.php" method="POST">
             <!-- Nombre-->
             <label for="Names">Nombres</label>
-            <input type="text" name="nombre" placeholder="Enter Nombre" onkeypress="return sololetras(event)">
+            <input type="text" name="nombreU" placeholder="Enter Nombre" onkeypress="return sololetras(event)">
             <!--Apellidos  -->
             <label for="Surnames">Apellidos</label>
-            <input type="text" name="apellidos" placeholder="Enter Apellidos" onkeypress="return sololetras(event)">
+            <input type="text" name="apellidosU" placeholder="Enter Apellidos" onkeypress="return sololetras(event)">
             <!--Cumpleaños -->
             <label for="Birthday">Fecha de Nacimiento</label>
-            <input type="date" name="fecha">
+            <input type="date" name="fechaU">
             <!--Genero -->
             <div class="select">
-                <select name="genero" id="genero">
+                <select name="generoU" id="genero">
                     <option selected disabled>Genero</option>
-                    <option value="Hombre">Hombre</option>
-                    <option value="Mujer">Mujer</option>
+                    <option value="1">Hombre</option>
+                    <option value="2">Mujer</option>
                 </select>
             </div>
             <!--Numero de Telefono  -->
             <label for="Phone number">Numero de Telefono</label>
-            <input type="text" name="telefono" placeholder="Enter Numero" onkeypress="return solonumeros(event)">
+            <input type="text" name="telefonoU" placeholder="Enter Numero" onkeypress="return solonumeros(event)">
             <!--Lugar de residencia  -->
             <label for="Place of residence">Lugar de Residencia</label>
-            <input type="text" name="residencia" placeholder="Enter Lugar Residencia"
+            <input type="text" name="residenciaU" placeholder="Enter Lugar Residencia"
                 onkeypress="return sololetras(event)">
             <div class="login-box3">
                 <!-- USERNAME INPUT -->
                 <label for="username">Usuario</label>
-                <input type="text" id="usuario" name="usuario" placeholder="Enter Usuario">
+                <input type="text" id="usuario" name="usuarioU" placeholder="Enter Usuario">
                 <!-- PASSWORD INPUT -->
                 <label for="password">Contraseña</label>
-                <input type="password" id="contraseña" name="contraseña" placeholder="Enter Contraseña">
+                <input type="password" id="contraseña" name="contraseñaU" placeholder="Enter Contraseña">
 
                 <label for="email">correo</label>
-                <input type="text" id="correo" name="correo" placeholder="Enter correo">
+                <input type="text" id="correo" name="correoU" placeholder="Enter correo">
                 <h1 class="titlea">Medidas antropometricas</h1>
                 <label for="Peso">Peso (kg)</label>
-                <input type="text" name="peso" placeholder="Enter Peso" onkeypress="return solonumeros(event)">
+                <input type="text" name="pesoU" placeholder="Enter Peso" onkeypress="return solonumeros(event)">
                 <label for="Altura">Altura(Cm)</label>
-                <input type="text" name="altura" placeholder="Enter Altura" onkeypress="return solonumeros(event)">
+                <input type="text" name="alturaU" placeholder="Enter Altura" onkeypress="return solonumeros(event)">
 
 
                 <input type="submit" value="Registrar" name="registrarUsuarios">

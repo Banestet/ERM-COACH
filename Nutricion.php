@@ -30,6 +30,8 @@ session_start();
             <div class="infoUsuario">
                 <h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuario'] ?> </h1>
                 <h1><?php echo $_SESSION['correo'] ?></h1>
+                <img class="avatarUsuario" src="/img/entrenador.jpg" alt="">
+
             </div>
             <div class="logo">
                 <a href="Home.php">
@@ -46,7 +48,7 @@ session_start();
                         <li><a href="Antropometricas.php">Medidas Antropometricas</a></li>
                     </ul>
                 </nav>
-                <a href="#" class="primary-btn signup-btn">Salir</a>
+                <a href="salir.php" class="primary-btn signup-btn">Salir</a>
             </div>
         </div>
     </header>

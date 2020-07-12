@@ -8,7 +8,7 @@ $nombre = $_POST["nombre"];
 $apellidos = $_POST["apellidos"];
 $telefono = $_POST["telefono"];
 $usuario = $_POST["usuario"];
-$contrasena = sha1($_POST["contrasena"]);
+$contrasena = $_POST["contrasena"];
 $correo = $_POST["correo"];
 
 $req = (strlen($nombre)*strlen($apellidos)*strlen($telefono)*strlen($usuario)*strlen($contrasena)*strlen($correo)) or die("No se han llenado todos los campos");
