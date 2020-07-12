@@ -1,6 +1,7 @@
 <?php 
-	
-session_start();
+    session_start();
+    include "conectar.php";
+    
 if(!empty($_SESSION['active'])){
 	header('location: Home.php');
 }else{
@@ -15,13 +16,14 @@ if(!empty($_SESSION['active'])){
                 </script>";
 		}else{
 
-			include "conectar.php";
+			
 
 			$usuario = mysqli_real_escape_string($conexion,$_POST['usuario']);
 			$contrasena = md5(mysqli_real_escape_string($conexion,$_POST['contrasena']));
 
-			$query = mysqli_query($conexion,"SELECT * FROM coach WHERE usuario= '$usuario'");
+			$query = mysqli_query($conexion,"SELECT * FROM coach WHERE usuario= '$usuario' AND contrasena ='$contrasena'");
             mysqli_close($conexion);
+            
         
             $result = mysqli_num_rows($query);
             print_r($result);
@@ -32,8 +34,10 @@ if(!empty($_SESSION['active'])){
 				$_SESSION['active'] = true;
 				$_SESSION['nombre'] = $data['nombre'];
 				$_SESSION['correo']  = $data['correo'];
-				$_SESSION['usuario']   = $data['usuario'];
-				//$_SESSION['rol']    = $data['rol'];
+                $_SESSION['usuario']   = $data['usuario'];
+
+            
+
 
 				echo "<script>
                     alert('Inicio de session correctamente');
@@ -55,7 +59,6 @@ if(!empty($_SESSION['active'])){
 	}
 }
 ?>
-
 
 
 <!DOCTYPE html>

@@ -1,11 +1,5 @@
 <?php
 session_start();
-$varsesion = $_SESSION['usuario'];
-
-if ($varsesion == null || $varsesion = '') {
-	echo 'Usted no tiene autorizacion';
-	die();
-}
 ?>
 
 
@@ -20,6 +14,7 @@ if ($varsesion == null || $varsesion = '') {
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda+One&display=swap" rel="stylesheet">
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
@@ -35,6 +30,10 @@ if ($varsesion == null || $varsesion = '') {
     <!-- Header Section Begin -->
     <header class="header-section">
         <div class="container">
+            <div class="infoUsuario">
+                <h1 > <strong > Bienvenido:</strong>  <?php echo $_SESSION['usuario'] ?> </h1>
+                <h1><?php echo $_SESSION['correo'] ?></h1>
+            </div>
             <div class="logo">
                 <a href="Home.php">
                     <img src="img/ERM.png" class="avatar" alt="Avatar Image">
@@ -60,7 +59,7 @@ if ($varsesion == null || $varsesion = '') {
     <section class="hero-section set-bg" data-setbg="img/Fondo2.jpg">
         <div class="container">
             <div class="row">
-
+                
             </div>
         </div>
     </section>

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +27,10 @@
     <!-- Header Section Begin -->
     <header class="header-section">
         <div class="container">
+            <div class="infoUsuario">
+                <h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuario'] ?> </h1>
+                <h1><?php echo $_SESSION['correo'] ?></h1>
+            </div>
             <div class="logo">
                 <a href="Home.php">
                     <img src="img/ERM.png" class="avatar" alt="Avatar Image">
@@ -57,7 +64,7 @@
 
 
 
-   
+
 
 
     <!-- Js Plugins -->

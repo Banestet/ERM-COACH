@@ -17,8 +17,3 @@ function solonumeros(event) {
     }
     return false;
 }
-
-//ocultar un div
-function ocultar() {
-    document.getElementById('ocultar').style.display = "none";
-}
