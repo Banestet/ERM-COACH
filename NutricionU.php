@@ -1,5 +1,10 @@
 <?php
+/*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
 session_start();
+if(empty($_SESSION['activeU'])){
+    header('location: LoginCliente.php');
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

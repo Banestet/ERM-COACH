@@ -1,61 +1,58 @@
 <?php 
     session_start();
     include "conectar.php";
-    
-if(!empty($_SESSION['activeU'])){
-	header('location: HomeU.php');
-}else{
-
-	if(!empty($_POST))
-	{
-		if(empty($_POST['usuarioU']) || empty($_POST['contraseñaU']))
-		{
-			echo "<script>
-                    alert('Usuario o Clave incorrecta');
-                    window.location= 'LoginCliente.php'
-                </script>";
-		}else{
-
-			
-
-			$usuarioU = mysqli_real_escape_string($conexion,$_POST['usuarioU']);
-			$contraseñaU = md5(mysqli_real_escape_string($conexion,$_POST['contraseñaU']));
-
-			$query = mysqli_query($conexion,"SELECT * FROM usuarios WHERE usuarioU= '$usuarioU' ");
-            mysqli_close($conexion);
-            
-        
-            $result = mysqli_num_rows($query);
-            print_r($result);
 
 
-			if($result > 0){
-				$data = mysqli_fetch_array($query);
-				$_SESSION['activeU'] = true;
-				$_SESSION['nombreU'] = $data['nombreU'];
-				$_SESSION['correoU']  = $data['correoU'];
-                $_SESSION['usuarioU']   = $data['usuarioU'];
-                $_SESSION['generoU']   = $data['generoU'];
+    if(!empty($_SESSION['activeU'])){
+        header('location: HomeU.php');
+    }else{
 
-				echo "<script>
-                    alert('Inicio de session correctamente');
-                    window.location= 'HomeU.php'
-                </script>";
-			}else{
-				
-                session_destroy();
+        if(!empty($_POST)){
+            if(empty($_POST['usuarioU']) || empty($_POST['contraseñaU']))
+            {
                 echo "<script>
-                    alert('Inicio de session Fallido');
-                    alert = ('El usuario o la clave son incorrectos CLIENTE');
-                     window.location= 'LoginCliente.php'
+                    alert('Ingrese su Usuario o Contraseña');
+                    window.location= 'LoginCoach.php'
                 </script>";
-			}
+            }else{
+                $usuarioU = mysqli_real_escape_string($conexion,$_POST['usuarioU']);
+                $contraseñaU = mysqli_real_escape_string($conexion,$_POST['contraseñaU']);
+
+                $query = mysqli_query($conexion,"SELECT * FROM usuarios WHERE usuarioU= '$usuarioU'AND contraseñaU= '$contraseñaU'");
+                mysqli_close($conexion);
+                
+            
+                $result = mysqli_num_rows($query);
+                print_r($result);
 
 
-		}
+                if($result > 0){
+                    $data = mysqli_fetch_array($query);
+                    $_SESSION['activeU'] = true;
+                    $_SESSION['nombreU'] = $data['nombreU'];
+                    $_SESSION['correoU']  = $data['correoU'];
+                    $_SESSION['usuarioU']   = $data['usuarioU'];
+                    $_SESSION['generoU']   = $data['generoU'];
 
-	}
-}
+                    echo "<script>
+                        alert('Inicio de session correctamente');
+                        window.location= 'HomeU.php'
+                    </script>";
+                }else{
+                    
+                    session_destroy();
+                    echo "<script>
+                        alert('Inicio de session Fallido');
+                        alert = ('El usuario o la clave son incorrectos CLIENTE');
+                        window.location= 'LoginCliente.php'
+                    </script>";
+                }
+
+
+            }
+
+        }
+    }
 ?>
 
 <!DOCTYPE html>
