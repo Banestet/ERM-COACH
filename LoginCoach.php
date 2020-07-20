@@ -1,6 +1,8 @@
 <?php 
+    error_reporting(0);
     session_start();
     include "conectar.php";
+    include 'Configuracion/SED.php';
     
 if(!empty($_SESSION['active'])){
 	header('location: Home.php');
@@ -13,31 +15,48 @@ if(!empty($_SESSION['active'])){
                     window.location= 'LoginCoach.php'
                 </script>";
 		}else{
+            
             $usuario = mysqli_real_escape_string($conexion,$_POST['usuario']);
             $contrasena = mysqli_real_escape_string($conexion,$_POST['contrasena']);
 
-            $consulta = mysqli_query($conexion,"SELECT * FROM coach WHERE  usuario= '$usuario' AND contrasena= '$contrasena'");
+            $consulta = mysqli_query($conexion,"SELECT * FROM coach WHERE  usuario= '$usuario'");
             mysqli_close($conection);
 
             $result = mysqli_num_rows($consulta);
-            print_r($result);
 
 
             if($result > 0){
+                session_start(); 
+                $_SESSION["autentificado"]= "SI"; 
+                $_SESSION["ultimoAcceso"]= date("Y-n-j H:i:s"); 
                 $data = mysqli_fetch_array($consulta);
                 $_SESSION['active'] = true;
                 $_SESSION['nombre'] = $data['nombre'];
                 $_SESSION['correo']  = $data['correo'];
                 $_SESSION['usuario']   = $data['usuario'];
+
+                //Desencriptacion de la contraseña que llega de la base de datos
+                $_SESSION['contrasena']  = SED:: decryption($data['contrasena']);
+
+                //comparacion de contraseñas
+                if (  $contrasena ==  $_SESSION['contrasena']) {
                 echo "<script>
-                    alert('Inicio de session correctamente');
                     window.location= 'Home.php'
                 </script>";
+                }else{
+                     session_destroy();
+                echo "<script>
+                    alert('contrasena incorrecta');
+                    window.location= 'LoginCoach.php'
+                </script>"; 
+                }
+
+             
             }else{
                 session_destroy();
                 echo "<script>
-                    alert('Inicio de session Fallido');
-                    alert = ('El usuario o la clave son incorrectos');
+                    alert('El usuario no se encuentra');
+ 
                     window.location= 'LoginCoach.php'
                 </script>"; 
             }
@@ -76,12 +95,12 @@ if(!empty($_SESSION['active'])){
         <form action="" method="POST">
             <!-- USERNAME INPUT -->
             <label for="username">Usuario</label>
-            <input class="input" type="text" name="usuario" placeholder="Enter Username" id="usuario">
+            <input class="input" type="text" name="usuario" placeholder="Enter Ususario" id="usuario">
             <!-- PASSWORD INPUT -->
             <label for="password">Contraseña</label>
-            <input class="input" type="password" name="contrasena" placeholder="Enter Password" id="contrasena">
+            <input class="input" type="password" name="contrasena" placeholder="Enter Contraseña" id="contrasena">
             <input type="submit" onclick=' return enviarDatos()' value="Inicia Sesion">
-            <a href="#">Olvidaste tu contraseña?</a><br>
+            
 
             <a href="SignCoach.php" onclick="ocultar()">No tienes un Cuenta? </a>
 

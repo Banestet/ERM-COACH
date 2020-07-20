@@ -1,8 +1,33 @@
 <?php
 /*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
+include "conectar.php";
 session_start();
+$sql ="SELECT * FROM configuracion";
+$res=mysqli_query($conexion,$sql);
+
 if(empty($_SESSION['active'])){
     header('location: LoginCoach.php');
+}else{
+    //codigo para cierre de session por inactividad
+
+    $fechaGuardada = $_SESSION["ultimoAcceso"];
+    $ahora = date("Y-n-j H:i:s");
+    $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada));
+
+    //comparamos el tiempo transcurrido
+    if($tiempo_transcurrido >= 60) {
+    //si pasaron 10 minutos o más
+    session_destroy(); // destruyo la sesión
+    echo "<script>
+    alert('Session Cerrada Por Inactividad');
+    window.location= 'LoginCoach.php'
+    </script>";
+    //header("Location: index.php"); //envío al usuario a la pag. de autenticación
+    //sino, actualizo la fecha de la sesión
+    }else {
+    $_SESSION["ultimoAcceso"] = $ahora;
+    }
+
 }
 
 ?>
@@ -42,6 +67,10 @@ if(empty($_SESSION['active'])){
             </div>
             <div class="logo">
                 <a href="Home.php">
+                    <?php
+                    $data=mysqli_fetch_array($res);
+                    echo '<img src="'.$data['ruta']. '" alt="" class="portafolio-img">';
+                    ?>
                     <img src="img/ERM.png" class="avatar" alt="Avatar Image">
                 </a>
                 <hr>
@@ -63,9 +92,41 @@ if(empty($_SESSION['active'])){
 
     <!-- Hero Section Begin -->
     <section class="hero-section set-bg" data-setbg="img/Fondo2.jpg">
-        <div class="container">
+        <div class="div1">
             <div class="row">
+                <h1 class="title">Clientes</h1>
+                <table class="tablaUsuarios">
+                    <thead>
+                        <tr>
+                            <td>Nombre</td>
+                            <td>Apellidos</td>
+                            <td>Telefono</td>
+                            <td>Residencia</td>
+                            <td>Peso</td>
+                            <td>Altura</td>
+                        </tr>
+                    </thead>
+                    <?php
+                        $Clientes ="SELECT * FROM usuarios";
+                        $result=mysqli_query($conexion, $Clientes);
+                        while ($mostrar=mysqli_fetch_array($result)) {
+                    ?>
+                    <tr>
+                        <td><?php echo $mostrar['nombreU']?></td>
+                        <td><?php echo $mostrar['apellidosU']?></td>
+                        <td><?php echo $mostrar['telefonoU']?></td>
+                        <td><?php echo $mostrar['residenciaU']?></td>
+                        <td><?php echo $mostrar['pesoU']?></td>
+                        <td><?php echo $mostrar['alturaU']?></td>
+                    </tr>
+                    <?php
+                        }
+                    ?>
+                </table>
                 
+            </div>
+            <div class="Prueba">
+
             </div>
         </div>
     </section>
@@ -87,10 +148,10 @@ if(empty($_SESSION['active'])){
                         <label>
                           <input type="radio" id="bmi-imperial" name="bmi-measure" onchange="measureBMI()"/> Imperial
                         </label>
-                        <br><br> Weight:
+                        <br><br> Peso:
                         <input class="input" id="bmi-weight" type="number" min="1" max="635" required/>
                         <span id="bmi-weight-unit">KG</span>
-                        <br><br> Height:
+                        <br><br> Altura:
                         <input class="input" id="bmi-height" type="number" min="54" max="272" required/>
                         <span id="bmi-height-unit">CM</span>
                         <br><br>

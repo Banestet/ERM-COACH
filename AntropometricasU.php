@@ -1,10 +1,7 @@
 <?php
-/*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
+error_reporting(0);
+include "Configuracion/SessionTimeU.php";
 session_start();
-if(empty($_SESSION['activeU'])){
-    header('location: LoginCliente.php');
-}
-
 ?>
 
 <!DOCTYPE html>

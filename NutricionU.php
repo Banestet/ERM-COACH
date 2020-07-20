@@ -1,11 +1,14 @@
 <?php
-/*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
+error_reporting(0);
+include "Configuracion/SessionTimeU.php";
+include "conectar.php";
 session_start();
-if(empty($_SESSION['activeU'])){
-    header('location: LoginCliente.php');
-}
 
+$sql ="SELECT * FROM batidos";
+$res=mysqli_query($conexion,$sql);
 ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,6 +24,7 @@ if(empty($_SESSION['activeU'])){
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/NutricionU.css" type="text/css">
 </head>
 
 <body>
@@ -59,15 +63,89 @@ if(empty($_SESSION['activeU'])){
     </header>
     <!-- Header End -->
 
-    <!-- Hero Section Begin -->
-    <section class="hero-section set-bg" data-setbg="img/NutricionFondo2.jpg">
-        <div class="container">
-            <div class="row">
-
-            </div>
+    <section class="portafolio">
+        <h1>Menú de Batidos de Frutas</h1>
+        <h3>100% naturales sin ninguna azucar agregada</h3>
+		<div class="portafolio-container">
+			<section class="portafolio-item">
+                <?php
+                    $data=mysqli_fetch_array($res);
+                    echo '<img src="'.$data['ruta']. '" alt="" class="portafolio-img">';
+                ?>
+				<section class="portafolio-text">
+					<h2>Poder Pink</h2>
+					<p>Contiene una gran cantidad de fósforo, hierro, yodo, minerales y las vitaminas B1, B2, B3 y B6, Gracias al jengibre, incrementa el metabolismo que facilita que el cuerpo gaste más energía y adelgaza</p>
+				</section>
+			</section>
+			<section class="portafolio-item">
+				<img src="img/Batidos/FusionFrutal.jpg" alt="" class="portafolio-img">
+				<section class="portafolio-text">
+					<h2>Fusión Frutal</h2>
+					<p>Aporta vitaminas y minerales para ayudar bajar de peso, sentirse satisfecho y ayudar a depurar toxinas </p>
+				</section>
+			</section>
+			<section class="portafolio-item">
+				<img src="img/Batidos/Fortaleza-Go.jpg" alt="" class="portafolio-img">
+				<section class="portafolio-text">
+					<h2>Fortaleza-GO</h2>
+					<p>Previene los trastornos cardíacos, el cáncer, la diabetes y contiene una buena dosis de fibra para el colon</p>
+				</section>
+            </section>
+		</div>
+        <h1>Batidos Verdes</h1>
+        <h3>100% naturales sin ninguna azucar agregada</h3>
+        <div class="portafolio-container">
+			<section class="portafolio-item">
+				<img src="img/Batidos/batidov1.jpg" alt="" class="portafolio-img">
+				<section class="portafolio-text">
+					<h2>H2Ocate</h2>
+					<p>Contiene altos niveles de grasa monoinsaturada saludable para el corazón, reduce el nivel de colesterol, y impulsa el crecimiento de la masa muscular</p>
+				</section>
+			</section>
+			<section class="portafolio-item">
+				<img src="img/Batidos/batidov2.jpg" alt="" class="portafolio-img">
+				<section class="portafolio-text">
+					<h2>El Guerrero Verde</h2>
+					<p>Proporciona fibra, calcio y vitaminas A, C y K. Contiene potentes fitoquímicos y es una excelente manera de obtener todos los nutrientes de los vegetales </p>
+				</section>
+			</section>
+			<section class="portafolio-item">
+				<img src="img/Batidos/batidov3.jpg" alt="" class="portafolio-img">
+				<section class="portafolio-text">
+					<h2>Energiza tu Dia</h2>
+					<p>Contiene vitamina C para energizar tu día Súper saludable para el cuerpo y ayuda con la inflamación en el estómago</p>
+				</section>
+            </section>
+        </div>
+        <h1>Batidos Funcionales</h1>
+        <h3>100% naturales sin ninguna azucar agregada</h3>
+        <div class="portafolio-container">
+			<section class="portafolio-item">
+				<img src="img/Batidos/batidof1.jpg" alt="" class="portafolio-img">
+				<section class="portafolio-text">
+					<h2>Fortebral</h2>
+					<p>Incluye propiedades afrodisíacas que te ayudarán a aumentar la líbido. Te brindará una gran base calórica por lo que te aportará energía</p>
+				</section>
+			</section>
+			<section class="portafolio-item">
+				<img src="img/Batidos/batidof2.jpg" alt="" class="portafolio-img">
+				<section class="portafolio-text">
+					<h2>Detoxi</h2>
+					<p>Aporta nutrientes para hacer una “limpieza general” y ayuda para una correcta detoxificación del organismo </p>
+				</section>
+			</section>
+			<section class="portafolio-item">
+				<img src="img/Batidos/batidof3.jpg" alt="" class="portafolio-img">
+				<section class="portafolio-text">
+					<h2>Fibrarelax</h2>
+                    <p>Se encuentra bromelina, un tipo de enzima presente en la piña que también ha mostrado efectos positivos contra el estreñimiento</p>
+				</section>
+            </section>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <div class="footer">
+        <small>Copyright &copy; ERM COACH 2020- Todos los derechos reservados</small>
+    </div>
 
 
 

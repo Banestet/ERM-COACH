@@ -1,12 +1,8 @@
 <?php
-/*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
+error_reporting(0);
+include "Configuracion/SessionTime.php";
 session_start();
-if(empty($_SESSION['active'])){
-    header('location: LoginCoach.php');
-}
-
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 

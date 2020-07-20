@@ -1,6 +1,9 @@
 <?php 
+    error_reporting(0);
     session_start();
     include "conectar.php";
+    include 'Configuracion/SED.php';
+    
 
 
     if(!empty($_SESSION['activeU'])){
@@ -12,21 +15,22 @@
             {
                 echo "<script>
                     alert('Ingrese su Usuario o Contraseña');
-                    window.location= 'LoginCoach.php'
+                    window.location= 'LoginCliente.php'
                 </script>";
             }else{
                 $usuarioU = mysqli_real_escape_string($conexion,$_POST['usuarioU']);
                 $contraseñaU = mysqli_real_escape_string($conexion,$_POST['contraseñaU']);
-
-                $query = mysqli_query($conexion,"SELECT * FROM usuarios WHERE usuarioU= '$usuarioU'AND contraseñaU= '$contraseñaU'");
+                $query = mysqli_query($conexion,"SELECT * FROM usuarios WHERE usuarioU= '$usuarioU'");
                 mysqli_close($conexion);
                 
             
                 $result = mysqli_num_rows($query);
-                print_r($result);
 
 
                 if($result > 0){
+                    session_start(); 
+                    $_SESSION["autentificadoU"]= "SI"; 
+                    $_SESSION["ultimoAccesoU"]= date("Y-n-j H:i:s"); 
                     $data = mysqli_fetch_array($query);
                     $_SESSION['activeU'] = true;
                     $_SESSION['nombreU'] = $data['nombreU'];
@@ -34,19 +38,31 @@
                     $_SESSION['usuarioU']   = $data['usuarioU'];
                     $_SESSION['generoU']   = $data['generoU'];
 
-                    echo "<script>
-                        alert('Inicio de session correctamente');
-                        window.location= 'HomeU.php'
-                    </script>";
+               //Desencriptacion de la contraseña que llega de la base de datos
+                $_SESSION['contraseñaU']  = SED:: decryption($data['contraseñaU']);
+
+                //comparacion de contraseñas
+                if (  $contraseñaU ==  $_SESSION['contraseñaU']) {
+                echo "<script>
+                    window.location= 'HomeU.php'
+                </script>";
                 }else{
-                    
-                    session_destroy();
-                    echo "<script>
-                        alert('Inicio de session Fallido');
-                        alert = ('El usuario o la clave son incorrectos CLIENTE');
-                        window.location= 'LoginCliente.php'
-                    </script>";
+                     session_destroy();
+                echo "<script>
+                    alert('contrasena incorrecta');
+                    window.location= 'LoginCliente.php'
+                </script>"; 
                 }
+
+             
+            }else{
+                session_destroy();
+                echo "<script>
+                    alert('El usuario no se encuentra');
+ 
+                    window.location= 'LoginCliente.php'
+                </script>"; 
+            }
 
 
             }
@@ -80,12 +96,11 @@
         <form action="" method="POST">
             <!-- USERNAME INPUT -->
             <label for="username">Usuario</label>
-            <input class="input" type="text" name="usuarioU" placeholder="Enter Username" id="usuarioU">
+            <input class="input" type="text" name="usuarioU" placeholder="Enter Usuario" id="usuarioU">
             <!-- PASSWORD INPUT -->
             <label for="password">Contraseña</label>
-            <input class="input" type="password" name="contraseñaU" placeholder="Enter Password" id="contraseñaU">
+            <input class="input" type="password" name="contraseñaU" placeholder="Enter Contraseña" id="contraseñaU">
             <input type="submit" onclick=' return enviarDatos()' value="Inicia Sesion">
-            <a href="#">Olvidaste tu contraseña?</a><br>
 
             <a href="SignClient.php" onclick="ocultar()">No tienes un Cuenta? </a>
 
