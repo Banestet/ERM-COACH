@@ -1,5 +1,6 @@
 <?php
 /*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
+error_reporting(0);
 include "conectar.php";
 session_start();
 $sql ="SELECT * FROM configuracion";
@@ -15,7 +16,7 @@ if(empty($_SESSION['active'])){
     $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada));
 
     //comparamos el tiempo transcurrido
-    if($tiempo_transcurrido >= 60) {
+    if($tiempo_transcurrido >= 600) {
     //si pasaron 10 minutos o más
     session_destroy(); // destruyo la sesión
     echo "<script>
@@ -68,10 +69,9 @@ if(empty($_SESSION['active'])){
             <div class="logo">
                 <a href="Home.php">
                     <?php
-                    $data=mysqli_fetch_array($res);
-                    echo '<img src="'.$data['ruta']. '" alt="" class="portafolio-img">';
-                    ?>
-                    <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+                            $data=mysqli_fetch_array($res);
+                            echo '<img src="'.$data['ruta']. '" alt="" class="avatar">';
+                     ?>
                 </a>
                 <hr>
             </div>
@@ -104,6 +104,7 @@ if(empty($_SESSION['active'])){
                             <td>Residencia</td>
                             <td>Peso</td>
                             <td>Altura</td>
+                            <td>Opcion</td>
                         </tr>
                     </thead>
                     <?php
@@ -118,6 +119,7 @@ if(empty($_SESSION['active'])){
                         <td><?php echo $mostrar['residenciaU']?></td>
                         <td><?php echo $mostrar['pesoU']?></td>
                         <td><?php echo $mostrar['alturaU']?></td>
+                        <td><input type="submit"value="modificar"></td>
                     </tr>
                     <?php
                         }
@@ -126,7 +128,7 @@ if(empty($_SESSION['active'])){
                 
             </div>
             <div class="Prueba">
-
+                    
             </div>
         </div>
     </section>

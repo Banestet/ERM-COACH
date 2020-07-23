@@ -1,7 +1,10 @@
 <?php
 /*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
+error_reporting(0);
 include "conectar.php";
 session_start();
+$sql ="SELECT * FROM configuracion";
+$res=mysqli_query($conexion,$sql);
 if(empty($_SESSION['activeU'])){
     header('location: LoginCliente.php');
 }else{
@@ -12,7 +15,7 @@ if(empty($_SESSION['activeU'])){
     $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada));
 
     //comparamos el tiempo transcurrido
-    if($tiempo_transcurrido >= 60) {
+    if($tiempo_transcurrido >= 600) {
     //si pasaron 10 minutos o más
     session_destroy(); // destruyo la sesión
     echo "<script>
@@ -64,7 +67,10 @@ if(empty($_SESSION['activeU'])){
             </div>
             <div class="logo">
                 <a href="HomeU.php">
-                    <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+                    <?php
+                        $data=mysqli_fetch_array($res);
+                        echo '<img src="'.$data['ruta']. '" alt="" class="avatar">';
+                    ?>
                 </a>
                 <hr>
             </div>

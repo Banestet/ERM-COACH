@@ -2,6 +2,9 @@
 error_reporting(0);
 include "Configuracion/SessionTime.php";
 session_start();
+$sql ="SELECT * FROM configuracion";
+$res=mysqli_query($conexion,$sql);
+$res2=mysqli_query($conexion,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,12 +35,19 @@ session_start();
         <div class="infoUsuario">
                 <h1 > <strong > Bienvenido:</strong>  <?php echo $_SESSION['usuario'] ?> </h1>
                 <h1><?php echo $_SESSION['correo'] ?></h1>
+                <?php
+                $data2=mysqli_fetch_array($res2);
+                echo '<h1>'.$data2['Empresa']. '</h1>';
+                ?>
                 <img class="avatarUsuario" src="/img/entrenador.jpg" alt="">
             </div>
             <div class="logo">
                 <a href="Home.php">
-                    <img src="img/ERM.png" class="avatar" alt="Avatar Image">
-                </a>
+                    <?php
+                        $data=mysqli_fetch_array($res);
+                        echo '<img src="'.$data['ruta']. '" alt="" class="avatar">';
+                    ?>
+               </a>
                 <hr>
             </div>
             <div class="nav-menu">

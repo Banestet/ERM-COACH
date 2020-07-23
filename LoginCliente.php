@@ -3,7 +3,8 @@
     session_start();
     include "conectar.php";
     include 'Configuracion/SED.php';
-    
+    $sql ="SELECT * FROM configuracion";
+    $res=mysqli_query($conexion,$sql);
 
 
     if(!empty($_SESSION['activeU'])){
@@ -90,7 +91,10 @@
 
     <div class="login-box">
         <a href="./index.php">
-            <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+            <?php
+                $data=mysqli_fetch_array($res);
+                echo '<img src="'.$data['ruta']. '" alt="" class="avatar">';
+            ?>
         </a>
         <h1 class="title">Inicia Sesion </h1>
         <form action="" method="POST">

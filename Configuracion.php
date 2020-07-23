@@ -1,3 +1,11 @@
+<?php
+    include "conectar.php";
+    session_start();
+    $sql ="SELECT * FROM Configuracion";
+    $res=mysqli_query($conexion,$sql);
+    
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,11 +29,11 @@
                 <table border="1">
                     <tr>
                         <td><strong>Foto:</strong></td>
-                        <td><input type="file" name="imagenFondo" id="imagenFondo"></td>
+                        <td><input type="file" name="imagen" id="imagenFondo"></td>
                     </tr>
                     <tr>
                         <td><strong>Nombre Empresa:</strong></td>
-                        <td><input  type="text" name="EmpresaNombre" placeholder="Nombre Empresa"></td>
+                        <td><input  type="text" name="Empresa" placeholder="Nombre Empresa"></td>
                     </tr>
                     <tr>
                         <td colspan="2" align="center"> <input type="submit" name="subir" value="Subir"></td>
@@ -33,6 +41,11 @@
                 </table>
             </center>
         </form>
+        <?php
+                    $data=mysqli_fetch_array($res);
+                    
+                    echo '<img src="'.$data['ruta']. '" alt="" class="portafolio-img">';
+                    ?>
     </div>
     <div class="Configuracion2">
     <h1>
