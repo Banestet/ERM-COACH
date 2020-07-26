@@ -137,6 +137,15 @@ td {
     padding: 90px 30px;
 }
 
+.empleados {
+    width: 80%;
+    height: 65%;
+    background-color: #222121ec;
+    color: #fff;
+    box-sizing: border-box;
+    padding: 90px 30px;
+}
+
 .texto {
     width: 40%;
     height: 60%;
@@ -150,35 +159,6 @@ td {
     top: 130%;
 }
 
-.table {
-    width: auto;
-    background-color: #413c37;
-    color: white;
-    position: absolute;
-    left: 74%;
-    margin: 0;
-    top: 140%;
-    padding: 0;
-}
-
-.table th,
-td {
-    padding: 3px;
-}
-
-.bmi input[type="submit"] {
-    border: none;
-    outline: none;
-    height: 40px;
-    background: rgb(16, 73, 158);
-    color: #fffefe;
-    font-size: 18px;
-    border-radius: 20px;
-    position: absolute;
-    top: 80%;
-    left: 28%;
-}
-
 .input {
     width: 40%;
     position: absolute;
@@ -187,12 +167,6 @@ td {
     color: white;
     border-radius: 5px;
     border: black;
-}
-
-.bmi input[type="submit"]:hover {
-    cursor: pointer;
-    background: white;
-    color: rgb(16, 73, 158);
 }
 
 .firma {

@@ -22,6 +22,7 @@ $res2=mysqli_query($conexion,$sql);
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/Antropometricas.css" type="text/css">
 </head>
 
 <body>
@@ -78,7 +79,6 @@ $res2=mysqli_query($conexion,$sql);
 
 
 
-    <!-- About Section Begin -->
     <div class="div2">
         <div class="container">
             <div class="row">
@@ -106,7 +106,7 @@ $res2=mysqli_query($conexion,$sql);
                     </form>
 
                 </div>
-                <div class="table">
+                <div class="tableBmi">
                     <div class="chart-table  ">
                         <table border="1">
                             <thead>
@@ -118,34 +118,34 @@ $res2=mysqli_query($conexion,$sql);
                             <tbody>
                                 <tr>
                                     <td class="point ">Por debajo 18.5</td>
-                                    <td>Bajo de Peso</td>
+                                    <th>Bajo de Peso</th>
                                 </tr>
                                 <tr>
                                     <td class="point ">18.5 – 24.9</td>
-                                    <td>Peso Normal</td>
+                                    <th>Peso Normal</th>
                                 </tr>
                                 <tr>
                                     <td class="point ">25.0 - 29.9</td>
-                                    <td>Pre Obesidad</td>
+                                    <th>Pre Obesidad</th>
                                 </tr>
                                 <tr>
                                     <td class="point ">30.0 - 34.9 </td>
-                                    <td>Clase I Obesidad </td>
+                                    <th>Clase I Obesidad </th>
                                 </tr>
                                 <tr>
                                     <td class="point ">35 - 39.9 </td>
-                                    <td>Obesidad Clase II </td>
+                                    <th>Obesidad Clase II </th>
                                 </tr>
                                 <tr>
                                     <td class="point ">Por encima de 40 </td>
-                                    <td>Obesidad Clase III </td>
+                                    <th>Obesidad Clase III </th>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
                 <div class="texto">
-                    <h3 style="color: black;">ERM<strong style="color: rgb(192, 108, 30);">COACH</strong>
+                    <h3 style="color: white;">ERM<strong style="color: rgb(192, 108, 30);">COACH</strong>
                         <h1 style="color: rgb(16, 73, 158);">
                             </style><strong>BMI</strong></h1>
                     </h3>
@@ -159,7 +159,6 @@ $res2=mysqli_query($conexion,$sql);
         </div>
     </div>
     <!-- About Section End -->
-
 
 
     <!-- Js Plugins -->

@@ -1,10 +1,11 @@
 <?php
 /*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
-error_reporting(0);
+//error_reporting(0);
 include "conectar.php";
 session_start();
 $sql ="SELECT * FROM configuracion";
 $res=mysqli_query($conexion,$sql);
+$res3=mysqli_query($conexion,$sql);
 
 if(empty($_SESSION['active'])){
     header('location: LoginCoach.php');
@@ -50,6 +51,18 @@ if(empty($_SESSION['active'])){
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+
+
+    <!-- Bootstrap -->
+	<link href="css/bootstrap.min2.css" rel="stylesheet">
+	<link href="css/style_nav.css" rel="stylesheet">
+	<style>
+		.content {
+			margin-top: 80px;
+		}
+    </style>
+    
+
 </head>
 
 <body>
@@ -62,15 +75,19 @@ if(empty($_SESSION['active'])){
     <header class="header-section">
         <div class="container">
             <div class="infoUsuario">
-                <h1 > <strong > Bienvenido:</strong>  <?php echo $_SESSION['usuario'] ?> </h1>
+			<h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuario'] ?> </h1>
                 <h1><?php echo $_SESSION['correo'] ?></h1>
-                    <img class="avatarUsuario" src="/img/entrenador.jpg" alt="">
+                <?php
+                $data3=mysqli_fetch_array($res3);
+                echo '<h1>'.$data3['Empresa']. '</h1>';
+                ?>
+                <img class="avatarUsuario" src="/img/entrenador.jpg" alt="">
             </div>
             <div class="logo">
                 <a href="Home.php">
                     <?php
-                            $data=mysqli_fetch_array($res);
-                            echo '<img src="'.$data['ruta']. '" alt="" class="avatar">';
+                        $data=mysqli_fetch_array($res);
+                        echo '<img src="'.$data['ruta']. '" alt="" class="avatar">';
                      ?>
                 </a>
                 <hr>
@@ -92,129 +109,116 @@ if(empty($_SESSION['active'])){
 
     <!-- Hero Section Begin -->
     <section class="hero-section set-bg" data-setbg="img/Fondo2.jpg">
-        <div class="div1">
-            <div class="row">
-                <h1 class="title">Clientes</h1>
-                <table class="tablaUsuarios">
-                    <thead>
-                        <tr>
-                            <td>Nombre</td>
-                            <td>Apellidos</td>
-                            <td>Telefono</td>
-                            <td>Residencia</td>
-                            <td>Peso</td>
-                            <td>Altura</td>
-                            <td>Opcion</td>
-                        </tr>
-                    </thead>
-                    <?php
-                        $Clientes ="SELECT * FROM usuarios";
-                        $result=mysqli_query($conexion, $Clientes);
-                        while ($mostrar=mysqli_fetch_array($result)) {
-                    ?>
-                    <tr>
-                        <td><?php echo $mostrar['nombreU']?></td>
-                        <td><?php echo $mostrar['apellidosU']?></td>
-                        <td><?php echo $mostrar['telefonoU']?></td>
-                        <td><?php echo $mostrar['residenciaU']?></td>
-                        <td><?php echo $mostrar['pesoU']?></td>
-                        <td><?php echo $mostrar['alturaU']?></td>
-                        <td><input type="submit"value="modificar"></td>
-                    </tr>
-                    <?php
-                        }
-                    ?>
-                </table>
-                
-            </div>
-            <div class="Prueba">
-                    
-            </div>
-        </div>
+	<div class="containerEmpleados">
+			<ul class="nav">
+				<li class="active"><a href="Home.php">Lista de empleados</a></li>
+				<li><a href="add.php">Agregar datos</a></li>
+			</ul>
+		</div><!--/.nav-collapse -->
+		<div class="content">
+ 
+			<?php
+			if(isset($_GET['aksi']) == 'delete'){
+				// escaping, additionally removing everything that could be (html/javascript-) code
+				$nik = mysqli_real_escape_string($conexion,(strip_tags($_GET["nik"],ENT_QUOTES)));
+				$cek = mysqli_query($conexion, "SELECT * FROM empleados WHERE codigo='$nik'");
+				if(mysqli_num_rows($cek) == 0){
+					echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> No se encontraron datos.</div>';
+				}else{
+					$delete = mysqli_query($conexion, "DELETE FROM empleados WHERE codigo='$nik'");
+					if($delete){
+						echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Datos eliminado correctamente.</div>';
+					}else{
+						echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> Error, no se pudo eliminar los datos.</div>';
+					}
+				}
+			}
+			?>
+ 
+			<form class="form-inline" method="get">
+				<div class="form-group">
+					<select name="filter" class="select" onchange="form.submit()">
+						<option value="0">Filtros de datos de empleados</option>
+						<?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
+						<option value="1" <?php if($filter == 'Tetap'){ echo 'selected'; } ?>>Fijo</option>
+						<option value="2" <?php if($filter == 'Kontrak'){ echo 'selected'; } ?>>Dialogo</option>
+                        <option value="3" <?php if($filter == 'Outsourcing'){ echo 'selected'; } ?>>Terminado</option>
+					</select>
+				</div>
+			</form>
+			<br />
+			<div class="table-responsive">
+			<table class="table table-striped table-hover">
+				<tr>
+                    <th>No</th>
+					<th>Código</th>
+					<th>Nombre</th>
+                    <th>Lugar de nacimiento</th>
+                    <th>Fecha de nacimiento</th>
+					<th>Teléfono</th>
+					<th>Cargo</th>
+					<th>Estado</th>
+                    <th>Acciones</th>
+				</tr>
+				<?php
+				if($filter){
+					$sql = mysqli_query($conexion, "SELECT * FROM empleados WHERE estado='$filter' ORDER BY codigo ASC");
+				}else{
+					$sql = mysqli_query($conexion, "SELECT * FROM empleados ORDER BY codigo ASC");
+				}
+				if(mysqli_num_rows($sql) == 0){
+					echo '<tr><td colspan="8">No hay datos.</td></tr>';
+				}else{
+					$no = 1;
+					while($row = mysqli_fetch_assoc($sql)){
+						echo '
+						<tr>
+							<td>'.$no.'</td>
+							<td>'.$row['codigo'].'</td>
+							<td><a href="profile.php?nik='.$row['codigo'].'"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> '.$row['nombres'].'</a></td>
+                            <td>'.$row['lugar_nacimiento'].'</td>
+                            <td>'.$row['fecha_nacimiento'].'</td>
+							<td>'.$row['telefono'].'</td>
+                            <td>'.$row['puesto'].'</td>
+							<td>';
+							if($row['estado'] == '1'){
+								echo '<span class="label label-success">Fijo</span>';
+							}
+                            else if ($row['estado'] == '2' ){
+								echo '<span class="label label-info">Dialogo</span>';
+							}
+                            else if ($row['estado'] == '3' ){
+								echo '<span class="label label-warning">Terminado</span>';
+							}
+						echo '
+							</td>
+							<td>
+ 
+								<a href="edit.php?nik='.$row['codigo'].'" title="Editar datos" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span></a>
+								<a href="index.php?aksi=delete&nik='.$row['codigo'].'" title="Eliminar" onclick="return confirm(\'Esta seguro de borrar los datos '.$row['nombres'].'?\')" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>
+							</td>
+						</tr>
+						';
+						$no++;
+					}
+				}
+				?>
+			</table>
+			</div>
+		</div>
+	</div><center>
+	
+
+    
+        
     </section>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
     <!-- Hero Section End -->
 
 
 
-    <!-- About Section Begin -->
-    <div class="div2">
-        <div class="container">
-            <div class="row">
-                <div class="bmi">
-                    <form onsubmit="return calcBMI(); ">
-
-                        Sistema :
-                        <label>
-                          <input type="radio" id="bmi-metric" name="bmi-measure" onchange="measureBMI()" checked/> Metrico
-                        </label>
-                        <label>
-                          <input type="radio" id="bmi-imperial" name="bmi-measure" onchange="measureBMI()"/> Imperial
-                        </label>
-                        <br><br> Peso:
-                        <input class="input" id="bmi-weight" type="number" min="1" max="635" required/>
-                        <span id="bmi-weight-unit">KG</span>
-                        <br><br> Altura:
-                        <input class="input" id="bmi-height" type="number" min="54" max="272" required/>
-                        <span id="bmi-height-unit">CM</span>
-                        <br><br>
-
-                        <input type="submit" value="Calcular BMI" />
-                        <div id="bmi-results"></div>
-                    </form>
-
-                </div>
-                <div class="table">
-                    <div class="chart-table  ">
-                        <table border="1">
-                            <thead>
-                                <tr>
-                                    <th>BMI</th>
-                                    <th>Estado</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="point ">Por debajo 18.5</td>
-                                    <td>Bajo de Peso</td>
-                                </tr>
-                                <tr>
-                                    <td class="point ">18.5 – 24.9</td>
-                                    <td>Peso Normal</td>
-                                </tr>
-                                <tr>
-                                    <td class="point ">25.0 - 29.9</td>
-                                    <td>Pre Obesidad</td>
-                                </tr>
-                                <tr>
-                                    <td class="point ">30.0 - 34.9 </td>
-                                    <td>Clase I Obesidad </td>
-                                </tr>
-                                <tr>
-                                    <td class="point ">35 - 39.9 </td>
-                                    <td>Obesidad Clase II </td>
-                                </tr>
-                                <tr>
-                                    <td class="point ">Por encima de 40 </td>
-                                    <td>Obesidad Clase III </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <div class="texto">
-                    <h3 style="color: black;">ERM<strong style="color: rgb(192, 108, 30);">COACH</strong>
-                        <h1 style="color: rgb(16, 73, 158);">
-                            </style><strong>BMI</strong></h1>
-                    </h3>
-                    <p class="bmiText">El índice de masa corporal (BMI) es una medición del peso de una persona en cuanto a su altura. Es más de un indicador que una medición directa de la grasa de cuerpo entero de una persona.</p>
-                    <p class="bmiText">La fórmula es - BMI = (peso en kilogramos) dividido por (la altura en los contadores ajustados)</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- About Section End -->
-
-
+  
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
