@@ -50,12 +50,12 @@ if(empty($_SESSION['active'])){
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
-
-
+    
+    
     <!-- Bootstrap -->
 	<link href="css/bootstrap.min2.css" rel="stylesheet">
 	<link href="css/style_nav.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 	<style>
 		.content {
 			margin-top: 80px;

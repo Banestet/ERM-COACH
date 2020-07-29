@@ -84,7 +84,7 @@ $res2=mysqli_query($conexion,$sql);
         <div class="container">
             <div class="row">
                 <div class="bmi">
-                    <form onsubmit="return calcBMI(); ">
+                    <form action="BMI.php" onsubmit="return calcBMI();  ">
 
                         Sistema :
                         <label>
@@ -95,10 +95,10 @@ $res2=mysqli_query($conexion,$sql);
                             <input type="radio" id="bmi-imperial" name="bmi-measure" onchange="measureBMI()" /> Imperial
                         </label>
                         <br><br> Weight:
-                        <input class="input" id="bmi-weight" type="number" min="1" max="635" required />
+                        <input class="input" id="bmi-weight" name="bmi-weight" type="number" min="1" max="635" required />
                         <span id="bmi-weight-unit">KG</span>
                         <br><br> Height:
-                        <input class="input" id="bmi-height" type="number" min="54" max="272" required />
+                        <input class="input" id="bmi-height" name="bmi-height" type="number" min="54" max="272" required />
                         <span id="bmi-height-unit">CM</span>
                         <br><br>
 

@@ -1,4 +1,7 @@
-body {}
+body {
+    background-color: black;
+    color: white;
+}
 
 input[type="submit"] {
     border: none;
@@ -11,9 +14,19 @@ input[type="submit"] {
     border-radius: 20px;
 }
 
+.avatar {
+    width: 220px;
+    height: 170px;
+    border-radius: 100%;
+    position: absolute;
+    top: 160%;
+    left: 30%;
+    /* sombreado*/
+}
+
 .Configuracion {
     position: absolute;
-    background-color: crimson;
+    background-color: rgba(220, 20, 60, 0);
     top: 10%;
     left: 15%;
     height: 30%;
@@ -24,7 +37,7 @@ input[type="submit"] {
 
 .Configuracion2 {
     position: absolute;
-    background-color: crimson;
+    background-color: rgba(220, 20, 60, 0);
     top: 10%;
     left: 50%;
     height: 30%;
@@ -35,7 +48,7 @@ input[type="submit"] {
 
 .Configuracion3 {
     position: absolute;
-    background-color: crimson;
+    background-color: rgba(220, 20, 60, 0);
     top: 50%;
     left: 50%;
     height: 30%;

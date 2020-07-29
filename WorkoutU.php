@@ -22,10 +22,10 @@ $res2=mysqli_query($conexion,$sql);
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
     <!-- Css Styles portafolio entrenamirnto -->
     <link href="css/freelancer.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/WorkoutU.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
 <body>

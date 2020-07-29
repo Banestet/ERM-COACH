@@ -11,6 +11,14 @@ $res2=mysqli_query($conexion,$sql2);
 $res3=mysqli_query($conexion,$sql2);
 ?>
 
+<?php 
+include "conexion.php";
+$active1="";
+$active2="";
+$active3="";
+$active4="active";
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -26,8 +34,13 @@ $res3=mysqli_query($conexion,$sql2);
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/thumbnail-gallery.css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/NutricionU.css" type="text/css">
+
+    <!-- css para la galeria de imagenes -->
+
 </head>
 
 <body>
@@ -73,87 +86,48 @@ $res3=mysqli_query($conexion,$sql2);
     </header>
     <!-- Header End -->
 
-    <section class="portafolio">
-        <h1>Menú de Batidos de Frutas</h1>
-        <h3>100% naturales sin ninguna azucar agregada</h3>
-		<div class="portafolio-container">
-			<section class="portafolio-item">
+    <div class="container gallery-container">
+
+        <h1>Galeria de batidos</h1>
+        <div class="tz-gallery">
+            <div class="row">
                 <?php
-                    $data=mysqli_fetch_array($res);
-                    echo '<img src="'.$data['ruta']. '" alt="" class="portafolio-img">';
-                ?>
-				<section class="portafolio-text">
-					<h2>Poder Pink</h2>
-					<p>Contiene una gran cantidad de fósforo, hierro, yodo, minerales y las vitaminas B1, B2, B3 y B6, Gracias al jengibre, incrementa el metabolismo que facilita que el cuerpo gaste más energía y adelgaza</p>
-				</section>
-			</section>
-			<section class="portafolio-item">
-				<img src="img/Batidos/FusionFrutal.jpg" alt="" class="portafolio-img">
-				<section class="portafolio-text">
-					<h2>Fusión Frutal</h2>
-					<p>Aporta vitaminas y minerales para ayudar bajar de peso, sentirse satisfecho y ayudar a depurar toxinas </p>
-				</section>
-			</section>
-			<section class="portafolio-item">
-				<img src="img/Batidos/Fortaleza-Go.jpg" alt="" class="portafolio-img">
-				<section class="portafolio-text">
-					<h2>Fortaleza-GO</h2>
-					<p>Previene los trastornos cardíacos, el cáncer, la diabetes y contiene una buena dosis de fibra para el colon</p>
-				</section>
-            </section>
-		</div>
-        <h1>Batidos Verdes</h1>
-        <h3>100% naturales sin ninguna azucar agregada</h3>
-        <div class="portafolio-container">
-			<section class="portafolio-item">
-				<img src="img/Batidos/batidov1.jpg" alt="" class="portafolio-img">
-				<section class="portafolio-text">
-					<h2>H2Ocate</h2>
-					<p>Contiene altos niveles de grasa monoinsaturada saludable para el corazón, reduce el nivel de colesterol, y impulsa el crecimiento de la masa muscular</p>
-				</section>
-			</section>
-			<section class="portafolio-item">
-				<img src="img/Batidos/batidov2.jpg" alt="" class="portafolio-img">
-				<section class="portafolio-text">
-					<h2>El Guerrero Verde</h2>
-					<p>Proporciona fibra, calcio y vitaminas A, C y K. Contiene potentes fitoquímicos y es una excelente manera de obtener todos los nutrientes de los vegetales </p>
-				</section>
-			</section>
-			<section class="portafolio-item">
-				<img src="img/Batidos/batidov3.jpg" alt="" class="portafolio-img">
-				<section class="portafolio-text">
-					<h2>Energiza tu Dia</h2>
-					<p>Contiene vitamina C para energizar tu día Súper saludable para el cuerpo y ayuda con la inflamación en el estómago</p>
-				</section>
-            </section>
+			$nums=1;
+			$sql_banner_top=mysqli_query($con,"select * from banner where estado=1 order by orden ");
+			while($rw_banner_top=mysqli_fetch_array($sql_banner_top)){
+		?>
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <a class="lightbox" href="img/banner/<?php echo $rw_banner_top['url_image'];?>">
+                            <img src="img/banner/<?php echo $rw_banner_top['url_image'];?>"
+                                alt="<?php echo $rw_banner_top['titulo'];?>">
+                        </a>
+                        <div class="caption">
+                            <h3><?php echo $rw_banner_top['titulo'];?></h3>
+                            <p><?php echo $rw_banner_top['descripcion'];?></p>
+                        </div>
+                    </div>
+                </div>
+                <?php
+			if ($nums%3==0){
+				echo '<div class="clearfix"></div>';
+			}
+			$nums++;
+			}
+		?>
+
+
+            </div>
+
         </div>
-        <h1>Batidos Funcionales</h1>
-        <h3>100% naturales sin ninguna azucar agregada</h3>
-        <div class="portafolio-container">
-			<section class="portafolio-item">
-				<img src="img/Batidos/batidof1.jpg" alt="" class="portafolio-img">
-				<section class="portafolio-text">
-					<h2>Fortebral</h2>
-					<p>Incluye propiedades afrodisíacas que te ayudarán a aumentar la líbido. Te brindará una gran base calórica por lo que te aportará energía</p>
-				</section>
-			</section>
-			<section class="portafolio-item">
-				<img src="img/Batidos/batidof2.jpg" alt="" class="portafolio-img">
-				<section class="portafolio-text">
-					<h2>Detoxi</h2>
-					<p>Aporta nutrientes para hacer una “limpieza general” y ayuda para una correcta detoxificación del organismo </p>
-				</section>
-			</section>
-			<section class="portafolio-item">
-				<img src="img/Batidos/batidof3.jpg" alt="" class="portafolio-img">
-				<section class="portafolio-text">
-					<h2>Fibrarelax</h2>
-                    <p>Se encuentra bromelina, un tipo de enzima presente en la piña que también ha mostrado efectos positivos contra el estreñimiento</p>
-				</section>
-            </section>
-        </div>
-    </section>
-    <div class="footer">
+
+    </div>
+
+    <script>
+    baguetteBox.run('.tz-gallery');
+    </script>
+
+        <div class="footer">
         <small>Copyright &copy; ERM COACH 2020- Todos los derechos reservados</small>
     </div>
 

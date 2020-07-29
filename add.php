@@ -5,28 +5,24 @@ include "conectar.php";
 <html lang="es">
 
 <head>
-    <!--
-Project      : Datos de empleados con PHP, MySQLi y Bootstrap CRUD  (Create, read, Update, Delete) 
-Author		 : Obed Alvarado
-Website		 : http://www.obedalvarado.pw
-Blog         : http://obedalvarado.pw/blog/
-Email	 	 : info@obedalvarado.pw
--->
+    
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Latihan MySQLi</title>
+    <title>Agregar Datos</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min2.css" rel="stylesheet">
     <link href="css/bootstrap-datepicker.css" rel="stylesheet">
     <link href="css/style_nav.css" rel="stylesheet">
     
+    
 
    
 </head>
 
 <body>
+    
     
     <div class="container">
         <div class="content">
