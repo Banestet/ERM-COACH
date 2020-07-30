@@ -21,6 +21,7 @@ $res2=mysqli_query($conexion,$sql);
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
     <link rel="stylesheet" href="css/Antropometricas.css" type="text/css">
 </head>
 
@@ -66,16 +67,7 @@ $res2=mysqli_query($conexion,$sql);
     </header>
     <!-- Header End -->
 
-    <!-- Hero Section Begin -->
-    <section class="hero-section set-bg" data-setbg="img/hero-bg.jpg">
-        <div class="container">
-            <div class="row">
-                
-
-            </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
+   
 
 
 

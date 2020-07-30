@@ -98,9 +98,9 @@ include "conectar.php";
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-3 control-label">Puesto</label>
+                    <label class="col-sm-3 control-label">Proposito</label>
                     <div class="col-sm-3">
-                        <input type="text" name="puesto" class="form-control" placeholder="Puesto" required>
+                        <input type="text" name="puesto" class="form-control" placeholder="Proposito" required>
                     </div>
                 </div>
                 <div class="form-group">

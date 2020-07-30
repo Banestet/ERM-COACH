@@ -69,7 +69,7 @@ include "conectar.php";
 					<td><?php echo $row['telefono']; ?></td>
 				</tr>
 				<tr>
-					<th>Puesto</th>
+					<th>Proposito</th>
 					<td><?php echo $row['puesto']; ?></td>
 				</tr>
 				<tr>
@@ -91,7 +91,7 @@ include "conectar.php";
 			
 			<a href="Home.php" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span> Regresar</a>
 
-			<a href="edit.php?nik=<?php echo $row['nik']; ?>" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar datos</a>
+			<a href="edit.php?nik=<?php echo $row['codigo']; ?>" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Editar datos</a>
 
 			<a href="profile.php?aksi=delete&nik=<?php echo $row['nik']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Esta seguro de borrar los datos <?php echo $row['nombres']; ?>')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar</a>
 		</div>

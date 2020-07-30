@@ -23,6 +23,7 @@ $res2=mysqli_query($conexion,$sql);
     <!-- Css Styles portafolio entrenamirnto -->
     <link href="css/freelancer.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
 
 
 
@@ -76,16 +77,7 @@ $res2=mysqli_query($conexion,$sql);
 
 
 
-<!-- Hero Section Begin -->
-<section class="hero-section set-bg" data-setbg="img/Workout.jpg">
-        <div class="container">
-            <div >
 
-
-            </div>
-        </div>
-    </section>
-    <!-- Hero Section End -->
 
 
 

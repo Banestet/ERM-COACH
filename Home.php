@@ -1,36 +1,14 @@
 <?php
-/*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
-//error_reporting(0);
+error_reporting(0);
+include "Configuracion/SessionTime.php";
 include "conectar.php";
+
 session_start();
 $sql ="SELECT * FROM configuracion";
 $res=mysqli_query($conexion,$sql);
 $res3=mysqli_query($conexion,$sql);
 
-if(empty($_SESSION['active'])){
-    header('location: LoginCoach.php');
-}else{
-    //codigo para cierre de session por inactividad
 
-    $fechaGuardada = $_SESSION["ultimoAcceso"];
-    $ahora = date("Y-n-j H:i:s");
-    $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada));
-
-    //comparamos el tiempo transcurrido
-    if($tiempo_transcurrido >= 600) {
-    //si pasaron 10 minutos o más
-    session_destroy(); // destruyo la sesión
-    echo "<script>
-    alert('Session Cerrada Por Inactividad');
-    window.location= 'LoginCoach.php'
-    </script>";
-    //header("Location: index.php"); //envío al usuario a la pag. de autenticación
-    //sino, actualizo la fecha de la sesión
-    }else {
-    $_SESSION["ultimoAcceso"] = $ahora;
-    }
-
-}
 
 ?>
 
@@ -50,32 +28,52 @@ if(empty($_SESSION['active'])){
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    
-    
+    <!-- Css Styles chat -->
+    <link rel="stylesheet" href="/css/chat.css" type="text/css">
+
     <!-- Bootstrap -->
-	<link href="css/bootstrap.min2.css" rel="stylesheet">
-	<link href="css/style_nav.css" rel="stylesheet">
+    <link href="css/bootstrap.min2.css" rel="stylesheet">
+    <link href="css/style_nav.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-	<style>
-		.content {
-			margin-top: 80px;
-		}
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
+    <style>
+    .content {
+        margin-top: 80px;
+    }
     </style>
-    
+
+    <script type="text/javascript">
+    function ajax() {
+        var req = new XMLHttpRequest();
+
+        req.onreadystatechange = function() {
+            if (req.readyState == 4 && req.status == 200) {
+                document.getElementById('chat').innerHTML = req.responseText;
+            }
+        }
+
+        req.open('GET', 'chat.php', true);
+        req.send();
+    }
+
+    //linea que hace que se refreseque la pagina cada segundo
+    setInterval(function() {
+        ajax();
+    }, 1000);
+    </script>
+
+
+
+
 
 </head>
 
-<body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
+<body onload="ajax();">
     <!-- Header Section Begin -->
     <header class="header-section">
         <div class="container">
             <div class="infoUsuario">
-			<h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuario'] ?> </h1>
+                <h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuario'] ?> </h1>
                 <h1><?php echo $_SESSION['correo'] ?></h1>
                 <?php
                 $data3=mysqli_fetch_array($res3);
@@ -107,17 +105,17 @@ if(empty($_SESSION['active'])){
     </header>
     <!-- Header End -->
 
-    <!-- Hero Section Begin -->
-    <section class="hero-section set-bg" data-setbg="img/Fondo2.jpg">
-	<div class="containerEmpleados">
-			<ul class="nav">
-				<li class="active"><a href="Home.php">Lista de empleados</a></li>
-				<li><a href="add.php">Agregar datos</a></li>
-			</ul>
-		</div><!--/.nav-collapse -->
-		<div class="content">
- 
-			<?php
+    <!-- Tanla de clientes Section  -->
+    <div class="containerEmpleados">
+        <ul class="nav">
+            <li class="active"><a href="Home.php">Lista de empleados</a></li>
+            <li><a href="add.php">Agregar datos</a></li>
+        </ul>
+    </div>
+    <!--/.nav-collapse -->
+    <div class="content">
+
+        <?php
 			if(isset($_GET['aksi']) == 'delete'){
 				// escaping, additionally removing everything that could be (html/javascript-) code
 				$nik = mysqli_real_escape_string($conexion,(strip_tags($_GET["nik"],ENT_QUOTES)));
@@ -134,33 +132,33 @@ if(empty($_SESSION['active'])){
 				}
 			}
 			?>
- 
-			<form class="form-inline" method="get">
-				<div class="form-group">
-					<select name="filter" class="select" onchange="form.submit()">
-						<option value="0">Filtros de datos de empleados</option>
-						<?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
-						<option value="1" <?php if($filter == 'Tetap'){ echo 'selected'; } ?>>Fijo</option>
-						<option value="2" <?php if($filter == 'Kontrak'){ echo 'selected'; } ?>>Dialogo</option>
-                        <option value="3" <?php if($filter == 'Outsourcing'){ echo 'selected'; } ?>>Terminado</option>
-					</select>
-				</div>
-			</form>
-			<br />
-			<div class="table-responsive">
-			<table class="table table-striped table-hover">
-				<tr>
+
+        <form class="form-inline" method="get">
+            <div class="form-group">
+                <select name="filter" class="select" onchange="form.submit()">
+                    <option value="0">Filtros de datos de empleados</option>
+                    <?php $filter = (isset($_GET['filter']) ? strtolower($_GET['filter']) : NULL);  ?>
+                    <option value="1" <?php if($filter == 'Tetap'){ echo 'selected'; } ?>>Fijo</option>
+                    <option value="2" <?php if($filter == 'Kontrak'){ echo 'selected'; } ?>>Dialogo</option>
+                    <option value="3" <?php if($filter == 'Outsourcing'){ echo 'selected'; } ?>>Terminado</option>
+                </select>
+            </div>
+        </form>
+        <br />
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <tr>
                     <th>No</th>
-					<th>Código</th>
-					<th>Nombre</th>
+                    <th>Código</th>
+                    <th>Nombre</th>
                     <th>Lugar de nacimiento</th>
                     <th>Fecha de nacimiento</th>
-					<th>Teléfono</th>
-					<th>Cargo</th>
-					<th>Estado</th>
+                    <th>Teléfono</th>
+                    <th>Proposito</th>
+                    <th>Estado</th>
                     <th>Acciones</th>
-				</tr>
-				<?php
+                </tr>
+                <?php
 				if($filter){
 					$sql = mysqli_query($conexion, "SELECT * FROM empleados WHERE estado='$filter' ORDER BY codigo ASC");
 				}else{
@@ -203,34 +201,63 @@ if(empty($_SESSION['active'])){
 					}
 				}
 				?>
-			</table>
-			</div>
-		</div>
-	</div><center>
-	
+            </table>
+        </div>
+    </div>
+    </div>
+    <center>
 
-    
-        
-    </section>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-    <!-- Hero Section End -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <!--  tabla de clientes Section End -->
 
 
+        <!-- chat Section -->
+        <div id="contenedor">
+            <div id="caja-chat">
+                <div id="chat"></div>
+            </div>
 
-  
+            <form method="POST" action="Home.php">
+                <input type="text" name="nombre" placeholder="Ingresa tu nombre">
+                <textarea name="mensaje" placeholder="Ingresa tu mensaje"></textarea>
+                <input type="submit" name="enviar" value="Enviar">
+            </form>
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-    <!-- Js BMI calculator -->
-    <script src="/Home.js"></script>
-    <script src="/js/BMI.js"></script>
+            <?php
+			if (isset($_POST['enviar'])) {
+				
+				$nombre = $_POST['nombre'];
+				$mensaje = $_POST['mensaje'];
+
+
+				$consulta = "INSERT INTO chat (nombre, mensaje) VALUES ('$nombre', '$mensaje')";
+
+				$ejecutar = $conexion->query($consulta);
+
+				if ($ejecutar) {
+					echo "<embed loop='false' src='beep.mp3' hidden='true' autoplay='true'>";
+				}
+			}
+
+		?>
+        </div>
+
+        <!-- Section chat end -->
+
+
+
+        <!-- Js Plugins -->
+        <script src="js/jquery-3.3.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/jquery.magnific-popup.min.js"></script>
+        <script src="js/mixitup.min.js"></script>
+        <script src="js/jquery.slicknav.js"></script>
+        <script src="js/owl.carousel.min.js"></script>
+        <script src="js/main.js"></script>
+        <!-- Js BMI calculator -->
+        <script src="/Home.js"></script>
+        <script src="/js/BMI.js"></script>
 </body>
 
 </html>

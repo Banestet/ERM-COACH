@@ -21,8 +21,10 @@ $res2=mysqli_query($conexion,$sql);
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
     <link rel="stylesheet" href="css/Antropometricas.css" type="text/css">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/HomeU.css" type="text/css">
 </head>
 
 <body>
@@ -68,13 +70,51 @@ $res2=mysqli_query($conexion,$sql);
     <!-- Header End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero-section set-bg" data-setbg="img/hero-bg.jpg">
-        <div class="container">
-            <div class="row">
+    <div class="container">
+            <div class="Pruebas">
+                <div class="Flexiones">
+                    <h3 style="color: white;">ERM<strong style="color: rgb(192, 108, 30);">COACH</strong>
+                        <h1 style="color: rgb(16, 73, 158);">
+                            </style><strong>TEST</strong></h1>
+                    </h3>
+                    <label for="edad">Edad</label>
+                    <input type="text" name="Edad" placeholder="Edad">
+                    <div class="select">
+                        <select name="generoU" id="genero">
+                            <option selected disabled>Genero</option>
+                            <option value="1">Hombre</option>
+                            <option value="2">Mujer</option>
+                        </select>
+                    </div>
+                    <h3 style="color: chocolate;">Cantidad Maxima en 1 minuto</h3>
+                    <label for="Flexiones">Flexiones de Brazo</label>
+                    <input type="text" name="Flexiones" placeholder="Cantidad">
+                    <br>
+                    <label for="Abdomen">Abdominales</label>
+                    <input type="text" name="Abdominales" placeholder="Cantidad">
+                    <h2 style="color: chocolate;">Test de Cooper</h2>
+                    <label for="Distancia">Distancia</label>
+                    <input type="text" name="Distancia" placeholder="Distancia Metros">
+                    <input type="submit" value="Calcular" name="Calcular">
+
+                </div>
+                <div class="infoTxt">
+                    <h3 style="color: rgb(192, 108, 30);">¿En que consiste el Test de Cooper?</strong></h3>
+                    <br>
+                    <p style="color: white;">
+                        El test consiste en recorrer, en terreno llano y durante un tiempo de 12 minutos, la máxima
+                        distancia posible sin detenerse. La idea es que el atleta rinda al máximo su condición física
+                        con el fin de conocer las verdaderas condiciones de la persona.
+                    </p>
+                </div>
+                <div class="Resultados" >
+                    <h1 style="color: white;">Resultados</h1>
+                </div>
 
             </div>
+
         </div>
-    </section>
+        </div>
     <!-- Hero Section End -->
 
 
