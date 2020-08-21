@@ -1,29 +1,50 @@
-#contenedor {
-    width: 30%;
-    height: 60%;
-    background: rgba(59, 59, 59, 0.767);
-    margin: 0 auto;
-    top: 80%;
-    left: 10%;
+* {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+body {
+    background: #000000;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.avatarchat {
+    width: 370px;
+    height: 300px;
+    border-radius: 100%;
     position: absolute;
-    padding: 10px;
+    top: 20%;
+    left: 37%;
+    /* sombreado*/
+    opacity: 10%;
+}
+
+#contenedor {
+    top: 5%;
+    width: 40%;
+    background: rgb(49, 49, 49);
+    margin: 0 auto;
+    padding: 20px;
     border-radius: 12px;
+    -moz-border-radius: 12px;
+    -o-border-radius: 12px;
+    -webkit-border-radius: 12px;
+    position: absolute;
+    left: 29%;
 }
 
 #caja-chat {
     width: 90%;
-    height: 200px;
-    background-color: rgba(255, 255, 255, 0.856);
-    margin-bottom: 10px;
-    border-radius: 12px;
+    height: 400px;
 }
 
 #datos-chat {
     width: 100%;
     padding: 5px;
+    margin-bottom: 5px;
     border-bottom: 1px solid silver;
-    font-size: bold;
-    margin-bottom: 10px;
+    font-family: 'Architects Daughter', cursive;
 }
 
 input[type='text'] {
@@ -31,39 +52,40 @@ input[type='text'] {
     height: 40px;
     border: 1px solid gray;
     border-radius: 5px;
-    margin-bottom: 10px;
-    font-size: 16px;
 }
 
-input[type="submit"] {
+input[type='submit'] {
     width: 100%;
     height: 40px;
     border: 1px solid gray;
-    border-radius: 12px;
-    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    height: 40px;
+    border: 1px solid gray;
+    border-radius: 5px;
+}
+
+input,
+textarea {
+    margin-bottom: 3px;
+}
+
+input[type="submit"] {
     border: none;
     outline: none;
+    height: 40px;
     background: #da7d12;
+    color: #000000;
     font-size: 18px;
-    cursor: pointer;
+    border-radius: 20px;
 }
 
 input[type="submit"]:hover {
     cursor: pointer;
     background: #000000;
     color: #da7d12;
-}
-
-textarea {
-    width: 100%;
-    height: 70px;
-    border-radius: 5px;
-    border: 1px solid gray;
-    color: black;
-    background-color: black;
-}
-
-input,
-textarea {
-    margin-bottom: 10px;
 }

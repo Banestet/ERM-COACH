@@ -1,0 +1,82 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.TestErm {
+    top: 20%;
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    width: 80%;
+    left: 15%;
+}
+
+.Flexiones {
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    left: 10%;
+}
+
+.test {
+    background-color: rgba(0, 0, 0, 0);
+    width: 80%;
+    left: 10%;
+}
+
+.avatar {
+    width: 120px;
+    height: 90px;
+    border-radius: 100%;
+    position: absolute;
+    top: 2%;
+    left: calc(52% - 50%);
+    /* sombreado*/
+}
+
+.infoUsuario {
+    width: auto;
+    height: auto;
+    background-color: #4b4a4900;
+    color: rgb(2, 2, 2);
+    padding: 90px 30px;
+    border-radius: 12px;
+    position: absolute;
+    left: 10%;
+    top: -65%;
+}
+
+.cooper {
+    background-color: rgba(0, 0, 0, 0);
+    width: 50%;
+    position: absolute;
+    top: 17%;
+    left: 50%;
+}
+
+.titulo {
+    font-size: 60px;
+    left: 42%;
+    position: absolute;
+}
+
+.subtitulo {
+    font-size: 60px;
+    left: 24%;
+    position: absolute;
+}
+
+.tabla {
+    background-color: rgba(0, 0, 0, 0);
+    left: 50%;
+    top: 85%;
+    width: 50%;
+    position: absolute;
+}
+
+.tablaFlex {
+    background-color: rgba(0, 0, 0, 0);
+    left: 0%;
+    top: 110%;
+    width: 50%;
+    position: absolute;
+}

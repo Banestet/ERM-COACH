@@ -1,76 +1,78 @@
-<?php 
-    error_reporting(0);
-    session_start();
-    include "conectar.php";
-    include 'Configuracion/SED.php';
-    $sql ="SELECT * FROM configuracion";
-    $res=mysqli_query($conexion,$sql);
+<?php
+error_reporting(0);
+session_start();
+include 'conectar.php';
+include 'admin/SED.php';
+$sql = "SELECT * FROM configuracion";
+$res = mysqli_query($conexion, $sql);
 
 
-    if(!empty($_SESSION['activeU'])){
-        header('location: HomeU.php');
-    }else{
+if (!empty($_SESSION['activeU'])) {
+    header('location: HomeU.php');
+} else {
 
-        if(!empty($_POST)){
-            if(empty($_POST['usuarioU']) || empty($_POST['contraseñaU']))
-            {
-                echo "<script>
+    if (!empty($_POST)) {
+        if (empty($_POST['usuario']) || empty($_POST['contrasena'])) {
+            echo "<script>
                     alert('Ingrese su Usuario o Contraseña');
                     window.location= 'LoginCliente.php'
                 </script>";
-            }else{
-                $usuarioU = mysqli_real_escape_string($conexion,$_POST['usuarioU']);
-                $contraseñaU = mysqli_real_escape_string($conexion,$_POST['contraseñaU']);
-                $query = mysqli_query($conexion,"SELECT * FROM usuarios WHERE usuarioU= '$usuarioU'");
-                mysqli_close($conexion);
+        } else {
+
+            $usuario = mysqli_real_escape_string($conexion, $_POST['usuario']);
+            $contrasena = mysqli_real_escape_string($conexion, $_POST['contrasena']);
+
+            $consulta = mysqli_query($conexion, "SELECT * FROM clientes WHERE  usuario= '$usuario'");
+            mysqli_close($conection);
+
+            $result = mysqli_num_rows($consulta);
+
+
+            if ($result > 0) {
+                session_start();
+                $_SESSION["autentificado"] = "SI";
+                $_SESSION["ultimoAccesoU"] = date("Y-n-j H:i:s");
+                $data = mysqli_fetch_array($consulta);
+                $_SESSION['activeU'] = true;
+                $_SESSION['nombre'] = $data['nombre'];
+                $_SESSION['correo']  = $data['correo'];
+                $_SESSION['usuario']   = $data['usuario'];
+                $_SESSION['rol']   = $data['rol'];
+
+
+                //Desencriptacion de la contraseña que llega de la base de datos
+                $_SESSION['contrasena']  = SED::decryption($data['contrasena']);
+                 //comparacion de contraseñas
+              
+                    if ($contrasena ==  $_SESSION['contrasena']) {
+                        echo "<script>
+                          alert('Bienvenido Cliente');
+                         window.location= 'HomeU.php'
+                        </script>";
+                    } else {
+                        session_destroy();
+                        echo "<script>
+                            alert('contrasena incorrecta');
+                            window.location= 'LoginCliente.php'
+                        </script>";
+                    }
+               
+                    
+
                 
-            
-                $result = mysqli_num_rows($query);
-
-
-                if($result > 0){
-                    session_start(); 
-                    $_SESSION["autentificadoU"]= "SI"; 
-                    $_SESSION["ultimoAccesoU"]= date("Y-n-j H:i:s"); 
-                    $data = mysqli_fetch_array($query);
-                    $_SESSION['activeU'] = true;
-                    $_SESSION['nombreU'] = $data['nombreU'];
-                    $_SESSION['correoU']  = $data['correoU'];
-                    $_SESSION['usuarioU']   = $data['usuarioU'];
-                    $_SESSION['generoU']   = $data['generoU'];
-
-               //Desencriptacion de la contraseña que llega de la base de datos
-                $_SESSION['contraseñaU']  = SED:: decryption($data['contraseñaU']);
-
-                //comparacion de contraseñas
-                if (  $contraseñaU ==  $_SESSION['contraseñaU']) {
-                echo "<script>
-                    window.location= 'HomeU.php'
-                </script>";
-                }else{
-                     session_destroy();
-                echo "<script>
-                    alert('contrasena incorrecta');
-                    window.location= 'LoginCliente.php'
-                </script>"; 
-                }
-
-             
-            }else{
+            } else {
                 session_destroy();
                 echo "<script>
                     alert('El usuario no se encuentra');
  
                     window.location= 'LoginCliente.php'
-                </script>"; 
+                </script>";
             }
-
-
-            }
-
         }
     }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -82,37 +84,42 @@
     <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <!-- custom css-->
-    <link rel="stylesheet" href="Login.css">
-
+    <link rel="stylesheet" href="/css/Login.css">
+    <!-- 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        -->
 </head>
 
 <body>
-    <link rel="shortcut icon" type="image/x-icon" href="img/ERM.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/icon/ERM.png">
 
     <div class="login-box">
-        <a href="./index.php">
+
+        <a href="../index.php">
             <?php
-                $data=mysqli_fetch_array($res);
-                echo '<img src="'.$data['ruta']. '" alt="" class="avatar">';
+            $data = mysqli_fetch_array($res);
+            echo '<img src="' . $data['ruta'] . '" alt="" class="avatar">';
             ?>
         </a>
         <h1 class="title">Inicia Sesion </h1>
         <form action="" method="POST">
             <!-- USERNAME INPUT -->
             <label for="username">Usuario</label>
-            <input class="input" type="text" name="usuarioU" placeholder="Enter Usuario" id="usuarioU">
+            <input class="input" type="text" name="usuario" placeholder="Enter Ususario" id="usuario">
             <!-- PASSWORD INPUT -->
             <label for="password">Contraseña</label>
-            <input class="input" type="password" name="contraseñaU" placeholder="Enter Contraseña" id="contraseñaU">
+            <input class="input" type="password" name="contrasena" placeholder="Enter Contraseña" id="contrasena">
             <input type="submit" onclick=' return enviarDatos()' value="Inicia Sesion">
 
-            <a href="SignClient.php" onclick="ocultar()">No tienes un Cuenta? </a>
+
+            <a href="/views/SignCoach.php" onclick="ocultar()">No tienes un Cuenta? </a>
+
+            <!-- apartado del sign up-->
 
         </form>
 
     </div>
-
-
 
     <div class="footer">
         <small>Copyright &copy; ERM COACH 2020- Todos los derechos reservados</small>

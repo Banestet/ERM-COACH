@@ -57,18 +57,6 @@ body {
 
 /* bmi calculator*/
 
-.infoUsuario {
-    width: auto;
-    height: auto;
-    background-color: #4b4a4900;
-    color: rgb(2, 2, 2);
-    padding: 90px 30px;
-    border-radius: 12px;
-    position: absolute;
-    left: 10%;
-    top: -65%;
-}
-
 .infoUsuario h1 {
     font-size: 15px;
     font-family: 'Merienda One', cursive;
@@ -84,6 +72,13 @@ body {
     position: absolute;
     top: 35%;
     left: 1%;
+}
+
+.tableroles {
+    background-color: chocolate;
+    position: absolute;
+    top: 20%;
+    left: 140%;
 }
 
 .title {

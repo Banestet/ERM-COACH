@@ -13,7 +13,7 @@ if (isset($_FILES['imagen'])) {
         if ($res) {
             echo "<script>
                 alert('Cargada correctamente');
-                window.location= 'Configuracion.php'
+                window.location= 'admin/Configuracion/Configuracion.php'
             </script>"; 
         }else{
             die("Error".mysqli_error($conexion));

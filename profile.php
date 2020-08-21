@@ -1,5 +1,8 @@
 <?php
 include "conectar.php";
+session_start();
+$sql ="SELECT * FROM configuracion";
+$res=mysqli_query($conexion,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -7,7 +10,7 @@ include "conectar.php";
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Datos de empleados</title>
+	<title>Datos de clientes</title>
  
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min2.css" rel="stylesheet">
@@ -30,7 +33,7 @@ include "conectar.php";
 			// escaping, additionally removing everything that could be (html/javascript-) code
 			$nik = mysqli_real_escape_string($conexion,(strip_tags($_GET["nik"],ENT_QUOTES)));
 			
-			$sql = mysqli_query($conexion, "SELECT * FROM empleados WHERE codigo='$nik'");
+			$sql = mysqli_query($conexion, "SELECT * FROM clientes WHERE codigo='$nik'");
 			if(mysqli_num_rows($sql) == 0){
 				header("Location: index.php");
 			}else{
@@ -38,7 +41,7 @@ include "conectar.php";
 			}
 			
 			if(isset($_GET['aksi']) == 'delete'){
-				$delete = mysqli_query($conexion, "DELETE FROM empleados WHERE codigo='$nik'");
+				$delete = mysqli_query($conexion, "DELETE FROM clientes WHERE codigo='$nik'");
 				if($delete){
 					echo '<div class="alert alert-danger alert-dismissable">><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Data berhasil dihapus.</div>';
 				}else{
@@ -96,7 +99,10 @@ include "conectar.php";
 			<a href="profile.php?aksi=delete&nik=<?php echo $row['nik']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Esta seguro de borrar los datos <?php echo $row['nombres']; ?>')"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Eliminar</a>
 		</div>
 		<a href="./Home.php">
-            <img src="img/ERM.png" class="avatarP" alt="Avatar Image">
+		<?php
+                $data=mysqli_fetch_array($res);
+                echo '<img src="'.$data['ruta']. '" alt="" class="avatarP">';
+             ?>
         </a>
 	</div>
  

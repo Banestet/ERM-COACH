@@ -43,7 +43,7 @@ $active_banner="active";
 	<link href="css/preview-image.css" rel="stylesheet">
   </head>
   <body>
-
+  <link rel="shortcut icon" type="image/x-icon" href="/img/icon/ERM.png">
     <div class="container">
 		
       <!-- Main component for a primary marketing message or call to action -->
@@ -52,10 +52,10 @@ $active_banner="active";
 	   <ol class="breadcrumb">
 		  <li><a href="../Home.php">Inicio</a></li>
 		  <li><a href="../Nutricion.php">Nutricion</a></li>
-		  <li class="active">Editar</li>
+		  <li class="active">Agregar</li>
 		</ol>
 		 <div class="col-md-7">
-		 <h3 ><span class="glyphicon glyphicon-edit"></span> Editar Batido</h3>
+		 <h3 ><span class="glyphicon glyphicon-edit"></span> Agregar Batido</h3>
 			<form class="form-horizontal" id="editar_banner">
 				 
 			 
@@ -94,10 +94,6 @@ $active_banner="active";
 				 </select>
 				</div>
 			  </div>
-			  
-			
-			 
-			  
 			  
 			  <div class="form-group">
 			  <div id='loader'></div>

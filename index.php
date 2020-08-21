@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 <body>
-<link rel="shortcut icon" type="image/x-icon" href="img/ERM.png">
+<link rel="shortcut icon" type="image/x-icon" href="img/icon/ERM.png">
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -26,7 +26,7 @@
         <div class="container">
             <div class="logo">
                 <a href="./index.php">
-                <img src="img/ERM.png" class="avatar" alt="Avatar Image">
+                <img src="img/icon/ERM.png" class="avatar" alt="Avatar Image">
                 </a>
                 <hr>
             </div>
@@ -45,7 +45,7 @@
     </header>
     <!-- Header End -->
     <!-- Hero Section Begin -->
-    <section class="hero-section set-bg" data-setbg="img/banner.png">
+    <section class="hero-section set-bg" data-setbg="img/Fondos/banner.png">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="about-pic">
-                        <img src="img/about-pic.jpg" alt="">
+                        <img src="img/Fondos/about-pic.jpg" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -75,7 +75,7 @@
                         <!-- 
                         <p class="second-para">podrás hacer un seguimiento de sus registros y resultados; ayuda a los clientes a establecer metas de acondicionamiento físico y a hacer un seguimiento de las fotos que reflejan el progreso, entrenamientos y objetivos de nutrición.</p>
                          -->
-                        <img  class="firma"src="img/firma.png" alt="">
+                        <img  class="firma"src="img/icon/firma.png" alt="">
                         <br>
                         <br>
                         <br>
@@ -212,20 +212,18 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="footer-banner-item set-bg" data-setbg="img/footer-banner/footer-banner-1.jpg">
+                    <div class="footer-banner-item set-bg" data-setbg="img/Fondos/footer-banner-1.jpg">
                         <span>¿Quien eres?</span>
                         <h2>Eres</h2>
                         <h1 style="color: rgb(235, 145, 10);">ENTRENADOR</h1>
-                        <a href="SignCoach.php" class="primary-btn">REGISTRATE</a>
                         <a href="LoginCoach.php" class="primary-btn">INICIAR</a>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <div class="footer-banner-item set-bg" data-setbg="img/footer-banner/footer-banner-2.jpg">
+                    <div class="footer-banner-item set-bg" data-setbg="img/Fondos/footer-banner-2.jpg">
                         <span>¿Quien eres?</span>
                         <h2>Eres</h2>
                         <h1 style="color: rgb(235, 145, 10);">USUARIO</h1>
-                        <a href="SignClient.php" class="primary-btn">REGISTRATE</a>
                         <a href="LoginCliente.php" class="primary-btn">INICIAR</a>
                     </div>
                 </div>
@@ -256,7 +254,7 @@
                     </div>
                 </div>
             </div>
-            <div class="subscribe-option set-bg" data-setbg="img/footer-signup.jpg">
+            <div class="subscribe-option set-bg" data-setbg="img/Fondos/footer-signup.jpg">
                 <div class="so-text">
                     <h4>Escribenos a nuestro correo</h4>
                     <p>Registrate para tener mas informacion</p>

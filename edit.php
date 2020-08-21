@@ -1,5 +1,8 @@
 <?php
 include "conectar.php";
+session_start();
+$sql ="SELECT * FROM configuracion";
+$res=mysqli_query($conexion,$sql);
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -8,7 +11,7 @@ include "conectar.php";
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Datos de empleados</title>
+	<title>Datos de clientes</title>
  
 	<!-- Bootstrap -->
 	<link href="css/bootstrap.min2.css" rel="stylesheet">
@@ -25,7 +28,7 @@ include "conectar.php";
 			<?php
 			// escaping, additionally removing everything that could be (html/javascript-) code
 			$nik = mysqli_real_escape_string($conexion,(strip_tags($_GET["nik"],ENT_QUOTES)));
-			$sql = mysqli_query($conexion, "SELECT * FROM empleados WHERE codigo='$nik'");
+			$sql = mysqli_query($conexion, "SELECT * FROM clientes WHERE codigo='$nik'");
 			if(mysqli_num_rows($sql) == 0){
 				header("Location: Home.php");
 			}else{
@@ -41,7 +44,7 @@ include "conectar.php";
 				$puesto		 = mysqli_real_escape_string($conexion,(strip_tags($_POST["puesto"],ENT_QUOTES)));//Escanpando caracteres 
 				$estado			 = mysqli_real_escape_string($conexion,(strip_tags($_POST["estado"],ENT_QUOTES)));//Escanpando caracteres  
 				
-				$update = mysqli_query($conexion, "UPDATE empleados SET nombres='$nombres', lugar_nacimiento='$lugar_nacimiento', fecha_nacimiento='$fecha_nacimiento', direccion='$direccion', telefono='$telefono', puesto='$puesto', estado='$estado' WHERE codigo='$nik'") or die(mysqli_error());
+				$update = mysqli_query($conexion, "UPDATE clientes SET nombres='$nombres', lugar_nacimiento='$lugar_nacimiento', fecha_nacimiento='$fecha_nacimiento', direccion='$direccion', telefono='$telefono', puesto='$puesto', estado='$estado' WHERE codigo='$nik'") or die(mysqli_error());
 				if($update){
 					header("Location: edit.php?nik=".$nik."&pesan=sukses");
 				}else{
@@ -99,29 +102,37 @@ include "conectar.php";
                     
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Estado</label>
-					<div class="col-sm-3">
-						<select name="estado" class="form-control">
-							<option value="">- Selecciona estado -</option>
-                            <option value="1" <?php if ($row ['estado']==1){echo "selected";} ?>>Fijo</option>
-							<option value="2" <?php if ($row ['estado']==2){echo "selected";} ?>>Dialogo</option>
-							<option value="3" <?php if ($row ['estado']==3){echo "selected";} ?>>Terminando</option>
-						</select> 
-					</div>
-                   
-                </div>
-			
+                        <label class="col-sm-3 control-label">Estado</label>
+                        <div class="col-sm-3">
+                            <select name="estado" class="form-control">
+                                <?php
+                                $sql = "SELECT id, nombre FROM estado_cliente ORDER BY id";
+                                $result = $conexion->query($sql);
+                                ?>
+                                <option value="0">Seleccionar Estado</option>
+				                <?php while($row = $result->fetch_assoc()) { ?>
+                                <option value="<?php echo $row['id'];?>"><?php echo $row['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
 						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos">
 						<a href="Home.php" class="btn btn-sm btn-danger">Cancelar</a>
+						<a href="Home.php" class="btn btn-sm btn-success">Regresar</a>
 					</div>
 				</div>
 			</form>
 		</div>
 		<a href="./Home.php">
-            <img src="img/ERM.png" class="avatare" alt="Avatar Image">
+		<?php
+                $data=mysqli_fetch_array($res);
+                echo '<img src="'.$data['ruta']. '" alt="" class="avatare">';
+             ?>
         </a>
 	</div>
  

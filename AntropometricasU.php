@@ -1,12 +1,10 @@
 <?php
 error_reporting(0);
-include "Configuracion/SessionTimeU.php";
+include "admin/Configuracion/SessionTimeU.php";
+include "includes/navCliente.php";
+include "includes/fuctions.php";
 session_start();
-$sql ="SELECT * FROM configuracion";
-$res=mysqli_query($conexion,$sql);
-$res2=mysqli_query($conexion,$sql);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,133 +14,187 @@ $res2=mysqli_query($conexion,$sql);
     <title>Antropometricas</title>
 
     <!-- Google Font -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Coda+Caption:wght@800&display=swap" rel="stylesheet">
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/Antropometricas.css" type="text/css">
-    <link rel="stylesheet" href="css/style2.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <link rel="stylesheet" href="css/HomeU.css" type="text/css">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
+    <link rel="stylesheet" href="css/Antropometricas.css" type="text/css">
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
-
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container">
-        <div class="infoUsuario">
-                <h1 > <strong > Bienvenido:</strong>  <?php echo $_SESSION['usuarioU'] ?> </h1>
-                <h1><?php echo $_SESSION['correoU'] ?></h1>
-                <?php
-                $data2=mysqli_fetch_array($res2);
-                echo '<h1>'.$data2['Empresa']. '</h1>';
-                ?>
-                <img class="avatarUsuario" src="/img/entrenador.jpg" alt="">
-            </div>
-            <div class="logo">
-                <a href="HomeU.php">
-                    <?php
-                        $data=mysqli_fetch_array($res);
-                        echo '<img src="'.$data['ruta']. '" alt="" class="avatar">';
-                    ?>
-               </a>
-                <hr>
-            </div>
-            <div class="nav-menu">
-                <nav class="mainmenu mobile-menu">
-                    <ul>
-                        <li class="active"><a href="HomeU.php">Inicio</a></li>
-                        <li><a href="NutricionU.php">Nutricion</a></li>
-                        <li><a href="WorkoutU.php">Entrenamineto</a></li>
-                        <li><a href="AntropometricasU.php">Medidas Antropometricas</a></li>
-                    </ul>
-                </nav>
-                <a href="salir.php" class="primary-btn signup-btn">Salir</a>
-            </div>
-        </div>
-    </header>
-    <!-- Header End -->
-
+<link rel="shortcut icon" type="image/x-icon" href="/img/icon/ERM.png">
     <!-- Hero Section Begin -->
-    <div class="container">
-            <div class="Pruebas">
-                <div class="Flexiones">
-                    <h3 style="color: white;">ERM<strong style="color: rgb(192, 108, 30);">COACH</strong>
-                        <h1 style="color: rgb(16, 73, 158);">
-                            </style><strong>TEST</strong></h1>
-                    </h3>
-                    <label for="edad">Edad</label>
-                    <input type="text" name="Edad" placeholder="Edad">
-                    <div class="select">
-                        <select name="generoU" id="genero">
-                            <option selected disabled>Genero</option>
-                            <option value="1">Hombre</option>
-                            <option value="2">Mujer</option>
-                        </select>
+    <section class="hero-section set-bg" data-setbg="img/hero-bg.jpg">
+        <h1 class="title">Medidas Antropometricas</h1>
+        <div class="antropometricas">
+            <div class="antropo1">
+                <form class="form-horizontal" action="Medidas.php" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">peso</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="peso" placeholder="peso" required>
+                        </div>
                     </div>
-                    <h3 style="color: chocolate;">Cantidad Maxima en 1 minuto</h3>
-                    <label for="Flexiones">Flexiones de Brazo</label>
-                    <input type="text" name="Flexiones" placeholder="Cantidad">
-                    <br>
-                    <label for="Abdomen">Abdominales</label>
-                    <input type="text" name="Abdominales" placeholder="Cantidad">
-                    <h2 style="color: chocolate;">Test de Cooper</h2>
-                    <label for="Distancia">Distancia</label>
-                    <input type="text" name="Distancia" placeholder="Distancia Metros">
-                    <input type="submit" value="Calcular" name="Calcular">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">Altura</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="Altura" placeholder="Altura" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">1. P. Biceps Contraido</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="BicepD" placeholder="Bicep Derecho" required>
+                            <input type="text" name="BicepI" placeholder="Bicep Izquierdo" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">2. Perimetro Hombro</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="Hombros" placeholder="Hombros" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">3. Perimetro Pecho</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="Pecho" placeholder="Pecho" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">4. Perimetro Antebrazo</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="AntebrazoD" placeholder="Antebrazo D" required>
+                            <input type="text" name="AntebrazoI" placeholder="Antebrazo I" required>
+                        </div>
+                    </div>
 
-                </div>
-                <div class="infoTxt">
-                    <h3 style="color: rgb(192, 108, 30);">¿En que consiste el Test de Cooper?</strong></h3>
-                    <br>
-                    <p style="color: white;">
-                        El test consiste en recorrer, en terreno llano y durante un tiempo de 12 minutos, la máxima
-                        distancia posible sin detenerse. La idea es que el atleta rinda al máximo su condición física
-                        con el fin de conocer las verdaderas condiciones de la persona.
-                    </p>
-                </div>
-                <div class="Resultados" >
-                    <h1 style="color: white;">Resultados</h1>
-                </div>
+                    <div class="antropo2">
 
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">5. Perimetro Muñeca</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="Muñeca" placeholder="Muñeca" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">6. Perimetro Abdomen</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="Abdomen" placeholder="Abdomen" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="col-sm-3 control-label">7. Perimetro Cintura</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="Cintura" placeholder="Cintura" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="col-sm-3 control-label">8. Perimetro Cadera</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="Cadera" placeholder="Cadera" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="col-sm-3 control-label">9. Perimetro Muslo</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="Muslo" placeholder="Muslo" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="col-sm-3 control-label">10. Perimetro Rodilla</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="Rodilla" placeholder="Rodilla" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="col-sm-3 control-label">11. Perimetro Gemelos</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="Gemelos" placeholder="Gemelos" required>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="col-sm-3 control-label">12. Perimetro Tobillo</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="Tobillo" placeholder="Tobillo" required>
+                            </div>
+                        </div>
+                        <div class="antropo3">
+                            <div>
+                                <label class="col-sm-3 control-label">13. Perimetro Pierna</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="Pierna" placeholder="Pierna" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">14.P. Biceps Relajado</label>
+                                <div class="col-sm-2">
+                                    <input type="text" name="BicepDR" placeholder="Bicep Derecho" required>
+                                    <input type="text" name="BicepIR" placeholder="Bicep Izquierdo" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Observaciones</label>
+                                <textarea class="form-control" name="observacion" id="exampleFormControlTextarea1" rows="5"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">&nbsp;</label>
+                                <div class="col-sm-6">
+                                    <input type="submit" name="add" class="btn btn-sm btn-primary"
+                                        value="Guardar datos">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <img src="img/Medidas.png" class="avatare">
+
+
+                </form>
             </div>
+        </div>
 
-        </div>
-        </div>
+    </section>
     <!-- Hero Section End -->
 
 
 
+
+    <!-- About Section Begin -->
     <div class="div2">
         <div class="container">
             <div class="row">
                 <div class="bmi">
-                    <form onsubmit="return calcBMI(); ">
+                    <form action="BMIC.php" method="POST" >
 
-                        Sistema :
-                        <label>
-                            <input type="radio" id="bmi-metric" name="bmi-measure" onchange="measureBMI()" checked />
-                            Metrico
-                        </label>
-                        <label>
-                            <input type="radio" id="bmi-imperial" name="bmi-measure" onchange="measureBMI()" /> Imperial
-                        </label>
-                        <br><br> Weight:
-                        <input class="input" id="bmi-weight" type="number" min="1" max="635" required />
-                        <span id="bmi-weight-unit">KG</span>
-                        <br><br> Height:
-                        <input class="input" id="bmi-height" type="number" min="54" max="272" required />
-                        <span id="bmi-height-unit">CM</span>
-                        <br><br>
+                    Sistema :
 
-                        <input type="submit" value="Calcular BMI" />
-                        <div id="bmi-results"></div>
+<label>
+    <input type="radio" id="bmi-metric" value = "bmi-metric" name="bmi-measure" onchange="measureBMI()" checked />
+    Metrico
+</label>
+<label>
+    <input type="radio" id="bmi-imperial" value = "bmi-imperial"  name="bmi-measure" onchange="measureBMI()" /> Imperial
+</label>
+<br><br> Weight:
+<input class="input" id="bmi-weight" name="bmi-weight" type="number" min="1" max="635"
+    required />
+<span id="bmi-weight-unit">KG</span>
+<br><br> Height:
+<input class="input" id="bmi-height" name="bmi-height" type="number" min="54" max="272"
+    required />
+<span id="bmi-height-unit">CM</span>
+ <br><br>
+  <input type="submit" value="Calcular BMI" />
+
                     </form>
 
                 </div>
@@ -199,6 +251,7 @@ $res2=mysqli_query($conexion,$sql);
         </div>
     </div>
     <!-- About Section End -->
+
 
 
     <!-- Js Plugins -->

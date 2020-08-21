@@ -12,14 +12,18 @@
    }
    
    .avatare {
+       width: 320px;
+       height: 280px;
        border-radius: 100%;
        position: absolute;
        top: 30%;
-       left: calc(100% - 30%);
+       left: 70%;
        font-size: 15px;
    }
    
    .avatarP {
+       width: 320px;
+       height: 280px;
        border-radius: 100%;
        position: absolute;
        top: 60%;

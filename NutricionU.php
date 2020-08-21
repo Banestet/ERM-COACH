@@ -1,14 +1,13 @@
 <?php
 error_reporting(0);
-include "Configuracion/SessionTimeU.php";
+include "admin/Configuracion/SessionTimeU.php";
 include "conectar.php";
+include "includes/navCliente.php";
+include "includes/fuctions.php";
 session_start();
 
 $sql ="SELECT * FROM batidos";
 $res=mysqli_query($conexion,$sql);
-$sql2 ="SELECT * FROM configuracion";
-$res2=mysqli_query($conexion,$sql2);
-$res3=mysqli_query($conexion,$sql2);
 ?>
 
 <?php 
@@ -37,6 +36,7 @@ $active4="active";
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/thumbnail-gallery.css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
     <link rel="stylesheet" href="css/NutricionU.css" type="text/css">
 
     <!-- css para la galeria de imagenes -->
@@ -44,51 +44,13 @@ $active4="active";
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+<link rel="shortcut icon" type="image/x-icon" href="/img/icon/ERM.png">
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container">
-            <div class="infoUsuario">
-                <h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuarioU'] ?> </h1>
-                <h1><?php echo $_SESSION['correoU'] ?></h1>
-                <?php
-                $data3=mysqli_fetch_array($res3);
-                echo '<h1>'.$data3['Empresa']. '</h1>';
-                ?>
-                <img class="avatarUsuario" src="/img/entrenador.jpg" alt="">
+    
 
-            </div>
-            <div class="logo">
-                <a href="HomeU.php">
-                    <?php
-                        $data2=mysqli_fetch_array($res2);
-                        echo '<img src="'.$data2['ruta']. '" alt="" class="avatar">';
-                    ?>
-                </a>
-                <hr>
-            </div>
-            <div class="nav-menu">
-                <nav class="mainmenu mobile-menu">
-                    <ul>
-                        <li class="active"><a href="HomeU.php">Inicio</a></li>
-                        <li><a href="NutricionU.php">Nutricion</a></li>
-                        <li><a href="WorkoutU.php">Entrenamineto</a></li>
-                        <li><a href="AntropometricasU.php">Medidas Antropometricas</a></li>
-                    </ul>
-                </nav>
-                <a href="salir.php" class="primary-btn signup-btn">Salir</a>
-            </div>
-        </div>
-    </header>
-    <!-- Header End -->
+    <div class="container gallery-container" id="batidos">
 
-    <div class="container gallery-container">
-
-        <h1>Galeria de batidos</h1>
+        <h1 class="TituloBatidos">Galeria de batidos</h1>
         <div class="tz-gallery">
             <div class="row">
                 <?php
@@ -149,3 +111,40 @@ $active4="active";
 </body>
 
 </html>
+
+<script>
+	$(document).ready(function(){
+		load(1);
+	});
+	function load(page){
+		var parametros = {"action":"ajax","page":page};
+		$.ajax({
+			url:'/admin/ajax/banner_ajax.php',
+			data: parametros,
+			 beforeSend: function(objeto){
+			$("#loader").html("<img src='../img/ajax-loader.gif'>");
+		  },
+			success:function(data){
+				$(".outer_div").html(data).fadeIn('slow');
+				$("#loader").html("");
+			}
+		})
+	}
+	function eliminar_slide(id){
+		page=1;
+		var parametros = {"action":"ajax","page":page,"id":id};
+		if(confirm('Esta acción  eliminará de forma permanente el banner \n\n Desea continuar?')){
+		$.ajax({
+			url:'admin/ajax/banner_ajax.php',
+			data: parametros,
+			 beforeSend: function(objeto){
+			$("#loader").html("<img src='../images/ajax-loader.gif'>");
+		  },
+			success:function(data){
+				$(".outer_div").html(data).fadeIn('slow');
+				$("#loader").html("");
+			}
+		})
+	}
+	}
+</script>

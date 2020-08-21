@@ -1,5 +1,6 @@
 body {
     background-color: rgb(0, 0, 0);
+    font-family: 'Architects Daughter', cursive;
 }
 
 * {
@@ -12,6 +13,19 @@ body {
 
 img {
     width: 100%;
+}
+
+#batidos {
+    background-color: rgba(0, 0, 0, 0);
+    position: absolute;
+    top: 18%;
+    left: 7%;
+}
+
+.TituloBatidos {
+    font-family: 'Architects Daughter', cursive;
+    color: rgb(236, 6, 6);
+    text-align: center;
 }
 
 .d1 {

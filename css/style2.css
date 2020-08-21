@@ -13,7 +13,17 @@ body {
     border-radius: 100%;
     position: absolute;
     top: 0;
-    left: calc(52% - 50%);
+    left: 1%;
+    /* sombreado*/
+}
+
+.chatIcon {
+    width: 180px;
+    height: 150px;
+    border-radius: 100%;
+    position: fixed;
+    top: 70%;
+    left: 85%;
     /* sombreado*/
 }
 
@@ -23,17 +33,17 @@ body {
 .infoUsuario {
     width: auto;
     height: auto;
-    background-color: #4b4a4900;
+    background-color: #00000000;
     color: rgb(2, 2, 2);
     padding: 90px 30px;
     border-radius: 12px;
     position: absolute;
-    left: 10%;
+    left: 7%;
     top: -65%;
 }
 
 .infoUsuario h1 {
-    font-size: 15px;
+    font-size: 12px;
     font-family: 'Merienda One', cursive;
     color: #da7d12e7;
 }
@@ -79,6 +89,16 @@ td {
     position: absolute;
     left: 2%;
     top: 142%;
+}
+
+.retos {
+    width: 27%;
+    height: 70%;
+    background-color: rgba(17, 17, 17, 0.822);
+    position: absolute;
+    top: 85%;
+    left: 8%;
+    border-radius: 12px;
 }
 
 .avatarUsuario {
@@ -415,7 +435,10 @@ ol {
 }
 
 .nav-menu {
-    float: right;
+    background-color: rgba(255, 255, 0, 0);
+    position: absolute;
+    left: 25%;
+    width: 74%;
 }
 
 .nav-menu .mainmenu {
@@ -425,7 +448,7 @@ ol {
 .nav-menu .mainmenu ul li {
     list-style: none;
     display: inline-block;
-    margin-right: 27px;
+    margin-right: 15px;
 }
 
 .nav-menu .mainmenu ul li.active a:after {
@@ -433,7 +456,7 @@ ol {
 }
 
 .nav-menu .mainmenu ul li a {
-    font-size: 16px;
+    font-size: 14px;
     color: #ffffff;
     font-weight: 600;
     padding: 28px 0;
@@ -448,7 +471,7 @@ ol {
     position: absolute;
     left: 0;
     bottom: 24px;
-    width: 100%;
+    width: 60%;
     height: 2px;
     background: #f15d44;
     content: "";
@@ -460,7 +483,7 @@ ol {
 
 .nav-menu .signup-btn {
     display: inline-block;
-    margin: 16px 0px 16px 30px;
+    margin: 16px 0px 16px 10px;
 }
 
 .nav-menu .signup-btn:after {

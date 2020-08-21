@@ -1,0 +1,44 @@
+.roles {
+    background-color: rgba(44, 44, 44, 0.849);
+    width: 40%;
+    position: absolute;
+    top: 80%;
+    left: 10%;
+    height: 100%;
+    border-radius: 12px;
+}
+
+.new_rol {
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    position: absolute;
+    top: 5%;
+}
+
+.tit {
+    font-size: 30px;
+    color: white;
+    font-family: 'Architects Daughter', cursive;
+}
+
+.tableroles {
+    position: absolute;
+    top: 100%;
+    width: 50%;
+    left: 10%;
+}
+
+.edit_rol {
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    position: absolute;
+    top: 37%;
+    columns: black;
+}
+
+.delate_rol {
+    background-color: rgba(0, 0, 0, 0);
+    width: 100%;
+    position: absolute;
+    top: 75%;
+}

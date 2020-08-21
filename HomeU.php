@@ -1,34 +1,16 @@
 <?php
 /*codigo para que no pueda acceder a la vista sin haber iniciado seccion anterior mente  */ 
 error_reporting(0);
-include "conectar.php";
+include "./conectar.php";
+include "admin/Configuracion/SessionTimeU.php";
+//include "includes/header.php";
+include "includes/navCliente.php";
+include "includes/fuctions.php";
 session_start();
-$sql ="SELECT * FROM configuracion";
-$res=mysqli_query($conexion,$sql);
-if(empty($_SESSION['activeU'])){
-    header('location: LoginCliente.php');
-}else{
-    //codigo para cierre de session por inactividad
+include "carousel/db.php";
+ $images = get_imgs();
 
-    $fechaGuardada = $_SESSION["ultimoAccesoU"];
-    $ahora = date("Y-n-j H:i:s");
-    $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada));
 
-    //comparamos el tiempo transcurrido
-    if($tiempo_transcurrido >= 600) {
-    //si pasaron 10 minutos o más
-    session_destroy(); // destruyo la sesión
-    echo "<script>
-    alert('Session Cerrada Por Inactividad');
-    window.location= 'LoginCliente.php'
-    </script>";
-    //header("Location: index.php"); //envío al usuario a la pag. de autenticación
-    //sino, actualizo la fecha de la sesión
-    }else {
-    $_SESSION["ultimoAccesoU"] = $ahora;
-    }
-
-}
 ?>
 
 
@@ -47,8 +29,18 @@ if(empty($_SESSION['activeU'])){
     <!-- Css Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="css/chat.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min2.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-    <link rel="stylesheet" href="css/HomeU.css" type="text/css">
+    <link rel="stylesheet" href="css/style2.css" type="text/css">
+
+    <style>
+    .content {
+        margin-top: 80px;
+    }
+    </style>
+
+
 </head>
 
 <body>
@@ -57,92 +49,107 @@ if(empty($_SESSION['activeU'])){
         <div class="loader"></div>
     </div>
 
-    <!-- Header Section Begin -->
-    <header class="header-section">
-        <div class="container">
-            <div class="infoUsuario">
-                <h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuarioU'] ?> </h1>
-                <h1><?php echo $_SESSION['correoU'] ?></h1>
-
-                <img class="avatarUsuario" src="/img/entrenador.jpg" alt="">
-            </div>
-            <div class="logo">
-                <a href="HomeU.php">
-                    <?php
-                        $data=mysqli_fetch_array($res);
-                        echo '<img src="'.$data['ruta']. '" alt="" class="avatar">';
-                    ?>
-                </a>
-                <hr>
-            </div>
-            <div class="nav-menu">
-                <nav class="mainmenu mobile-menu">
-                    <ul>
-                        <li class="active"><a href="HomeU.php">Inicio</a></li>
-                        <li><a href="NutricionU.php">Nutricion</a></li>
-                        <li><a href="WorkoutU.php">Entrenamineto</a></li>
-                        <li><a href="AntropometricasU.php">Medidas Antropometricas</a></li>
-                    </ul>
-                </nav>
-                <a href="salir.php" class="primary-btn signup-btn">Salir</a>
-            </div>
-        </div>
-    </header>
-    <!-- Header End -->
-
     <!-- Hero Section Begin -->
     <section class="hero-section set-bg" data-setbg="img/Fondo2.jpg">
-        
     </section>
     <!-- Hero Section End -->
 
 
 
-    
-    <!-- chat Section -->
-    <div id="contenedor">
-            <div id="caja-chat">
-                <div id="chat"></div>
-            </div>
+    <!-- chat -->
 
-            <form method="POST" action="Home.php">
-                <input type="text" name="nombre" placeholder="Ingresa tu nombre">
-                <textarea name="mensaje" placeholder="Ingresa tu mensaje"></textarea>
-                <input type="submit" name="enviar" value="Enviar">
-            </form>
+    <div class="chat">
+        <a href="ForoChatCliente.php">
+            <img src="img/icon/chat.png" alt="" class="chatIcon">
+        </a>
 
-            <?php
-			if (isset($_POST['enviar'])) {
-				
-				$nombre = $_POST['nombre'];
-				$mensaje = $_POST['mensaje'];
+    </div>
+    <!-- chat End -->
 
 
-				$consulta = "INSERT INTO chat (nombre, mensaje) VALUES ('$nombre', '$mensaje')";
 
-				$ejecutar = $conexion->query($consulta);
+    <!-- incio de retos -->
+    <div class="retos">
+        <nav class="navbar navbar-inverse">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li><a class="btn btn-success" id="btnCarousel" href="carousel/">Administar</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
 
-				if ($ejecutar) {
-					echo "<embed loop='false' src='beep.mp3' hidden='true' autoplay='true'>";
-				}
-			}
+        <div class="container">
+            <div class="row">
+                <div>
+                    <?php if(count($images)>0):?>
+                    <!-- aqui insertaremos el slider -->
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <!-- Indicatodores -->
+                        <ol class="carousel-indicators">
+                            <?php $cnt=0; foreach($images as $img):?>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0"
+                                class="<?php if($cnt==0){ echo 'active'; }?>"></li>
+                            <?php $cnt++; endforeach; ?>
+                        </ol>
 
-		?>
-        </div>
+                        <!-- Contenedor de las imagenes -->
+                        <div class="carousel">
+                            <?php $cnt=0; foreach($images as $img):?>
+                            <div class="carousel-item  <?php if($cnt==0){ echo 'active'; }?>">
+                                <img src="<?php echo 'carousel/'.$img->folder.$img->src; ?>" alt="Imagen 1">
+                                <div id="item">
+                                    <div class="carousel-caption d-none d-md-block" style="color: rgb(245, 110, 0);"
+                                        style="font-size: 14px;" "><?php echo $img->title; ?></div>
+                                    </div>
+                                </div>
+                                <?php $cnt++; endforeach; ?>
+                            </div>
 
-        <!-- Section chat end -->
+                            <!-- Controls -->
+                            <a class=" carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                        data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span><span
+                                            class="sr-only">Anterior</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                            data-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                            <span class="sr-only">Siguiente</span>
+                                        </a>
+
+                                    </div>
+                                    <?php else:?>
+                                    <h4 class="alert alert-warning">No hay imagenes</h4>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
 
 
-    <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
-    <!-- Js BMI calculator -->
-    <script src="js/BMI.js"></script>
+                    <!-- Js Plugins -->
+                    <script src="js/jquery-3.3.1.min.js"></script>
+                    <script src="js/bootstrap.min.js"></script>
+                    <script src="js/jquery.magnific-popup.min.js"></script>
+                    <script src="js/mixitup.min.js"></script>
+                    <script src="js/jquery.slicknav.js"></script>
+                    <script src="js/owl.carousel.min.js"></script>
+                    <script src="js/main.js"></script>
+                    <!-- Js BMI calculator -->
+                    <script src="js/BMI.js"></script>
 </body>
 
 </html>

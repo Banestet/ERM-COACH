@@ -1,17 +1,19 @@
-.prueba {
-    height: 50%;
-    width: 80%;
-    top: 19%;
+#batidos {
+    background-color: black;
     position: absolute;
-    left: 10%;
-    background-color: rgb(139, 67, 0);
+    top: 15%;
+    left: 8%;
 }
 
-.prueba {
-    height: 50%;
-    width: 80%;
-    top: 19%;
-    position: absolute;
-    left: 10%;
-    background-color: rgb(139, 67, 0);
+#batidos h1 {
+    color: white;
+    padding-bottom: 5%;
+    padding-top: 2%;
+    font-family: 'Architects Daughter', cursive;
+    text-align: center;
+}
+
+#batidos h3 {
+    color: chocolate;
+    font-family: 'Architects Daughter', cursive;
 }
