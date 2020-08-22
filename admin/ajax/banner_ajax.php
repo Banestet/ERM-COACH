@@ -68,6 +68,7 @@ if($action == 'ajax'){
 					$url_image=$row['url_image'];
 					$titulo=$row['titulo'];
 					$id_slide=$row['id'];
+					
 				
 					?>
 					

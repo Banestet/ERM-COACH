@@ -50,14 +50,15 @@ $res=mysqli_query($conexion,$sql);
 				$correo			 = mysqli_real_escape_string($conexion,(strip_tags($_POST["correo"],ENT_QUOTES)));//Escanpando caracteres 
                 $rol			 = mysqli_real_escape_string($conexion,(strip_tags($_POST["rol"],ENT_QUOTES)));//Escanpando caracteres 
                 $id_codigo			 = mysqli_real_escape_string($conexion,(strip_tags($_POST["id_codigo"],ENT_QUOTES)));//Escanpando caracteres 
+               
 			
 				
 			
  
 				$cek = mysqli_query($conexion, "SELECT * FROM clientes WHERE codigo='$codigo'");
 				if(mysqli_num_rows($cek) == 0){
-						$insert = mysqli_query($conexion, "INSERT INTO clientes(codigo, nombres, lugar_nacimiento, fecha_nacimiento, direccion, telefono, puesto, estado, usuario, contrasena, correo,rol)
-                        VALUES ('$codigo','$nombres', '$lugar_nacimiento','$fecha_nacimiento', '$direccion','$telefono','$puesto', '$estado','$usuario', '$contrasena', '$correo','$rol')") or die(mysqli_error());
+						$insert = mysqli_query($conexion, "INSERT INTO clientes(codigo, nombres, lugar_nacimiento, fecha_nacimiento, direccion, telefono, puesto, estado, usuario, contrasena, correo,rol,id_codigo)
+                        VALUES ('$codigo','$nombres', '$lugar_nacimiento','$fecha_nacimiento', '$direccion','$telefono','$puesto', '$estado','$usuario', '$contrasena', '$correo','$rol','$id_codigo')") or die(mysqli_error());
 						if($insert){
 							echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Bien hecho! Los datos han sido guardados con éxito.</div>';
 						}else{
@@ -93,7 +94,7 @@ $res=mysqli_query($conexion,$sql);
                 <div class="form-group">
                     <label class="col-sm-3 control-label">Fecha de nacimiento</label>
                     <div class="col-sm-4">
-                        <input type="text" name="fecha_nacimiento" class="input-group date form-control" date=""
+                        <input type="date" name="fecha_nacimiento" class="input-group date form-control" date=""
                             data-date-format="dd-mm-yyyy" placeholder="00-00-0000" required>
                     </div>
                 </div>
@@ -154,6 +155,24 @@ $res=mysqli_query($conexion,$sql);
                     <input type="text" id="correo" name="correo" class="form-control" placeholder="correo" required>
                     </div>
                 </div>
+                
+                <div class="form-group">
+                        <label class="col-sm-3 control-label">Entrenador</label>
+                        <div class="col-sm-3">
+                            <select name="id_codigo" class="form-control">
+                                <?php
+                                $sql = "SELECT codigo, nombres FROM usuarios ORDER BY codigo";
+                                $result = $conexion->query($sql);
+                                ?>
+                                <option value="0">Seleccionar Entrenador</option>
+				                <?php while($row = $result->fetch_assoc()) { ?>
+                                <option value="<?php echo $row['codigo'];?>"><?php echo $row['nombres']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+
+
                 <div class="form-group">
                     <label class="col-sm-3 control-label">rol</label>
                     <div class="col-sm-3">

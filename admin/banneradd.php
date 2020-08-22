@@ -1,4 +1,5 @@
 <?php
+include "../conectar.php";
 session_start();
 $title="Agregar Banner";
 /* Llamar la Cadena de Conexion*/ 
@@ -15,15 +16,22 @@ if ($count==0){
 	//header("location: bannerlist.php");
 	//exit;
 }
+
+               
 $rw=mysqli_fetch_array($sql);
 $titulo=$rw['titulo'];
+$id_cliente=$rw['id_cliente'];
 $descripcion=$rw['descripcion'];
 $url_image=$rw['url_image'];
 $orden=intval($rw['orden']);
 $estado=intval($rw['estado']);
+$id_cliente=$rw['id_cliente'];
 
 $active_config="active";
 $active_banner="active";
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -94,12 +102,28 @@ $active_banner="active";
 				 </select>
 				</div>
 			  </div>
-			  
+
 			  <div class="form-group">
+                        <label class="col-sm-3 control-label">Clientes</label>
+                        <div class="col-sm-3">
+                            <select name="id_cliente" class="form-control">
+                                <?php
+                                $sql = "SELECT codigo, nombres FROM clientes ORDER BY codigo";
+                                $result = $conexion->query($sql);
+                                ?>
+                                <option value="0">Seleccionar cliente</option>
+				                <?php while($row = $result->fetch_assoc()) { ?>
+                                <option value="<?php echo $row['codigo'];?>"><?php echo $row['nombres']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+			  <div class="form-group">
+
 			  <div id='loader'></div>
 			  <div class='outer_div'></div>
 				<div class="col-sm-offset-3 col-sm-9">
-				  <button type="submit" class="btn btn-success">Actualizar datos</button>
+				  <button type="submit" name="add" class="btn btn-success">Actualizar datos</button>
 				</div>
 			  </div>
 			</form>
