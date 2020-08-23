@@ -30,7 +30,7 @@ $res=mysqli_query($conexion,$sql);
 			$nik = mysqli_real_escape_string($conexion,(strip_tags($_GET["nik"],ENT_QUOTES)));
 			$sql = mysqli_query($conexion, "SELECT * FROM usuarios WHERE codigo='$nik'");
 			if(mysqli_num_rows($sql) == 0){
-				header("Location: Home.php");
+				header("Location: admin.php");
 			}else{
 				$row = mysqli_fetch_assoc($sql);
 			}
@@ -94,7 +94,7 @@ $res=mysqli_query($conexion,$sql);
 					</div>
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Proposito</label>
+					<label class="col-sm-3 control-label">Puesto</label>
 					<div class="col-sm-3">
 						
 						<input type="text" name="puesto" value="<?php echo $row ['puesto']; ?>" class="form-control" placeholder="Puesto" required>
@@ -102,28 +102,31 @@ $res=mysqli_query($conexion,$sql);
                     
 				</div>
 				<div class="form-group">
-					<label class="col-sm-3 control-label">Estado</label>
-					<div class="col-sm-3">
-						<select name="estado" class="form-control">
-							<option value="">- Selecciona estado -</option>
-                            <option value="1" <?php if ($row ['estado']==1){echo "selected";} ?>>Fijo</option>
-							<option value="2" <?php if ($row ['estado']==2){echo "selected";} ?>>Dialogo</option>
-							<option value="3" <?php if ($row ['estado']==3){echo "selected";} ?>>Terminando</option>
-						</select> 
-					</div>
-                   
-                </div>
+                        <label class="col-sm-3 control-label">Estado</label>
+                        <div class="col-sm-3">
+                            <select name="estado" class="form-control">
+                                <?php
+                                $sql = "SELECT id, nombre FROM estado_empleado ORDER BY id";
+                                $result = $conexion->query($sql);
+                                ?>
+                                <option value="0">Seleccionar Estado</option>
+				                <?php while($row = $result->fetch_assoc()) { ?>
+                                <option value="<?php echo $row['id'];?>"><?php echo $row['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
 			
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-6">
-						<input type="submit" name="save" class="btn btn-sm btn-primary" value="Guardar datos">
-						<a href="Home.php" class="btn btn-sm btn-danger">Cancelar</a>
+						<input type="submit"  name="save" class="btn btn-sm btn-primary" value="Guardar datos">
+						<a href="admin.php" class="btn btn-sm btn-danger">Cancelar</a>
 					</div>
 				</div>
 			</form>
 		</div>
-		<a href="./Home.php">
+		<a href="./admin.php">
 		<?php
                 $data=mysqli_fetch_array($res);
                 echo '<img src="'.$data['ruta']. '" alt="" class="avatare">';
