@@ -73,7 +73,7 @@ $res3 = mysqli_query($conexion, $sql);
 
 
         <!-- TABLA BASICA ESTADO CLIENTE -->
-        <h2>Tabla Estado Clientes - Empleados</h2>
+        <h2>Tabla Estado Clientes </h2>
         <table class="table table-striped table-dark">
             <thead>
                 <tr>
@@ -104,6 +104,50 @@ $res3 = mysqli_query($conexion, $sql);
             <input type="submit" class="btn btn-primary" value="Crear Estado" name="Crear Estado" />
         </form>
         <form action="admin/Configuracion/eliminarEstadoCliente.php" method="POST">
+        <div class="form-group">
+        <label class="col-sm-3 control-label">Nombre Estado</label>
+            <input type="text"  class="form-control"id="viejo" name="viejo" placeholder="Estado a eliminar">
+        </div>
+            <input type="submit" class="btn btn-danger" value="Eliminar Estado" />
+        </form>
+
+
+
+
+
+
+        <!-- TABLA BASICA ESTADO CLIENTE -->
+        <h2>Tabla Estado  Empleados</h2>
+        <table class="table table-striped table-dark">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+        $sql = mysqli_query($conexion, "SELECT * FROM estado_empleado");
+        while ($row = mysqli_fetch_assoc($sql)) {
+          echo '
+                            <tr>
+                                <td>' . $row['id'] . '</td>
+                                <td>' . $row['nombre'] . '</td>
+                               
+                            </tr>
+                            ';
+        }
+        ?>
+            </tbody>
+        </table>
+        <form action="admin/Configuracion/tablaEstadoEmpleado.php" method="POST">
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Nombre Estado</label>
+                <input type="text" class="form-control" id="nuevo" name="nuevo" placeholder="Nuevo Estado">
+            </div>
+            <input type="submit" class="btn btn-primary" value="Crear Estado" name="Crear Estado" />
+        </form>
+        <form action="admin/Configuracion/eliminarEstadoEmpleado.php" method="POST">
         <div class="form-group">
         <label class="col-sm-3 control-label">Nombre Estado</label>
             <input type="text"  class="form-control"id="viejo" name="viejo" placeholder="Estado a eliminar">

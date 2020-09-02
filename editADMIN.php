@@ -78,7 +78,7 @@ $res=mysqli_query($conexion,$sql);
 				<div class="form-group">
 					<label class="col-sm-3 control-label">Fecha de nacimiento</label>
 					<div class="col-sm-4">
-						<input type="text" name="fecha_nacimiento" value="<?php echo $row ['fecha_nacimiento']; ?>" class="input-group date form-control" date="" data-date-format="yyyy-mm-dd" placeholder="0000-00-00" required>
+						<input type="date" name="fecha_nacimiento" value="<?php echo $row ['fecha_nacimiento']; ?>" class="input-group date form-control" date="" data-date-format="yyyy-mm-dd"  required>
 					</div>
 				</div>
 				<div class="form-group">

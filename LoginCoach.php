@@ -35,6 +35,9 @@ if (!empty($_SESSION['active'])) {
                 $_SESSION['active'] = true;
                 $_SESSION['nombre'] = $data['nombre'];
                 $_SESSION['correo']  = $data['correo'];
+                $_SESSION['estado']  = $data['estado'];
+                $_SESSION['telefono']  = $data['telefono'];
+                $_SESSION['codigo']  = $data['codigo'];
                 $_SESSION['usuario']   = $data['usuario'];
                 $_SESSION['rol']   = $data['rol'];
 
@@ -61,6 +64,7 @@ if (!empty($_SESSION['active'])) {
                     }
                   
                } else {
+                session_destroy();
                  
                    echo "<script>
                        alert('contrasena incorrecta');

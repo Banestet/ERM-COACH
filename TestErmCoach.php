@@ -1,6 +1,6 @@
 <?php
 error_reporting(0);
-include "admin/Configuracion/SessionTime.php";
+//include "admin/Configuracion/SessionTime.php";
 include "includes/navCoach.php";
 session_start();
 $sql = "SELECT * FROM configuracion";
@@ -57,6 +57,23 @@ $Fecha  = $_SESSION["ultimoAcceso"];
             }
             ?>
 
+<?php
+            if (isset($_POST['add2'])) {
+                $Distancia             = mysqli_real_escape_string($conexion, (strip_tags($_POST["Distancia"], ENT_QUOTES))); //Escanpando caracteres 
+                $Edad             = mysqli_real_escape_string($conexion, (strip_tags($_POST["Edad"], ENT_QUOTES))); //Escanpando caracteres 
+                
+                $Genero     = mysqli_real_escape_string($conexion, (strip_tags($_POST["Genero"], ENT_QUOTES))); //Escanpando caracteres 
+                
+                $insertD = mysqli_query($conexion, "INSERT INTO cooper(Distancia,Genero,Edad, Nombre, Fecha)
+                        VALUES ('$Distancia','$Genero','$Edad','$Nombre','$Fecha')") or die(mysqli_error());
+                if ($insertD) {
+                    echo '<div class="alert alert-success alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Bien hecho! Los datos han sido guardados con éxito.</div>';
+                } else {
+                    echo '<div class="alert alert-danger alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>Error. No se pudo guardar los datos !</div>';
+                }
+            }
+            ?>
+
             <div class="Flexiones">
                 <form action="" method="post">
                     <div class="form-group">
@@ -80,7 +97,7 @@ $Fecha  = $_SESSION["ultimoAcceso"];
                                 $result = $conexion->query($sql);
                                 ?>
                                 <option value="0">Seleccionar genero</option>
-				                <?php while($row = $result->fetch_assoc()) { ?>
+                                <?php while($row = $result->fetch_assoc()) { ?>
                                 <option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
                                 <?php } ?>
                             </select>
@@ -109,30 +126,6 @@ $Fecha  = $_SESSION["ultimoAcceso"];
 
 
 
-            <!-- test de cooper inicio -->
-            <div class="cooper">
-                <h2 style="color: chocolate;">Test de Cooper</h2>
-                <div class="infoTxt">
-                    <h3 style="color: rgb(192, 108, 30);">¿En que consiste el Test de Cooper?</strong></h3>
-                    <br>
-                    <p style="color: white;">
-                        El test consiste en recorrer, en terreno llano y durante un tiempo de 12 minutos, la máxima
-                        distancia posible sin detenerse. La idea es que el atleta rinda al máximo su condición
-                        física
-                        con el fin de conocer las verdaderas condiciones de la persona.
-                    </p>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-3 control-label" style="color: chocolate;">Distancia</label>
-                    <div class="col-sm-2">
-                        <input type="text" name="Distancia" placeholder="Distancia Metros" required>
-                    </div>
-                </div>
-                <button type="button" class="btn btn-success">Calcular</button>
-                <a href="Antropometricas.php"><input type="submit" name="add" class="btn btn-danger"
-                        value="Cancelar"></a>
-            </div>
-            <!-- test de cooper final-->
 
 
             <!-- tabla de test erm-->
@@ -140,14 +133,12 @@ $Fecha  = $_SESSION["ultimoAcceso"];
                 <table class="table table-dark">
                     <thead>
 
-                        <tr>
+                    <tr style="color: chocolate;"> 
                             <th scope="col">Nombre</th>
                             <th scope="col">Edad</th>
                             <th scope="col">Peso</th>
                             <th scope="col">Flexiones</th>
-                            <th scope="col">Resultado</th>
                             <th scope="col">Abdominales</th>
-                            <th scope="col">Resultado</th>
                             <th scope="col">Fecha</th>
                         </tr>
                     </thead>
@@ -163,9 +154,7 @@ $Fecha  = $_SESSION["ultimoAcceso"];
                                 <td>' . $row['Edad'] . '</td>
                                 <td>' . $row['Peso'] . '</td>
                                 <td>' . $row['flexiones'] . '</td>
-                                <td>' . $row['RFlexiones'] . '</td>
                                 <td>' . $row['abdominales'] . '</td>
-                                <td>' . $row['RAbdominales'] . '</td>
                                 <td>' . $row['Fecha'] . '</td>
                             </tr>
                             ';
@@ -179,6 +168,89 @@ $Fecha  = $_SESSION["ultimoAcceso"];
         </div>
     </div>
     <!-- Hero Section End -->
+
+    <!-- test de cooper inicio -->
+    
+    <div class="cooper">
+        <form action="testermCalculo.php" method="post">
+            <h2 style="color: chocolate;">Test de Cooper</h2>
+            <div class="infoTxt">
+                <h3 style="color: rgb(192, 108, 30);">¿En que consiste el Test de Cooper?</strong></h3>
+                <br>
+                <p style="color: white;">
+                    El test consiste en recorrer, en terreno llano y durante un tiempo de 12 minutos, la máxima
+                    distancia posible sin detenerse. La idea es que el atleta rinda al máximo su condición
+                    física
+                    con el fin de conocer las verdaderas condiciones de la persona.
+                </p>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" style="color: chocolate;">Distancia</label>
+                <div class="col-sm-2">
+                    <input type="text" name="Distancia" placeholder="Distancia Metros" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">Genero</label>
+                <div class="col-sm-3">
+                    <select name="Genero" class="form-control">
+                        <?php
+                                $sql = "SELECT id, nombre FROM genero ORDER BY id";
+                                $result = $conexion->query($sql);
+                                ?>
+                        <option value="0">Genero</option>
+                        <?php while($row = $result->fetch_assoc()) { ?>
+                        <option value="<?php echo $row['nombre']; ?>"><?php echo $row['nombre']; ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                        <label class="col-sm-3 control-label">Edad</label>
+                        <div class="col-sm-2">
+                            <input type="text" name="Edad" placeholder="Edad" required>
+                        </div>
+                    </div>
+            <input type="submit" name="add2" class="btn btn-sm btn-primary" value="calcular">
+        </form>
+    </div>
+    <!-- test de cooper final-->
+
+    <div class="tablaCooper">
+                <table class="table table-dark">
+                    <thead>
+
+                        <tr style="color: chocolate;"> 
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Edad</th>
+                            <th scope="col">Distancia</th>
+                            <th scope="col">Resultado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $sql = mysqli_query($conexion, "SELECT * FROM cooper");
+
+
+                        while ($row = mysqli_fetch_assoc($sql)) {
+                            echo '
+                            <tr>
+                                <td>' . $row['Nombre'] . '</td>
+                                <td>' . $row['Fecha'] . '</td>
+                                <td>' . $row['Distancia'] . '</td>
+                                <td>' . $row['resultado'] . '</td>
+                                <td>' . $row['Edad'] . '</td>
+                            </tr>
+                            ';
+                        }
+
+                        ?>
+                    </tbody>
+                </table>
+
+            </div>
+
 </body>
 
 </html>

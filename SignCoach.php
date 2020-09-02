@@ -78,7 +78,7 @@ $res = mysqli_query($conexion, $sql);
         <div class="form-group">
             <label class="col-sm-3 control-label">Fecha de nacimiento</label>
             <div class="col-sm-4">
-                <input type="text" name="fecha_nacimiento" class="input-group date form-control" date="" data-date-format="dd-mm-yyyy" placeholder="00-00-0000" required>
+                <input type="date" name="fecha_nacimiento" class="input-group date form-control" date="" data-date-format="dd-mm-yyyy" placeholder="00-00-0000" required>
             </div>
         </div>
         <div class="form-group">
@@ -100,16 +100,20 @@ $res = mysqli_query($conexion, $sql);
             </div>
         </div>
         <div class="form-group">
-            <label class="col-sm-3 control-label">Estado</label>
-            <div class="col-sm-3">
-                <select name="estado" class="form-control">
-                    <option value=""> ----- </option>
-                    <option value="1">Fijo</option>
-                    <option value="2">Dialogo</option>
-                    <option value="3">Termindo</option>
-                </select>
-            </div>
-        </div>
+                        <label class="col-sm-3 control-label">Estado</label>
+                        <div class="col-sm-3">
+                            <select name="estado" class="form-control">
+                                <?php
+                                $sql = "SELECT id, nombre FROM estado_empleado ORDER BY id";
+                                $result = $conexion->query($sql);
+                                ?>
+                                <option value="0">Seleccionar Estado</option>
+				                <?php while($row = $result->fetch_assoc()) { ?>
+                                <option value="<?php echo $row['id'];?>"><?php echo $row['nombre']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
         <div class="form-group">
             <label class="col-sm-3 control-label">Usuario</label>
             <div class="col-sm-3">
@@ -150,7 +154,7 @@ $res = mysqli_query($conexion, $sql);
             </div>
         </div>
     </form>
-    <a href="./Home.php">
+    <a href="./admin.php">
         <?php
         $data = mysqli_fetch_array($res);
         echo '<img src="' . $data['ruta'] . '" alt="" class="avatare">';

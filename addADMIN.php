@@ -162,7 +162,7 @@ $res=mysqli_query($conexion,$sql);
                     <label class="col-sm-3 control-label">&nbsp;</label>
                     <div class="col-sm-6">
                         <input type="submit" name="add" class="btn btn-sm btn-primary" value="Guardar datos">
-                        <a href="admin.php" class="btn btn-sm btn-danger">Cancelar</a>
+                        <a href="admin.php" class="btn btn-sm btn-danger">Volver</a>
                     </div>
                 </div>
             </form>

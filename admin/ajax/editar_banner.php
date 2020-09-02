@@ -10,7 +10,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST["titulo"])){
 	 $orden = intval($_POST['orden']);
 	 $estado = intval($_POST['estado']);
 	 $id_banner=intval($_POST['id_banner']);
-	 $sql="UPDATE banner SET titulo='$titulo', descripcion='$descripcion', orden='$orden', estado='$estado' WHERE id='$id_banner'";
+
+	 $id_cliente = intval($_POST['id_cliente']);
+	 $nombre = $_SESSION['usuario'];
+	 $sql="UPDATE banner SET titulo='$titulo', descripcion='$descripcion', orden='$orden', estado='$estado', id_cliente='$id_cliente',nombre='$nombre'  WHERE id='$id_banner'";
 	 $query = mysqli_query($con,$sql);
 	// if user has been added successfully
 	if ($query) {

@@ -66,6 +66,7 @@ $active4="active";
                         </a>
                         <div class="caption">
                             <h3><?php echo $rw_banner_top['titulo'];?></h3>
+                            <h4><?php echo $rw_banner_top['id_cliente'];?></h4>
                             <p><?php echo $rw_banner_top['descripcion'];?></p>
                         </div>
                     </div>

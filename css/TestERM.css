@@ -49,7 +49,7 @@ body {
     background-color: rgba(0, 0, 0, 0);
     width: 50%;
     position: absolute;
-    top: 17%;
+    top: 35%;
     left: 50%;
 }
 
@@ -75,8 +75,16 @@ body {
 
 .tablaFlex {
     background-color: rgba(0, 0, 0, 0);
-    left: 0%;
-    top: 110%;
-    width: 50%;
+    left: -15%;
+    top: 125%;
+    width: 45%;
+    position: absolute;
+}
+
+.tablaCooper {
+    background-color: rgba(0, 0, 0, 0);
+    left: 58%;
+    top: 112%;
+    width: 40%;
     position: absolute;
 }

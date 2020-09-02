@@ -1,10 +1,12 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 include "admin/Configuracion/SessionTimeU.php";
 include "conectar.php";
 include "includes/navCliente.php";
 include "includes/fuctions.php";
 session_start();
+$codigo = $_SESSION['codigo'];
+
 
 $sql ="SELECT * FROM batidos";
 $res=mysqli_query($conexion,$sql);
@@ -54,18 +56,30 @@ $active4="active";
         <div class="tz-gallery">
             <div class="row">
                 <?php
-			$nums=1;
-			$sql_banner_top=mysqli_query($con,"select * from banner where estado=1 order by orden ");
+            $nums=1;
+            
+           
+			$sql_banner_top=mysqli_query($con,"SELECT * FROM banner
+           
+
+            WHERE id_cliente=  '110'
+            ORDER BY id ASC" 
+            );
+            
+            
+            
 			while($rw_banner_top=mysqli_fetch_array($sql_banner_top)){
-		?>
+                ?>
                 <div class="col-sm-6 col-md-4">
                     <div class="thumbnail">
                         <a class="lightbox" href="img/banner/<?php echo $rw_banner_top['url_image'];?>">
-                            <img src="img/banner/<?php echo $rw_banner_top['url_image'];?>"
-                                alt="<?php echo $rw_banner_top['titulo'];?>">
+                        <img src="img/banner/<?php echo $rw_banner_top['url_image'];?>"
+                        alt="<?php echo $rw_banner_top['titulo'];?>">
+                        
                         </a>
                         <div class="caption">
                             <h3><?php echo $rw_banner_top['titulo'];?></h3>
+                            <h3><?php echo $rw_banner_top['id_cliente'];?></h3>
                             <p><?php echo $rw_banner_top['descripcion'];?></p>
                         </div>
                     </div>
