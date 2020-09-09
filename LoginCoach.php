@@ -33,8 +33,8 @@ if (!empty($_SESSION['active'])) {
                 $_SESSION["ultimoAcceso"] = date("Y-n-j H:i:s");
                 $data = mysqli_fetch_array($consulta);
                 $_SESSION['active'] = true;
-                $_SESSION['nombre'] = $data['nombre'];
-                $_SESSION['correo']  = $data['correo'];
+                $_SESSION['nombres'] = $data['nombres'];
+               // $_SESSION['correo']  = $data['correo'];
                 $_SESSION['estado']  = $data['estado'];
                 $_SESSION['telefono']  = $data['telefono'];
                 $_SESSION['codigo']  = $data['codigo'];

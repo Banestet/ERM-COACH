@@ -1,11 +1,14 @@
 <?php
 //error_reporting(0);
-include "admin/Configuracion/SessionTimeU.php";
+//include "admin/Configuracion/SessionTimeU.php";
 include "conectar.php";
 include "includes/navCliente.php";
 include "includes/fuctions.php";
 session_start();
-$codigo = $_SESSION['codigo'];
+
+
+ $usuario = $_SESSION['usuario'];
+echo $usuario=['usuario'];
 
 
 $sql ="SELECT * FROM batidos";
@@ -55,13 +58,12 @@ $active4="active";
         <h1 class="TituloBatidos">Galeria de batidos</h1>
         <div class="tz-gallery">
             <div class="row">
-                <?php
+            <?php
             $nums=1;
             
            
 			$sql_banner_top=mysqli_query($con,"SELECT * FROM banner
            
-
             WHERE id_cliente=  '110'
             ORDER BY id ASC" 
             );

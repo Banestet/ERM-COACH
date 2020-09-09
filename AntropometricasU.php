@@ -3,7 +3,10 @@ error_reporting(0);
 include "admin/Configuracion/SessionTimeU.php";
 include "includes/navCliente.php";
 include "includes/fuctions.php";
+
+
 session_start();
+$nombre = $_SESSION['usuario'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

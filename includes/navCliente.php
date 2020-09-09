@@ -9,12 +9,12 @@ $res3=mysqli_query($conexion,$sql);
         <div class="container">
             <div class="infoUsuario">
                 <h1> <strong> Bienvenido:</strong> <?php echo $_SESSION['usuario'] ?> </h1>
-                <h1><?php echo $_SESSION['nombres'] ?></h1>
+
                 <?php
-                
                 $data3=mysqli_fetch_array($res3);
                 echo '<h1>'.$data3['Empresa']. '</h1>';
                 ?>
+
                 <h1><?php echo $_SESSION['correo'] ?></h1>
             </div>
             <div class="logo">
