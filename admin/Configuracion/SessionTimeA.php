@@ -12,7 +12,7 @@ if(empty($_SESSION['activeA'])){
     $tiempo_transcurrido = (strtotime($ahora)-strtotime($fechaGuardada));
 
     //comparamos el tiempo transcurrido
-    if($tiempo_transcurrido >= 600) {
+    if($tiempo_transcurrido >= 900) {
     //si pasaron 10 minutos o más
     session_destroy(); // destruyo la sesión
     echo "<script>

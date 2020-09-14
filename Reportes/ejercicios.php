@@ -1,35 +1,67 @@
 <?php
 session_start();
-$fecha  = $_SESSION["ultimoAcceso"];
+$fecha  = $_SESSION["ultimoAccesoU"];
+$usuario  = $_SESSION["usuario"];
+$codigo  = $_SESSION["codigo"];
+$correo  = $_SESSION["correo"];
+$direccion  = $_SESSION["direccion"];
+$telefono  = $_SESSION["telefono"];
+
+
 
 //require_once __DIR__ . 'vendor/autoload.php';
 include "../vendor/autoload.php";
 include '../Reportes/model.php';
 
-$clientes = new Model();
-$usuarios = new Model();
+$ClieEjer = new Model();
 $css = file_get_contents('../Reportes/style.css');
 
-$lista = $clientes->getEjer();
-$lista2 = $usuarios->getEjer();
+$lista = $ClieEjer->getEjercicio();
 
 //var_dump($lista);
-$html = '<img src="logo.png" width="200" />
+$html = '
+    <header class="clearfix">
+        <div id="logo">
+            <img src="logo.png" width="200" />
+        </div>
         <div id="company">
             <h2 class="name">ERM COACH REPORTES</h2>
-            <div>Florencia - Cauqeta, Colombia</div>
+            <div>Florencia - Caqueta, Colombia</div>
             <div>(+57) 315 409 7882/div>
             <div><a href="mailto:ERMCoach@gmail.com">ERMCoach@gmail.com</a></div>
-            
         </div>
-        <h1>Tabla de clientes</h1>
+    </header>
+    <main>
+    <div id="details" class="clearfix">
+    <div id="client">
+      <div class="to">Generado Por</div>
+      <h2 class="name">'.$usuario.'</h2>
+      <div class="address">Direccion :'.$direccion.'</div>
+      <div class="email"><a href="mailto:john@example.com">email :'.$correo.'</a></div>
+      <div class="address">Contacto :'.$telefono.'</div>
+      <div class="address">Codigo :'.$codigo.'</div>
+    </div>
+
+    <div id="invoice">
+      <div class="date">Fecha: '.$fecha.'</div>
+    </div>
+  </div>
+
+
+
+
+
+
+        <h1>Tabla de Ejercicios</h1>
         <table border="0" cellspacing="0" cellpadding="0">
         <thead>
             <tr>
-                <th class="no">id</th>
-                <th class="desc">Nombre</th>
-                <th class="qty">Descripcion</th>
-               
+                <th class="no">Id</th>
+                <th class="tit">titulo</th>
+                <th class="unit">descripcion</th>
+                <th class="est">estado</th>
+                <th class="qty">orden</th>
+                <th class="idc">id cliente</th>
             </tr>
         </thead>        ';
 foreach($lista['items'] as $item){
@@ -38,22 +70,16 @@ foreach($lista['items'] as $item){
     '<tbody>
         <tr>
             <td class="no">'.$item['id'].'</td>
-            <td class="desc">'.$item['Nombre'].'</td>
+            <td class="tit">'.$item['titulo'].'</td>
             <td class="unit">'.$item['descripcion'].'</td>
+            <td class="est">'.$item['estado'].'</td>
+            <td class="qty">'.$item['orden'].'</td>
+            <td class="idc">'.$item['id_cliente'].'</td>
         </tr>
     </tbody>';
 }
-$html .= '</table>';
-
-
-
-
-
-
-
-
-
-
+$html .= '</table>
+';
 
 
 

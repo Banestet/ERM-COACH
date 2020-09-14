@@ -6,9 +6,8 @@ include "includes/navCliente.php";
 include "includes/fuctions.php";
 session_start();
 
+$codigo = $_SESSION['codigo'];
 
- $usuario = $_SESSION['usuario'];
-echo $usuario=['usuario'];
 
 
 $sql ="SELECT * FROM batidos";
@@ -64,7 +63,7 @@ $active4="active";
            
 			$sql_banner_top=mysqli_query($con,"SELECT * FROM banner
            
-            WHERE id_cliente=  '110'
+           WHERE id_cliente='$codigo'
             ORDER BY id ASC" 
             );
             

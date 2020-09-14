@@ -1,9 +1,9 @@
 <?php
 class Database{
-    private $dbhost   = 'localhost';
-    private $dbname   = 'erm';
-    private $username = 'root';
-    private $password = '';
+    private $dbhost   = 'bd3rddw4x2niy8qnoukb-mysql.services.clever-cloud.com';
+    private $dbname   = 'bd3rddw4x2niy8qnoukb';
+    private $username = 'uungcs711doaxmxy';
+    private $password = '83qqLYgrb5suALWJE0zI';
     private $charset  = 'utf8mb4';
 
     function connect(){

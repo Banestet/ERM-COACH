@@ -1,9 +1,11 @@
 <?php
 error_reporting(0);
+session_start();
 include "conectar.php";
 include "admin/Configuracion/SessionTimeU.php";
-session_start();
 include "includes/navCliente.php";
+$codigo = $_SESSION['codigo'];
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,7 +45,7 @@ include "includes/navCliente.php";
       </thead>
       <tbody>
         <?php
-        $sql = mysqli_query($conexion, "SELECT * FROM medidas");
+        $sql = mysqli_query($conexion, "SELECT * FROM medidas WHERE id_cliente='$codigo' ORDER BY id ASC ");
 
 
         while ($row = mysqli_fetch_assoc($sql)) {
@@ -84,7 +86,7 @@ include "includes/navCliente.php";
   </thead>
   <tbody>
   <?php
-        $sql = mysqli_query($conexion, "SELECT * FROM bmi");
+        $sql = mysqli_query($conexion, "SELECT * FROM bmi WHERE codigo='$codigo'");
 
 
         while ($row = mysqli_fetch_assoc($sql)) {
@@ -155,7 +157,7 @@ include "includes/navCliente.php";
   </thead>
   <tbody>
   <?php
-        $sql = mysqli_query($conexion, "SELECT * FROM testerm");
+        $sql = mysqli_query($conexion, "SELECT * FROM testerm WHERE id_cliente='$codigo'");
 
         while ($row = mysqli_fetch_assoc($sql)) {
           echo '

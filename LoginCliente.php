@@ -38,6 +38,9 @@ if (!empty($_SESSION['activeU'])) {
                 $_SESSION['correo']  = $data['correo'];
                 $_SESSION['usuario']   = $data['usuario'];
                 $_SESSION['rol']   = $data['rol'];
+                $_SESSION['codigo']   = $data['codigo'];
+                $_SESSION['direccion']   = $data['direccion'];
+                $_SESSION['telefono']   = $data['telefono'];
 
 
                 //Desencriptacion de la contraseña que llega de la base de datos

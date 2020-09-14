@@ -14,6 +14,7 @@ $res3=mysqli_query($conexion,$sql);
                 echo '<h1>'.$data3['Empresa']. '</h1>';
                 ?>
                 <h1><?php echo $_SESSION['correo'] ?></h1>
+                <h1><?php echo $_SESSION['codigo'] ?></h1>
             </div>
             <div class="logo">
                 <a href="Home.php">

@@ -4,6 +4,7 @@ include "admin/Configuracion/SessionTimeU.php";
 include "includes/navCliente.php";
 include "includes/fuctions.php";
 session_start();
+$codigo = $_SESSION['codigo'];
 ?>
 <?php 
 include "conexion.php";
@@ -55,7 +56,7 @@ $active4="active";
             <div class="row">
                 <?php
 			$nums=1;
-			$sql_banner_top=mysqli_query($con,"select * from workout where estado=1 order by orden ");
+			$sql_banner_top=mysqli_query($con,"select * from workout where id_cliente='$codigo' order by orden ");
 			while($rw_banner_top=mysqli_fetch_array($sql_banner_top)){
 		?>
                 <div class="col-sm-6 col-md-4">

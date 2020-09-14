@@ -9,6 +9,7 @@ $alturar = $_POST["bmi-height"];
 $peso = $_POST["bmi-weight"];
 $nombre = $_SESSION['usuario'];
 $fecha  = $_SESSION["ultimoAccesoU"];
+$codigo  = $_SESSION["codigo"];
 //Tipo de sistema 
 $radio1 = $_POST['bmi-measure'];
 
@@ -47,7 +48,7 @@ $bmi = round($bmi * 100) / 100;
     }
 
 
-$insertar = "INSERT INTO bmi(nombre,fecha,peso,altura,resultado,estado,sistema) VALUES ('$nombre','$fecha','$peso','$alturar','$bmi','$bmir','$radio1')";
+$insertar = "INSERT INTO bmi(nombre,fecha,peso,altura,resultado,estado,sistema,codigo) VALUES ('$nombre','$fecha','$peso','$alturar','$bmi','$bmir','$radio1','$codigo')";
 
 
 $resultado = mysqli_query ($conexion, $insertar);

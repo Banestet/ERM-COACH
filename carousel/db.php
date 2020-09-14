@@ -6,7 +6,7 @@
 **/
 
 function con(){
-	return new mysqli("localhost","root","","erm");
+	return new mysqli("bd3rddw4x2niy8qnoukb-mysql.services.clever-cloud.com","uungcs711doaxmxy","83qqLYgrb5suALWJE0zI","bd3rddw4x2niy8qnoukb");
 }
 
 function insert_img($title, $folder, $image){

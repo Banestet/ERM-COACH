@@ -34,7 +34,7 @@ if (!empty($_SESSION['active'])) {
                 $data = mysqli_fetch_array($consulta);
                 $_SESSION['active'] = true;
                 $_SESSION['nombres'] = $data['nombres'];
-               // $_SESSION['correo']  = $data['correo'];
+                $_SESSION['correo']  = $data['correo'];
                 $_SESSION['estado']  = $data['estado'];
                 $_SESSION['telefono']  = $data['telefono'];
                 $_SESSION['codigo']  = $data['codigo'];
