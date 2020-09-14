@@ -37,7 +37,7 @@ $codigo = $_SESSION['codigo'];
         <div class="wrap">
             <h3><strong>REPORTES</strong></h3>
             <ul class="tabs">
-                <li><a href="#tab1"><span class="fa fa-home"></span><span class="tab-text">Clientes</span></a></li>
+                <li><a href="#tab1"><span class="fa fa-home"></span><span class="tab-text">Chat</span></a></li>
                 <li><a href="#tab2"><span class="fa fa-group"></span><span class="tab-text">Batidos A.</span></a>
                 </li>
                 <li><a href="#tab3"><span class="fa fa-briefcase"></span><span class="tab-text">Ejercicios</span></a>
@@ -51,24 +51,24 @@ $codigo = $_SESSION['codigo'];
                     <table class="table table-striped table-dark">
                         <thead>
                             <tr>
-                                <th scope="col">Coidgo</th>
+                                <th scope="col">id</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Direccion</th>
-                                <th scope="col">Telefono</th>
+                                <th scope="col">Mensaje</th>
+                                <th scope="col">Fecha</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql = mysqli_query($conexion, "SELECT * FROM clientes
-							WHERE id_codigo='$codigo' ORDER BY codigo ASC 
+                            $sql = mysqli_query($conexion, "SELECT * FROM chat
+							 
 							");
                             while ($row = mysqli_fetch_assoc($sql)) {
                                 echo '
                             <tr>
-                                <td>' . $row['codigo'] . '</td>
-                                <td>' . $row['nombres'] . '</td>
-                                <td>' . $row['direccion'] . '</td>
-                                <td>' . $row['telefono'] . '</td>
+                                <td>' . $row['id'] . '</td>
+                                <td>' . $row['usuario'] . '</td>
+                                <td>' . $row['mensaje'] . '</td>
+                                <td>' . $row['fecha'] . '</td>
                             </tr>
                             ';
                             }
@@ -79,7 +79,7 @@ $codigo = $_SESSION['codigo'];
                         <label class="col-sm-3 control-label">&nbsp;</label>
                         <div class="col-sm-6">
                             <a href="HomeU.php" class="btn btn-sm btn-danger">Cancelar</a>
-                            <a href="Reportes/Clientes.php" class="btn btn-sm btn-primary">Generar PDF</a>
+                            <a href="Reportes/reporteAdminChat.php" class="btn btn-sm btn-primary">Generar PDF</a>
                         </div>
                     </div>
                 </article>
