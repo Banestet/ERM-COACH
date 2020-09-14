@@ -1,10 +1,10 @@
 <?php
-error_reporting(0);
+//error_reporting(0);
 include 'conectar.php';
 session_start();
 $nombre = $_SESSION['usuario'];
 $codigo = $_SESSION['codigo'];
-$fecha  = $_SESSION["ultimoAcceso"];;
+$fecha  = $_SESSION["ultimoAccesoU"];;
 if (isset($_POST['add'])) {
 
     $peso             = mysqli_real_escape_string($conexion, (strip_tags($_POST["peso"], ENT_QUOTES))); //Escanpando caracteres 
@@ -30,17 +30,17 @@ if (isset($_POST['add'])) {
 
 
 
-    $insert = mysqli_query($conexion, "INSERT INTO medidas (nombre,fecha, peso,altura, BicepD, BicepI, Hombros, Pecho, AntebrazoD, AntebrazoI, Muñeca, Abdomen, Cintura,Cadera,Muslo,Rodilla,Gemelos,Tobillo,Pierna,BicepDR,BicepDI,observacion,codigo)
+    $insert = mysqli_query($conexion, "INSERT INTO medidas(nombre,fecha, peso,altura, BicepD, BicepI, Hombros, Pecho, AntebrazoD, AntebrazoI, Muñeca, Abdomen, Cintura,Cadera,Muslo,Rodilla,Gemelos,Tobillo,Pierna,BicepDR,BicepDI,observacion,codigo)
                         VALUES ('$nombre','$fecha',' $peso','$altura','$BicepD',' $BicepI',' $Hombros',' $Pecho',' $AntebrazoD', '$AntebrazoI',' $Muñeca',' $Abdomen',' $Cintura','$Cadera','$Muslo','$Rodilla','$Gemelos','$Tobillo','$Pierna','$BicepDR','$BicepDI','$observacion','$codigo')") or die(mysqli_error());
     if ($insert) {
         echo "<script>
                     alert('Bien hecho los datos han sido guardados con exito');
-                    window.location= 'Antropometricas.php'
+                    window.location= 'AntropometricasU.php'
                 </script>";
     } else {
         echo "<script>
                     alert('Error!! los datos no se han guardado');
-                    window.location= 'Antropometricas.php'
+                    window.location= 'AntropometricasU.php'
                 </script>";
     }
 }

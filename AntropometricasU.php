@@ -36,7 +36,7 @@ $nombre = $_SESSION['usuario'];
         <h1 class="title">Medidas Antropometricas</h1>
         <div class="antropometricas">
             <div class="antropo1">
-                <form class="form-horizontal" action="Medidas.php" method="post">
+                <form class="form-horizontal" action="MedidasU.php" method="post">
                     <div class="form-group">
                         <label class="col-sm-3 control-label">peso</label>
                         <div class="col-sm-2">
@@ -46,7 +46,7 @@ $nombre = $_SESSION['usuario'];
                     <div class="form-group">
                         <label class="col-sm-3 control-label">Altura</label>
                         <div class="col-sm-2">
-                            <input type="text" name="Altura" placeholder="Altura" required>
+                            <input type="text" name="altura" placeholder="Altura" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -138,7 +138,7 @@ $nombre = $_SESSION['usuario'];
                                 <label class="col-sm-3 control-label">14.P. Biceps Relajado</label>
                                 <div class="col-sm-2">
                                     <input type="text" name="BicepDR" placeholder="Bicep Derecho" required>
-                                    <input type="text" name="BicepIR" placeholder="Bicep Izquierdo" required>
+                                    <input type="text" name="BicepDI" placeholder="Bicep Izquierdo" required>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -9,6 +9,7 @@ $codigo = $_SESSION['codigo'];
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,17 +27,18 @@ $codigo = $_SESSION['codigo'];
     <script src="main.js"></script>
 
 </head>
+
 <body>
-<link rel="shortcut icon" type="image/x-icon" href="/img/icon/ERM.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/img/icon/ERM.png">
 
 
 
-<div class="reportes">
+    <div class="reportes">
         <div class="wrap">
             <h3><strong>REPORTES</strong></h3>
             <ul class="tabs">
-                <li><a href="#tab1"><span class="fa fa-home"></span><span class="tab-text">Batidos</span></a></li>
-                <li><a href="#tab2"><span class="fa fa-group"></span><span class="tab-text">Medidas A.</span></a>
+                <li><a href="#tab1"><span class="fa fa-home"></span><span class="tab-text">Clientes</span></a></li>
+                <li><a href="#tab2"><span class="fa fa-group"></span><span class="tab-text">Batidos A.</span></a>
                 </li>
                 <li><a href="#tab3"><span class="fa fa-briefcase"></span><span class="tab-text">Ejercicios</span></a>
                 </li>
@@ -49,24 +51,24 @@ $codigo = $_SESSION['codigo'];
                     <table class="table table-striped table-dark">
                         <thead>
                             <tr>
-                                <th scope="col">id</th>
+                                <th scope="col">Coidgo</th>
                                 <th scope="col">Nombre</th>
-                                <th scope="col">Descripcion</th>
-                                <th scope="col">Orden</th>
+                                <th scope="col">Direccion</th>
+                                <th scope="col">Telefono</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql = mysqli_query($conexion, "SELECT * FROM banner
-							WHERE id_cliente='$codigo' ORDER BY id ASC 
+                            $sql = mysqli_query($conexion, "SELECT * FROM clientes
+							WHERE id_codigo='$codigo' ORDER BY codigo ASC 
 							");
                             while ($row = mysqli_fetch_assoc($sql)) {
                                 echo '
                             <tr>
-                                <td>' . $row['id'] . '</td>
-                                <td>' . $row['titulo'] . '</td>
-                                <td>' . $row['descripcion'] . '</td>
-                                <td>' . $row['orden'] . '</td>
+                                <td>' . $row['codigo'] . '</td>
+                                <td>' . $row['nombres'] . '</td>
+                                <td>' . $row['direccion'] . '</td>
+                                <td>' . $row['telefono'] . '</td>
                             </tr>
                             ';
                             }
@@ -77,63 +79,62 @@ $codigo = $_SESSION['codigo'];
                         <label class="col-sm-3 control-label">&nbsp;</label>
                         <div class="col-sm-6">
                             <a href="HomeU.php" class="btn btn-sm btn-danger">Cancelar</a>
-                            <a href="Reportes/index.php" class="btn btn-sm btn-primary">Generar PDF</a>
+                            <a href="Reportes/Clientes.php" class="btn btn-sm btn-primary">Generar PDF</a>
                         </div>
                     </div>
                 </article>
+
+
+
+
                 <article id="tab2">
+
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label" style="color: white;">Clientes</label>
+                        <div class="col-sm-3">
+                            <select name="id_codigo" class="form-control">
+                                <?php
+                                $sql = "SELECT codigo, nombres FROM clientes WHERE id_codigo='$codigo'  ORDER BY codigo";
+                                $result = $conexion->query($sql);
+                                ?>
+                                <option value="0">Seleccionar Cliente</option>
+                                <?php while($row = $result->fetch_assoc()) { ?>
+                                <option value="<?php echo $row['codigo'];?>"><?php echo $row['nombres']; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    
+
                     <table class="table table-striped table-dark">
                         <thead>
                             <tr>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Peso</th>
-                                <th scope="col">Altura</th>
-                                <th scope="col">Bicep D</th>
-                                <th scope="col">Bicep I</th>
-                                <th scope="col">Hombros </th>
-                                <th scope="col">Pecho </th>
-                                <th scope="col">AntebrazoD </th>
-                                <th scope="col">AntebrazoI </th>
-                                <th scope="col">Muñeca</th>
-                                <th scope="col">Abdomen</th>
-                                <th scope="col">Cintura</th>
-                                <th scope="col">Cadera</th>
-                                <th scope="col">Muslo</th>
-                                <th scope="col">Rodilla</th>
-                                <th scope="col">Gemelos</th>
-                                <th scope="col">Tobillos</th>
-                                <th scope="col">Pierna</th>
+                                <th scope="col">id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Descripcion</th>
+                                <th scope="col">Estado</th>
+                                <th scope="col">Orden</th>
+                                <th scope="col">id Cliente</th>
+
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                            $sql = mysqli_query($conexion, "SELECT * FROM medidas
-							WHERE id_cliente='$codigo' ORDER BY id ASC 
-							");
+                            $codigo = $_SESSION['codigo'];
+                            $sql = mysqli_query($conexion, "SELECT * FROM banner");
                             while ($row = mysqli_fetch_assoc($sql)) {
                                 echo '
-								<tr>
-                                <td>' . $row['fecha'] . '</td>
-                                <td>' . $row['peso'] . '</td>
-                                <td>' . $row['altura'] . '</td>
-                                <td>' . $row['BicepD'] . '</td>
-                                <td>' . $row['BicepI'] . '</td>
-                                <td>' . $row['Hombros'] . '</td>
-                                <td>' . $row['Pecho'] . '</td>
-                                <td>' . $row['AntebrazoD'] . '</td>
-                                <td>' . $row['AntebrazoI'] . '</td>
-                                <td>' . $row['Muñeca'] . '</td>
-                                <td>' . $row['Abdomen'] . '</td>
-                                <td>' . $row['Cintura'] . '</td>
-                                <td>' . $row['Cadera'] . '</td>
-                                <td>' . $row['Muslo'] . '</td>
-                                <td>' . $row['Rodilla'] . '</td>
-								<td>' . $row['Gemelos'] . '</td>
-								<td>' . $row['Tobillo'] . '</td>
-								<td>' . $row['Pierna'] . '</td>
+                            <tr>
+                                <td>' . $row['id'] . '</td>
+                                <td>' . $row['titulo'] . '</td>
+                                <td>' . $row['descripcion'] . '</td>
+                                <td>' . $row['estado'] . '</td>
+                                <td>' . $row['orden'] . '</td>
+                                <td>' . $row['id_cliente'] . '</td>
                             </tr>
                             ';
                             }
+
                             ?>
                         </tbody>
                     </table>
@@ -287,4 +288,5 @@ $codigo = $_SESSION['codigo'];
 
 
 </body>
+
 </html>

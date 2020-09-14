@@ -1,5 +1,7 @@
 <?php
 error_reporting(0);
+session_start();
+$codigo = $_SESSION['codigo'];
 include "./admin/Configuracion/SessionTime.php";
 include "./conectar.php";
 include "includes/header.php";
@@ -8,6 +10,7 @@ include "includes/fuctions.php";
 //carousel
 include "carousel/db.php";
 $images = get_imgs();
+
 ?>
 
 <body>
@@ -25,7 +28,7 @@ $images = get_imgs();
         if (isset($_GET['aksi']) == 'delete') {
             // escaping, additionally removing everything that could be (html/javascript-) code
             $nik = mysqli_real_escape_string($conexion, (strip_tags($_GET["nik"], ENT_QUOTES)));
-            $cek = mysqli_query($conexion, "SELECT * FROM clientes WHERE codigo='$nik'");
+            $cek = mysqli_query($conexion, "SELECT * FROM clientes WHERE id_codigo='$codigo'");
             if (mysqli_num_rows($cek) == 0) {
                 echo '<div class="alert alert-info alert-dismissable"><button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> No se encontraron datos.</div>';
             } else {

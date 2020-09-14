@@ -65,6 +65,7 @@ h2.name {
     font-size: 1.4em;
     font-weight: normal;
     margin: 0;
+    color: #c5740a;
 }
 
 #invoice {
@@ -119,8 +120,8 @@ table td h3 {
 
 table .no {
     color: #FFFFFF;
-    font-size: 1.6em;
-    background: #57B223;
+    font-size: 9px;
+    background: #c5740a;
 }
 
 table .desc {
@@ -131,17 +132,20 @@ table .unit {
     background: #DDDDDD;
 }
 
-table .qty {}
+table .qty {
+    background: rgba(128, 128, 128, 0.678);
+    color: white;
+}
 
 table .total {
-    background: #57B223;
+    background: #c5740a;
     color: #FFFFFF;
 }
 
 table td.unit,
 table td.qty,
 table td.total {
-    font-size: 1.2em;
+    font-size: 12px;
 }
 
 table tbody tr:last-child td {
