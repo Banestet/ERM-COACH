@@ -4,39 +4,32 @@ include '../Reportes/database.php';
 
 
 
-class AdminModel extends Database{
+class Model extends Database{
 
-    function getAll(){   
+    function getUsuarios(){   
         $adm = array();
         $adm['items'] = array();
-        $query = $this->connect()->query('SELECT * FROM clientes WHERE id_codigo = "105" ');
+        $query = $this->connect()->query('SELECT * FROM usuarios ');
 
         while($row = $query->fetch()){
             array_push($adm['items'], array(
                 'codigo' => $row['codigo'],
                 'nombres' => $row['nombres'],
-                'lugar_nacimiento' => $row['lugar_nacimiento'],
-                'fecha_nacimiento' => $row['fecha_nacimiento'],
                 'direccion' => $row['direccion'],
                 'telefono' => $row['telefono'],
                 'puesto' => $row['puesto'],
-                'estado' => $row['estado'],
-                'usuario' => $row['usuario']                
+                'usuario' => $row['usuario'],                
+                'correo' => $row['correo'],                
 
             ));
         }
-
         return $adm;
-
     }
 
      function getChat(){
-        
         $admChat = array();
         $admChat['items'] = array();
-
         $query = $this->connect()->query("SELECT * FROM chat ORDER BY fecha DESC ");
-
         while($row = $query->fetch()){
             array_push($admChat['items'], array(
                 'id' => $row['id'],
@@ -50,5 +43,3 @@ class AdminModel extends Database{
 
     }
 }
-
-?>

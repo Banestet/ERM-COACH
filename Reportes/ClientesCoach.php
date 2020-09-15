@@ -1,6 +1,6 @@
 <?php
 session_start();
-$fecha  = $_SESSION["ultimoAccesoU"];
+$fecha  = $_SESSION["ultimoAcceso"];
 $usuario  = $_SESSION["usuario"];
 $codigo  = $_SESSION["codigo"];
 $correo  = $_SESSION["correo"];
@@ -10,13 +10,12 @@ $telefono  = $_SESSION["telefono"];
 
 //require_once __DIR__ . 'vendor/autoload.php';
 include "../vendor/autoload.php";
-include '../Reportes/model.php';
+include '../Reportes/modelCoach.php';
 
-$clientes = new Model();
-$usuarios = new Model();
+$Client = new Model();
 $css = file_get_contents('../Reportes/style.css');
 
-$lista = $clientes->getAll();
+$lista = $Client->getClientes();
 
 //var_dump($lista);
 $html = '
@@ -50,31 +49,32 @@ $html = '
 
 
 
-        <h1>Tabla de Batidos</h1>
-        <table border="0" cellspacing="0" cellpadding="0">
-        <thead>
-            <tr>
-                <th class="no">id</th>
-                <th class="desc">titulo</th>
-                <th class="unit">descripcion</th>
-                <th class="qty">orden</th>
-            </tr>
-        </thead>        ';
+      <h1>Tabla de Clientes</h1>
+      <table border="0" cellspacing="0" cellpadding="0">
+      <thead>
+          <tr>
+              <th class="no">Codigo</th>
+              <th class="desc">Nombre</th>
+              <th class="unit">Direccion</th>
+              <th class="qty">Telefono</th>
+              <th class="qty">correo</th>
+          </tr>
+      </thead>        ';
 foreach($lista['items'] as $item){
-    //echo $item['nombres'];
-    $html .= 
-    '<tbody>
-        <tr>
-            <td class="no">'.$item['id'].'</td>
-            <td class="desc">'.$item['titulo'].'</td>
-            <td class="unit">'.$item['descripcion'].'</td>
-            <td class="qty">'.$item['orden'].'</td>
-        </tr>
-    </tbody>';
+  //echo $item['nombres'];
+  $html .= 
+  '<tbody>
+      <tr>
+          <td class="no">'.$item['codigo'].'</td>
+          <td class="desc">'.$item['nombres'].'</td>
+          <td class="unit">'.$item['direccion'].'</td>
+          <td class="qty">'.$item['telefono'].'</td>
+          <td class="qty">'.$item['correo'].'</td>
+      </tr>
+  </tbody>';
 }
 $html .= '</table>
 ';
-
 
 
 

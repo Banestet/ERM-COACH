@@ -12,10 +12,10 @@ $telefono  = $_SESSION["telefono"];
 include "../vendor/autoload.php";
 include '../Reportes/AdminModel.php';
 
-$adm = new Model();
+$admChat = new Model();
 $css = file_get_contents('../Reportes/style.css');
 
-$lista = $adm->getUsuarios();
+$lista = $admChat->getChat();
 
 //var_dump($lista);
 $html = '
@@ -46,20 +46,14 @@ $html = '
         </div>
       </div>
 
-
-
-
-        <h1>Tabla de Clientes</h1>
+        <h1>Tabla de Mensajes</h1>
         <table border="0" cellspacing="0" cellpadding="0">
         <thead>
             <tr>
-                <th class="no">Codigo</th>
-                <th class="desc">Nombre</th>
-                <th class="unit">Direccion</th>
-                <th class="qty">Telefono</th>
-                <th class="qty">Puesto</th>
-                <th class="qty">Usuario</th>
-                <th class="qty">correo</th>
+                <th class="no">id</th>
+                <th class="desc">Usuario</th>
+                <th class="unit">Mensaje</th>
+                <th class="qty">fecha</th>
             </tr>
         </thead>        ';
 foreach($lista['items'] as $item){
@@ -67,27 +61,15 @@ foreach($lista['items'] as $item){
     $html .= 
     '<tbody>
         <tr>
-            <td class="no">'.$item['codigo'].'</td>
-            <td class="desc">'.$item['nombres'].'</td>
-            <td class="unit">'.$item['direccion'].'</td>
-            <td class="qty">'.$item['telefono'].'</td>
-            <td class="qty">'.$item['puesto'].'</td>
-            <td class="qty">'.$item['usuario'].'</td>
-            <td class="qty">'.$item['correo'].'</td>
+            <td class="no">'.$item['id'].'</td>
+            <td class="desc">'.$item['usuario'].'</td>
+            <td class="unit">'.$item['mensaje'].'</td>
+            <td class="qty">'.$item['fecha'].'</td>
         </tr>
     </tbody>';
 }
 $html .= '</table>
 ';
-
-
-
-
-
-
-
-
-
 
 
 
